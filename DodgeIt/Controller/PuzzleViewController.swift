@@ -21,9 +21,6 @@ class PuzzleViewController: UIViewController {
         currentPuzzleView = PuzzleView(currentPuzzle: testPuzzle)
         
         view = currentPuzzleView
-        
-        
-        print("0, 10".tupleValue())
     }
     
     override func viewDidLayoutSubviews() {
