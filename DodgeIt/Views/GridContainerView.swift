@@ -15,6 +15,7 @@ class GridContainerView: UIView {
         self.currentPuzzle = currentPuzzle
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .black
     }
     
     //Create a 2D matrix of SquareViews
