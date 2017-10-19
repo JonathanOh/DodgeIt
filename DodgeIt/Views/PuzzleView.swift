@@ -21,14 +21,11 @@ class PuzzleView: UIView {
     }
     
     func setupContainerViewWith(puzzle: Puzzle) {
-        let width: CGFloat = CGFloat(puzzle.totalWidth)
-        let squareWidth: CGFloat = width / CGFloat(puzzle.numberOfCellsInWidth)
-        let height: CGFloat = CGFloat(puzzle.numberOfCellsInHeight) * squareWidth
         addSubview(gridContainerView)
         gridContainerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        gridContainerView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        gridContainerView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        gridContainerView.widthAnchor.constraint(equalToConstant: CGFloat(puzzle.totalWidth)).isActive = true
+        gridContainerView.heightAnchor.constraint(equalToConstant: CGFloat(puzzle.totalHeight)).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

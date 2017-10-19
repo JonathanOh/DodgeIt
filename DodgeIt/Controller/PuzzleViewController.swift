@@ -20,6 +20,8 @@ class PuzzleViewController: UIViewController {
         let testPuzzle = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
         currentPuzzleView = PuzzleView(currentPuzzle: testPuzzle)
         
+        currentPuzzleView.gridContainerView.squareData.getSingleSquare((4,4))?.backgroundColor = .white
+        
         view = currentPuzzleView
     }
     

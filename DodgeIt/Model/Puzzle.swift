@@ -16,6 +16,13 @@ struct Puzzle {
     let lengthOfPuzzleCycle: Int // represents the number of seconds the explosions will cycle back
     let obstaclePositions: [String] // ["0,10", "row2"]
     let explosionPositionAndTiming: [String:[Double]] // { "0,10" : [.1, .5, .9] } timings are represents in a decimal of 0-1
+    
+    var squareWidth: Double { // width of a single square
+        return totalWidth / Double(numberOfCellsInWidth)
+    }
+    var totalHeight: Double { // total height of puzzle
+        return squareWidth * Double(numberOfCellsInHeight)
+    }
 }
 
 struct PuzzleTestData {
