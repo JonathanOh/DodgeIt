@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class SquareView: UIView {
     let currentPuzzle: Puzzle
@@ -36,19 +37,41 @@ class SquareView: UIView {
     func applyExplosionLogic() {
         if let explosionTimers = currentPuzzle.explosionPositionAndTiming[SquareData.tupleString(location)] {
             for timer in explosionTimers {
-                let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
-                // Wait the specified delay and trigger animated explosion
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay), execute: { [weak self] in
-                    self?.backgroundColor = .red
-                    UIView.animate(withDuration: 0.4, animations: { [weak self] in
-                        self?.backgroundColor = .yellow
-                    })
-                })
-                // Recursively call itself to apply a repeated explosion on a timers
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
-                    self?.applyExplosionLogic()
-                }
+                explosionAnimation(timer)
+//                let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
+//                // Wait the specified delay and trigger animated explosion
+//                DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay), execute: { [weak self] in
+//                    self?.backgroundColor = .red
+//                    UIView.animate(withDuration: 0.4, animations: { [weak self] in
+//                        self?.backgroundColor = .yellow
+//                    })
+//                })
+//                // Recursively call itself to apply a repeated explosion on a timers
+//                DispatchQueue.main.asyncAfter(deadline: .now() + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
+//                    self?.applyExplosionLogic()
+//                }
             }
+        }
+    }
+    var iteration = 0
+    func explosionAnimation(_ timer: Double) {
+        if location == (0, 0) {
+            print(iteration)
+            iteration += 1
+        }
+        let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
+        let now: DispatchTime = .now()
+        // Wait the specified delay and trigger animated explosion
+        DispatchQueue.main.asyncAfter(deadline: now + Double(delay), execute: { [weak self] in
+            self?.layer.removeAllAnimations()
+            self?.backgroundColor = .red
+            UIView.animate(withDuration: 0.4, animations: { [weak self] in
+                self?.backgroundColor = .yellow
+            })
+        })
+        // Recursively call itself to apply a repeated explosion on a timers
+        DispatchQueue.main.asyncAfter(deadline: now + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
+            self?.explosionAnimation(timer)
         }
     }
 }
