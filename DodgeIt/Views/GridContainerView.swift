@@ -21,7 +21,7 @@ class GridContainerView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .black
         addAllSquareViews(squareViewMatrix)
-        squareViewMatrix.map { $0.map { print($0.location) } }
+        _ = squareViewMatrix.map { $0.map { print($0.location) } }
     }
     
     static func generateSquareViews(currentPuzzle: Puzzle) -> [[SquareView]] {

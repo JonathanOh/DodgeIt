@@ -31,6 +31,6 @@ struct PuzzleTestData {
     let numberOfCellsInWidth: Int = 10
     let numberOfCellsInHeight: Int = 10
     let lengthOfPuzzleCycle: Int = 3
-    let obstaclePositions: [String] = ["0,10"]
+    let obstaclePositions: [String] = ["0,9"]
     let explosionPositionAndTiming: [String:[Double]] = ["0,5": [0.5]]
 }

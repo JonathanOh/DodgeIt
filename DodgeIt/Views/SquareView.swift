@@ -18,11 +18,24 @@ class SquareView: UIView {
         super.init(frame: .zero)
         let possibleColors: [UIColor] = [.gray, .yellow, .red, .black, .blue, .green, .orange, .brown]
         backgroundColor = possibleColors[Int(arc4random_uniform(UInt32(possibleColors.count)))]
-        //backgroundColor = .yellow
+        backgroundColor = checkIfObstacle() ? .black : .yellow
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func checkIfObstacle() -> Bool {
+        for position in currentPuzzle.obstaclePositions {
+            if let validTuple = position.tupleValue() {
+                return location == validTuple
+            }
+        }
+        return false
+    }
+    
+//    func explode() {
+//        currentPuzzle.
+//    }
     
 }
