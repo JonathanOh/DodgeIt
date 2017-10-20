@@ -29,6 +29,6 @@ struct SquareData {
         return locations.map { getSingleSquare($0) }
     }
     static func tupleString(_ tuple: (Int, Int)) -> String {
-        return "\(tuple.0), \(tuple.1)"
+        return "\(tuple.0),\(tuple.1)"
     }
 }
