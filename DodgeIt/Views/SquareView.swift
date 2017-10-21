@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class SquareView: UIView {
+class SquareView: UIView, CAAnimationDelegate {
     let currentPuzzle: Puzzle
     let location: (Int, Int)
     
@@ -37,7 +37,9 @@ class SquareView: UIView {
     func applyExplosionLogic() {
         if let explosionTimers = currentPuzzle.explosionPositionAndTiming[SquareData.tupleString(location)] {
             for timer in explosionTimers {
-                explosionAnimation(timer)
+                //explosionAnimation(timer)
+                if checkIfObstacle() { return }
+                explosionLayerAnimation(timer)
 //                let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
 //                // Wait the specified delay and trigger animated explosion
 //                DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay), execute: { [weak self] in
@@ -73,5 +75,30 @@ class SquareView: UIView {
         DispatchQueue.main.asyncAfter(deadline: now + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
             self?.explosionAnimation(timer)
         }
+    }
+    func explosionLayerAnimation(_ timer: Double) {
+        if location == (0, 0) {
+            print(iteration)
+            iteration += 1
+        }
+        let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
+//        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "backgroundColor")
+//        keyFrameAnimation.values = [UIColor.red.cgColor, UIColor.yellow.cgColor]
+        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        keyFrameAnimation.values = [1, 0]
+        keyFrameAnimation.keyTimes = [0, 1]
+        let now: DispatchTime = .now()
+        // Wait the specified delay and trigger animated explosion
+        DispatchQueue.main.asyncAfter(deadline: now + Double(delay), execute: { [weak self] in
+            self?.layer.removeAllAnimations()
+            self?.layer.add(keyFrameAnimation, forKey: "opacity")
+        })
+        // Recursively call itself to apply a repeated explosion on a timers
+        DispatchQueue.main.asyncAfter(deadline: now + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
+            self?.explosionLayerAnimation(timer)
+        }
+    }
+    func animationDidStart(_ anim: CAAnimation) {
+        print("started")
     }
 }
