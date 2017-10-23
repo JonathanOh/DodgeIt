@@ -21,3 +21,13 @@ extension String {
         return (firstInteger, secondInteger)
     }
 }
+
+extension Array {
+    func getTupleFromArray() -> (Int, Int)? {
+        if self.count != 2 { return nil }
+        guard let first = self.first as? Int,
+            let last = self.last as? Int else { return nil }
+        return (first, last)
+    }
+    
+}

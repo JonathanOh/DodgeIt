@@ -21,6 +21,7 @@ class GridContainerView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .black
         addAllSquareViews(squareViewMatrix)
+        applyExplosions()
     }
     
     static func generateSquareViews(currentPuzzle: Puzzle) -> [[SquareView]] {
@@ -60,6 +61,22 @@ class GridContainerView: UIView {
     }
     
     //Create a 2D matrix of SquareViews
+    func applyExplosions() {
+        for (explosionTimer, explosionPositions) in currentPuzzle.explosionPositionAndTiming {
+            dispatchExplosions(explosionTimer, positionsOfExplosions: explosionPositions)
+        }
+    }
+    
+    func dispatchExplosions(_ delay: Double, positionsOfExplosions: [[Int]]) {
+        let explosionDelay = delay * currentPuzzle.lengthOfPuzzleCycle
+        DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay, execute: { [weak self] in
+            let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
+            _ = squaresToExplode?.map { $0.explode() }
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle, execute: { [weak self] in
+            self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
+        })
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
