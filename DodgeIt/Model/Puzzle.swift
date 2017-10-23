@@ -30,8 +30,8 @@ struct PuzzleTestData {
     let totalWidth: Double = 1 // 0-1 value that represents % of phone screen to use as width of puzzle
     let numberOfCellsInWidth: Int = 10
     let numberOfCellsInHeight: Int = 10
-    let lengthOfPuzzleCycle: Double = 0.5
-    let obstaclePositions: [String] = ["0,9"]
+    let lengthOfPuzzleCycle: Double = 1
+    let obstaclePositions: [String] = []//["0,9"]
     let explosionPositionAndTiming: [String:[Double]] = [
         "0,0": [0, 0.5], "1,0": [0, 0.5],"2,0": [0, 0.5],"3,0": [0, 0.5],"4,0": [0, 0.5],"5,0": [0, 0.5],"6,0": [0, 0.5],"7,0": [0, 0.5],"8,0": [0, 0.5],"9,0": [0, 0.5],
         "0,1": [0.1, 0.6], "1,1": [0.1, 0.6],"2,1": [0.1, 0.6],"3,1": [0.1, 0.6],"4,1": [0.1, 0.6],"5,1": [0.1, 0.6],"6,1": [0.1, 0.6],"7,1": [0.1, 0.6],"8,1": [0.1, 0.6],"9,1": [0.1, 0.6],

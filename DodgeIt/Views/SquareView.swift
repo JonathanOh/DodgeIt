@@ -84,14 +84,15 @@ class SquareView: UIView, CAAnimationDelegate {
         let delay = Double(currentPuzzle.lengthOfPuzzleCycle) * timer
 //        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "backgroundColor")
 //        keyFrameAnimation.values = [UIColor.red.cgColor, UIColor.yellow.cgColor]
-        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "opacity")
-        keyFrameAnimation.values = [1, 0]
+        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "backgroundColor")
+        keyFrameAnimation.values = [UIColor.red.cgColor, UIColor.yellow.cgColor]
         keyFrameAnimation.keyTimes = [0, 1]
+        keyFrameAnimation.duration = 0.4
         let now: DispatchTime = .now()
         // Wait the specified delay and trigger animated explosion
         DispatchQueue.main.asyncAfter(deadline: now + Double(delay), execute: { [weak self] in
             self?.layer.removeAllAnimations()
-            self?.layer.add(keyFrameAnimation, forKey: "opacity")
+            self?.layer.add(keyFrameAnimation, forKey: "backgroundColor")
         })
         // Recursively call itself to apply a repeated explosion on a timers
         DispatchQueue.main.asyncAfter(deadline: now + Double(currentPuzzle.lengthOfPuzzleCycle)) { [weak self] in
