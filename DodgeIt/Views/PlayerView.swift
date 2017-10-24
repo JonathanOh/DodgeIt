@@ -9,17 +9,19 @@
 import UIKit
 
 class PlayerView: UIView {
-    let widthOfPuzzleSquare: CGFloat
+    let puzzle: Puzzle
+    let startingLocation: CGPoint
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
     weak private var boundingView: UIView?
     
-    init(skin: UIColor, playerSize: Int, position: CGPoint, widthOfPuzzleSquare: Double, boundingView: UIView) {
-        self.widthOfPuzzleSquare = CGFloat(widthOfPuzzleSquare)
+    init(skin: UIColor, playerSize: Int, puzzle: Puzzle, boundingView: UIView) {
         self.boundingView = boundingView
-        let width = widthOfPuzzleSquare * Double(playerSize)
-        let height = widthOfPuzzleSquare * Double(playerSize)
-        //super.init(frame: CGRect(x: Double(position.x), y: Double(position.y), width: width, height: height))
-        super.init(frame: CGRect(origin: position, size: CGSize(width: width, height: height)))
+        self.puzzle = puzzle
+        let width = puzzle.squareWidth * Double(playerSize)
+        let height = puzzle.squareWidth * Double(playerSize)
+        self.startingLocation = CGPoint(x: boundingView.center.x + CGFloat(puzzle.squareWidth/2), y: boundingView.center.y + CGFloat(puzzle.squareWidth/2) + CGFloat(puzzle.squareWidth * 7))
+        super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: height)))
+        center = startingLocation
         backgroundColor = skin
         layer.cornerRadius = frame.size.width/2
     }
@@ -34,16 +36,16 @@ class PlayerView: UIView {
             guard let weakSelf = self else { return }
             switch direction {
             case .up:
-                let newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y - weakSelf.widthOfPuzzleSquare)
+                let newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y - CGFloat(weakSelf.puzzle.squareWidth))
                 if parentView.point(inside: newCenter, with: nil) { weakSelf.center = newCenter }
             case .right:
-                let newCenter = CGPoint(x: weakSelf.center.x + weakSelf.widthOfPuzzleSquare, y: weakSelf.center.y)
+                let newCenter = CGPoint(x: weakSelf.center.x + CGFloat(weakSelf.puzzle.squareWidth), y: weakSelf.center.y)
                 if parentView.point(inside: newCenter, with: nil) { weakSelf.center = newCenter }
             case .down:
-                let newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y + weakSelf.widthOfPuzzleSquare)
+                let newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y + CGFloat(weakSelf.puzzle.squareWidth))
                 if parentView.point(inside: newCenter, with: nil) { weakSelf.center = newCenter }
             case .left:
-                let newCenter = CGPoint(x: weakSelf.center.x - weakSelf.widthOfPuzzleSquare, y: weakSelf.center.y)
+                let newCenter = CGPoint(x: weakSelf.center.x - CGFloat(weakSelf.puzzle.squareWidth), y: weakSelf.center.y)
                 if parentView.point(inside: newCenter, with: nil) { weakSelf.center = newCenter }
             default:
                 return
