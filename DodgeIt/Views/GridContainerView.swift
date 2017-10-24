@@ -59,8 +59,7 @@ class GridContainerView: UIView {
         mainSquareStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         mainSquareStack.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
     }
-    
-    //Create a 2D matrix of SquareViews
+
     func applyExplosions() {
         for (explosionTimer, explosionPositions) in currentPuzzle.explosionPositionAndTiming {
             dispatchExplosions(explosionTimer, positionsOfExplosions: explosionPositions)
