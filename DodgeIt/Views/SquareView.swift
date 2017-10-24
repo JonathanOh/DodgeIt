@@ -18,7 +18,7 @@ class SquareView: UIImageView, CAAnimationDelegate {
         self.currentPuzzle = currentPuzzle
         self.location = location
         super.init(frame: .zero)
-        backgroundColor = checkIfObstacle() ? .black : .yellow
+        backgroundColor = checkIfObstacle() ? .brown : .yellow
 
         clipsToBounds = true
         contentMode = .scaleAspectFill
@@ -33,9 +33,14 @@ class SquareView: UIImageView, CAAnimationDelegate {
     }
     
     func checkIfObstacle() -> Bool {
+//        for position in currentPuzzle.obstaclePositions {
+//            if let validTuple = position.tupleValue() {
+//                return location == validTuple
+//            }
+//        }
         for position in currentPuzzle.obstaclePositions {
-            if let validTuple = position.tupleValue() {
-                return location == validTuple
+            if let validTuple = position.getTupleFromArray() {
+                if location == validTuple { return true }
             }
         }
         return false
