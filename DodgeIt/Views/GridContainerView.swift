@@ -19,7 +19,7 @@ class GridContainerView: UIView {
         self.squareData = SquareData(matrix: self.squareViewMatrix)
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .black
+        backgroundColor = .yellow
         addAllSquareViews(squareViewMatrix)
         applyExplosions()
     }

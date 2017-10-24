@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class SquareView: UIImageView, CAAnimationDelegate {
     let currentPuzzle: Puzzle
@@ -18,15 +19,13 @@ class SquareView: UIImageView, CAAnimationDelegate {
         self.location = location
         super.init(frame: .zero)
         backgroundColor = checkIfObstacle() ? .black : .yellow
-        
-        let puzzleWidth = currentPuzzle.squareWidth * Double(currentPuzzle.numberOfCellsInWidth)
-        let puzzleHeight = currentPuzzle.squareWidth * Double(currentPuzzle.numberOfCellsInHeight)
-        let resizedImage = explosionSheet.resizeImage(targetSize: CGSize(width: puzzleWidth, height: puzzleHeight))
+
         clipsToBounds = true
         contentMode = .scaleAspectFill
         
         //bounds = CGRect(x: 0.0, y: CGFloat(currentPuzzle.squareWidth * 3), width: bounds.width, height: bounds.height)
-        //image = resizedImage
+        //alpha = 0
+        //image = UIImage(imageLiteralResourceName: "explosion3")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,15 +42,26 @@ class SquareView: UIImageView, CAAnimationDelegate {
     }
     
     func explode() {
-        let imageCollection: [UIImage] = [UIImage(imageLiteralResourceName: "explosion3"),UIImage(imageLiteralResourceName: "explosion4"),UIImage(imageLiteralResourceName: "explosion5"),UIImage(imageLiteralResourceName: "explosion6"),UIImage(imageLiteralResourceName: "explosion7")]
-        animationImages = imageCollection
-        animationDuration = 0.4
-        animationRepeatCount = 1
-        startAnimating()
-//        backgroundColor = .red
+        if checkIfObstacle() { return }
+        
+//        let imageCollection: [UIImage] = [UIImage(imageLiteralResourceName: "explosion3"),UIImage(imageLiteralResourceName: "explosion4"),UIImage(imageLiteralResourceName: "explosion5"),UIImage(imageLiteralResourceName: "explosion6"),UIImage(imageLiteralResourceName: "explosion7")]
+//        animationImages = imageCollection
+//        animationDuration = 0.4
+//        animationRepeatCount = 1
+//        startAnimating()
 //        UIView.animate(withDuration: 0.4) { [weak self] in
 //            self?.backgroundColor = .yellow
 //        }
+//        alpha = 1
+//        UIView.animate(withDuration: 0.6, animations: { [weak self] in
+//            self?.alpha = 0
+//        }) { [weak self] (completed) in
+//
+//        }
+        backgroundColor = .black
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.backgroundColor = .yellow
+        }
     }
     
 }
