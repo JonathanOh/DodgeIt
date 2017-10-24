@@ -31,17 +31,19 @@ class PuzzleViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupPlayer(squareData: dataOfSquares, puzzle: puzzleLevel)
     }
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
         if currentPlayer != nil { return }
-        let bottomLeftSquare = squareData.getSingleSquare((x: 0, y: puzzle.numberOfCellsInHeight - 1))
-        //let convertedCenter = bottomLeftSquare?.convert(bottomLeftSquare!.center, to: view)
-        let convertedCenter = bottomLeftSquare!.convert(bottomLeftSquare!.center, to: view)
-        print(convertedCenter)
-        let playerStartingPosition: CGPoint = CGPoint(x: convertedCenter.x /*+ CGFloat(puzzle.squareWidth * 4)*/, y: convertedCenter.y)
-        currentPlayer = PlayerView(skin: .cyan, playerSize: 1, position: playerStartingPosition, widthOfPuzzleSquare: puzzle.squareWidth)
+        let bottomRightSquare = dataOfSquares.getSingleSquare((x: puzzleLevel.numberOfCellsInWidth - 1, y: puzzleLevel.numberOfCellsInHeight - 1))
+//        print(bottomLeftSquare?.center)
+//        print(bottomLeftSquare?.bounds)
+        currentPlayer = PlayerView(skin: .cyan, playerSize: 1, position: CGPoint(x: 0, y: 0), widthOfPuzzleSquare: puzzle.squareWidth, boundingView: view)
         currentPuzzleView.gridContainerView.player = currentPlayer
         currentPuzzleView.gridContainerView.mainView = view
         view.addSubview(currentPlayer!)

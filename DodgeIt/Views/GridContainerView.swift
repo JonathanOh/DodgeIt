@@ -53,7 +53,7 @@ class GridContainerView: UIView {
         mainSquareStack.alignment = .fill
         mainSquareStack.translatesAutoresizingMaskIntoConstraints = false
         addSubview(mainSquareStack)
-        
+
         mainSquareStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
         mainSquareStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         mainSquareStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
