@@ -10,17 +10,15 @@ import UIKit
 
 class GridContainerView: UIView {
     let currentPuzzle: Puzzle
-    let squareViewMatrix: [[SquareView]]
     let squareData: SquareData
     
     init(currentPuzzle: Puzzle) {
         self.currentPuzzle = currentPuzzle
-        self.squareViewMatrix = GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle)
-        self.squareData = SquareData(matrix: self.squareViewMatrix)
+        self.squareData = SquareData(matrix: GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle))
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .yellow
-        addAllSquareViews(squareViewMatrix)
+        addAllSquareViews(self.squareData.matrix)
         applyExplosions()
     }
     
