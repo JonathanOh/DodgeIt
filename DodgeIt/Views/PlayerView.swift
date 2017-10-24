@@ -12,11 +12,11 @@ class PlayerView: UIView {
     let widthOfPuzzleSquare: CGFloat
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
     
-    init(skin: UIColor, playerSize: Int, widthOfPuzzleSquare: Double) {
+    init(skin: UIColor, playerSize: Int, position: CGPoint, widthOfPuzzleSquare: Double) {
         self.widthOfPuzzleSquare = CGFloat(widthOfPuzzleSquare)
         let width = widthOfPuzzleSquare * Double(playerSize)
         let height = widthOfPuzzleSquare * Double(playerSize)
-        super.init(frame: CGRect(x: 0.0, y: 0.0, width: width, height: height))
+        super.init(frame: CGRect(x: Double(position.x), y: Double(position.y), width: width, height: height))
         backgroundColor = skin
         layer.cornerRadius = frame.size.width/2
     }

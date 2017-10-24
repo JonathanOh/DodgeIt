@@ -11,6 +11,8 @@ import UIKit
 class GridContainerView: UIView {
     let currentPuzzle: Puzzle
     let squareData: SquareData
+    weak var player: PlayerView?
+    weak var mainView: UIView?
     
     init(currentPuzzle: Puzzle) {
         self.currentPuzzle = currentPuzzle
@@ -68,7 +70,17 @@ class GridContainerView: UIView {
         let explosionDelay = delay * currentPuzzle.lengthOfPuzzleCycle
         DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay) { [weak self] in
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
-            _ = squaresToExplode?.map { $0.explode() }
+            _ = squaresToExplode?.map { [weak self] square in
+//                let newSquareFrame = square.convert(square.frame, to: self!.mainView!)
+//                let newPlayerFrame = self!.player!.convert(self!.player!.frame, to: self!.mainView!)
+//                print("Player Center: \(newSquareFrame.origin)")
+//                print("Square Center: \(newPlayerFrame.origin)")
+                //print(self!.player!.frame)
+                if square.bounds.intersects(square.convert(self!.player!.bounds, from: self!.player!)) {
+                    print("player died!")
+                }
+                square.explode()
+            }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle) { [weak self] in
             self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
