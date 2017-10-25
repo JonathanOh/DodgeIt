@@ -72,7 +72,7 @@ extension PuzzleViewController: VictoryDelegate {
             guard let weakSelf = self else { return }
             weakSelf.currentPuzzleView.center = CGPoint(x: weakSelf.currentPuzzleView.center.x, y: weakSelf.currentPuzzleView.center.y * 3)
         }) { completed in
-            print("player won from VC")
+            print("player won from VC.")
         }
     }
 }
