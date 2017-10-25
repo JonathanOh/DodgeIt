@@ -16,7 +16,7 @@ class PuzzleView: UIView {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle)
         super.init(frame: .zero)
-        backgroundColor = .orange
+        backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1)
         setupContainerViewWith(puzzle: currentPuzzle)
     }
     

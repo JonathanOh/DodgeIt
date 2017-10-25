@@ -14,8 +14,17 @@ struct Puzzle {
     let numberOfCellsInWidth: Int // number of cells along its width
     let numberOfCellsInHeight: Int // number of cells along its height
     let lengthOfPuzzleCycle: Double // represents the number of seconds the explosions will cycle back
-    let obstaclePositions: [[Int]] // ["0,10", "row2"]
+    let safeHavens: [String:Int]
+    let obstaclePositions: [String:Int] // ["0,10", "row2"]
     let explosionPositionAndTiming: [Double:[[Int]]] // { "0,10" : [.1, .5, .9] } timings are represents in a decimal of 0-1
+    
+    func isLocationSafe(_ location: String) -> Bool {
+        return safeHavens[location] != nil ? true : false
+    }
+    
+    func isLocationAnObstacle(_ location: String) -> Bool {
+        return obstaclePositions[location] != nil ? true : false
+    }
     
     var squareWidth: Double { // width of a single square
         return totalWidth / Double(numberOfCellsInWidth)
@@ -30,8 +39,12 @@ struct PuzzleTestData {
     let totalWidth: Double = 1 // 0-1 value that represents % of phone screen to use as width of puzzle
     let numberOfCellsInWidth: Int = 10
     let numberOfCellsInHeight: Int = 10
-    let lengthOfPuzzleCycle: Double = 2
-    let obstaclePositions: [[Int]] = [[5,5], [3,9]]//["0,9"]
+    let lengthOfPuzzleCycle: Double = 3
+    let safeHavens: [String:Int] = ["0,9":1]
+    let obstaclePositions: [String:Int] = [
+        "0,0":1, "1,0":1, "2,0":1, "3,0":1, "4,0":1, "5,0":1, "6,0":1, "7,0":1, "8,0":1,
+        "1,9":1, "2,9":1, "3,9":1, "4,9":1, "5,9":1, "6,9":1, "7,9":1, "8,9":1, "9,9":1
+    ]//["0,9"]
     let explosionPositionAndTiming: [Double:[[Int]]] = [
         0.0: [[0,0], [1,0], [2,0], [3,0], [4,0], [5,0], [6,0], [7,0], [8,0], [9,0], [0,5], [1,5], [2,5], [3,5], [4,5], [5,5], [6,5], [7,5], [8,5], [9,5]],
         0.1: [[0,1], [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1], [8,1], [9,1], [0,6], [1,6], [2,6], [3,6], [4,6], [5,6], [6,6], [7,6], [8,6], [9,6]],

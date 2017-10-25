@@ -12,33 +12,40 @@ import QuartzCore
 class SquareView: UIImageView, CAAnimationDelegate {
     let currentPuzzle: Puzzle
     let location: (Int, Int)
+    let locationStringValue: String
     let explosionSheet = UIImage(imageLiteralResourceName: "explosion7")
+    
+    let puzzleBackgroundColor: UIColor = UIColor(red: 1, green: 1, blue: 100.0/255.0, alpha: 1)
+    let explosionColor: UIColor = .black//UIColor(red: 1.0, green: 50.0/255.0, blue: 50.0/255.0, alpha: 1)//(255,179,186)
+    let obstacleColor: UIColor = .darkGray
     
     init(currentPuzzle: Puzzle, location: (Int, Int)) {
         self.currentPuzzle = currentPuzzle
         self.location = location
+        self.locationStringValue = "\(location.0),\(location.1)"
         super.init(frame: .zero)
-        backgroundColor = checkIfObstacle() ? .brown : .yellow
+        backgroundColor = checkIfObstacle() ? obstacleColor : puzzleBackgroundColor
+        if checkIfSafeHaven() { backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1) }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func checkIfObstacle() -> Bool { // O(n) look up
-        for position in currentPuzzle.obstaclePositions {
-            if let validTuple = position.getTupleFromArray() {
-                if location == validTuple { return true }
-            }
-        }
-        return false
+    func checkIfObstacle() -> Bool {
+        return currentPuzzle.isLocationAnObstacle(locationStringValue)
+    }
+    
+    func checkIfSafeHaven() -> Bool {
+        return currentPuzzle.isLocationSafe(locationStringValue)
     }
     
     func explode() {
         if checkIfObstacle() { return }
-        backgroundColor = .black
-        UIView.animate(withDuration: 0.4) { [weak self] in
-            self?.backgroundColor = .yellow
+        if checkIfSafeHaven() { return }
+        backgroundColor = explosionColor
+        UIView.animate(withDuration: 0.75) { [weak self] in
+            self?.backgroundColor = self?.puzzleBackgroundColor
         }
     }
     

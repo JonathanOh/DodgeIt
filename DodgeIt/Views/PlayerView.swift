@@ -50,9 +50,11 @@ class PlayerView: UIView {
                 return
             }
             if parentView.point(inside: newCenter, with: nil) {
-                let obstacleTuples = weakSelf.puzzle.obstaclePositions.map { $0.getTupleFromArray()! }
+                let obstacleTuples = weakSelf.puzzle.obstaclePositions.map { key, value -> (Int, Int) in
+                    return key.tupleValue()!
+                }
                 let obstacleSquares = weakSelf.squareData.getSquaresAt(obstacleTuples)
-                for obstacle in obstacleSquares {
+                for obstacle in obstacleSquares { // This is an O(n) look up
                     let convertedObstacle = obstacle!.convert(obstacle!.bounds, to: parentView)
                     if convertedObstacle.contains(newCenter) { return }
                 }

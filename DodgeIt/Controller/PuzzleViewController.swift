@@ -21,7 +21,7 @@ class PuzzleViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let testData = PuzzleTestData()
         let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
-        puzzleLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
+        puzzleLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
         currentPuzzleView = PuzzleView(currentPuzzle: puzzleLevel)
         dataOfSquares = currentPuzzleView.gridContainerView.squareData
         view = currentPuzzleView
@@ -40,7 +40,7 @@ class PuzzleViewController: UIViewController {
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
         if currentPlayer != nil { return }
-        currentPlayer = PlayerView(skin: .cyan, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: view)
+        currentPlayer = PlayerView(skin: .red, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: view)
         currentPuzzleView.gridContainerView.player = currentPlayer
         currentPuzzleView.gridContainerView.mainView = view
         view.addSubview(currentPlayer!)
