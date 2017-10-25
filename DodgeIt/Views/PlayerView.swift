@@ -52,11 +52,9 @@ class PlayerView: UIView {
             if parentView.point(inside: newCenter, with: nil) {
                 let obstacleTuples = weakSelf.puzzle.obstaclePositions.map { $0.getTupleFromArray()! }
                 let obstacleSquares = weakSelf.squareData.getSquaresAt(obstacleTuples)
-                // NEED TO CONVERT RECT TO SUPERVIEW TO WORK THIS
                 for obstacle in obstacleSquares {
-                    print(obstacle!.frame)
-                    print(newCenter)
-                    if obstacle!.point(inside: newCenter, with: nil) { return }
+                    let convertedObstacle = obstacle!.convert(obstacle!.bounds, to: parentView)
+                    if convertedObstacle.contains(newCenter) { return }
                 }
                 weakSelf.center = newCenter
             }
