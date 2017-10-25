@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol VictoryDelegate {
+    func playerWonLevel()
+}
+
 class PlayerView: UIView {
+    var victoryDelegate: VictoryDelegate?
     let puzzle: Puzzle
     let squareData: SquareData
     let startingLocation: CGPoint
@@ -33,9 +38,10 @@ class PlayerView: UIView {
     }
     
     func move(_ direction: UISwipeGestureRecognizerDirection) {
-        guard let parentView = boundingView else { return }
-        UIView.animate(withDuration: 0.05) { [weak self] in
+        var playerDidWin = false
+        UIView.animate(withDuration: 0.05, animations: { [weak self] in
             guard let weakSelf = self else { return }
+            guard let parentView = weakSelf.boundingView else { return }
             let newCenter = weakSelf.calculateNewCenterFrom(direction: direction)
             let isNewCenterWithinView = parentView.point(inside: newCenter, with: nil)
             if isNewCenterWithinView {
@@ -43,10 +49,13 @@ class PlayerView: UIView {
                 weakSelf.center = newCenter
             } else {
                 if direction == .up {
-                    print("victory!")
+                    playerDidWin = true
+                    weakSelf.center = newCenter
                 }
             }
-        }
+        }, completion: { [weak self] completed in
+            if playerDidWin { self?.victoryDelegate?.playerWonLevel() }
+        })
     }
     
     func calculateNewCenterFrom(direction: UISwipeGestureRecognizerDirection) -> CGPoint {

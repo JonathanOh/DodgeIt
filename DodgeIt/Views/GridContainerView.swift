@@ -72,7 +72,9 @@ class GridContainerView: UIView {
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
-                if square.bounds.intersects(square.convert(self!.player!.bounds, from: self!.player!)) {
+                guard let playerFrame = self?.player else { return }
+                let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
+                if isPlayerInsideExplosiveSquare {
                     print("player died!")
                 }
                 square.explode()
