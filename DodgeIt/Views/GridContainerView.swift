@@ -71,7 +71,7 @@ class GridContainerView: UIView {
         DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay) { [weak self] in
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
-                if square.checkIfSafeHaven() || square.checkIfObstacle() { return }
+                if square.isSafe() || square.isObstacle() { return }
                 if square.bounds.intersects(square.convert(self!.player!.bounds, from: self!.player!)) {
                     print("player died!")
                 }

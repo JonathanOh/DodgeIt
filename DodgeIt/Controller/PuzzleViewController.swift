@@ -15,6 +15,7 @@ class PuzzleViewController: UIViewController {
     private var currentPuzzleView: PuzzleView!
     private var dataOfSquares: SquareData!
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
+    let swipeGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +27,16 @@ class PuzzleViewController: UIViewController {
         dataOfSquares = currentPuzzleView.gridContainerView.squareData
         view = currentPuzzleView
         //setupPlayer(squareData: dataOfSquares, puzzle: testPuzzle)
-        addSwipeGestures(directions: swipeDirections)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupPlayer(squareData: dataOfSquares, puzzle: puzzleLevel)
+        addSwipeGestures(directions: swipeDirections)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.removeGestureRecognizer(swipeGesture)
     }
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
@@ -48,7 +49,6 @@ class PuzzleViewController: UIViewController {
     
     func addSwipeGestures(directions: [UISwipeGestureRecognizerDirection]) {
         _ = swipeDirections.map { swipeDirection in
-            let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
             swipeGesture.direction = swipeDirection
             view.addGestureRecognizer(swipeGesture)
         }
