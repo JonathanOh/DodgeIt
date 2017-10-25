@@ -36,31 +36,44 @@ class PlayerView: UIView {
         guard let parentView = boundingView else { return }
         UIView.animate(withDuration: 0.05) { [weak self] in
             guard let weakSelf = self else { return }
-            var newCenter = CGPoint()
-            switch direction {
-            case .up:
-                newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y - CGFloat(weakSelf.puzzle.squareWidth))
-            case .right:
-                newCenter = CGPoint(x: weakSelf.center.x + CGFloat(weakSelf.puzzle.squareWidth), y: weakSelf.center.y)
-            case .down:
-                newCenter = CGPoint(x: weakSelf.center.x, y: weakSelf.center.y + CGFloat(weakSelf.puzzle.squareWidth))
-            case .left:
-                newCenter = CGPoint(x: weakSelf.center.x - CGFloat(weakSelf.puzzle.squareWidth), y: weakSelf.center.y)
-            default:
-                return
-            }
-            if parentView.point(inside: newCenter, with: nil) {
-                let obstacleTuples = weakSelf.puzzle.obstaclePositions.map { key, value -> (Int, Int) in
-                    return key.tupleValue()!
-                }
-                let obstacleSquares = weakSelf.squareData.getSquaresAt(obstacleTuples)
-                for obstacle in obstacleSquares { // This is an O(n) look up
-                    let convertedObstacle = obstacle!.convert(obstacle!.bounds, to: parentView)
-                    if convertedObstacle.contains(newCenter) { return }
-                }
+            let newCenter = weakSelf.calculateNewCenterFrom(direction: direction)
+            let isNewCenterWithinView = parentView.point(inside: newCenter, with: nil)
+            if isNewCenterWithinView {
+                if weakSelf.isNewLocationObstacle(newCenter) { return }
                 weakSelf.center = newCenter
+            } else {
+                if direction == .up {
+                    print("victory!")
+                }
             }
-            //if parentView.point(inside: newCenter, with: nil) { weakSelf.center = newCenter }
         }
+    }
+    
+    func calculateNewCenterFrom(direction: UISwipeGestureRecognizerDirection) -> CGPoint {
+        switch direction {
+        case .up:
+            return CGPoint(x: center.x, y: center.y - CGFloat(puzzle.squareWidth))
+        case .right:
+            return CGPoint(x: center.x + CGFloat(puzzle.squareWidth), y: center.y)
+        case .down:
+            return CGPoint(x: center.x, y: center.y + CGFloat(puzzle.squareWidth))
+        case .left:
+            return CGPoint(x: center.x - CGFloat(puzzle.squareWidth), y: center.y)
+        default:
+            return CGPoint(x: 0, y: 0) // Should never hit this
+        }
+    }
+    
+    func isNewLocationObstacle(_ newLocation: CGPoint) -> Bool {
+        guard let parentView = boundingView else { return true }
+        let obstacleTuples = puzzle.obstaclePositions.map { key, value -> (Int, Int) in
+            return key.tupleValue()!
+        }
+        let obstacleSquares = squareData.getSquaresAt(obstacleTuples)
+        for obstacle in obstacleSquares { // This is an O(n) look up
+            let convertedObstacle = obstacle!.convert(obstacle!.bounds, to: parentView)
+            if convertedObstacle.contains(newLocation) { return true }
+        }
+        return false
     }
 }
