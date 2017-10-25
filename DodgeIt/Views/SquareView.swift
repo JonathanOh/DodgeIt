@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuartzCore
 
 class SquareView: UIView, CAAnimationDelegate {
     let currentPuzzle: Puzzle
@@ -23,27 +22,17 @@ class SquareView: UIView, CAAnimationDelegate {
         self.currentPuzzle = currentPuzzle
         self.location = location
         self.locationStringValue = "\(location.0),\(location.1)"
-        self.explosionImageView = UIImageView(image: explosionSheet)
         super.init(frame: .zero)
-        backgroundColor = checkIfObstacle() ? obstacleColor : puzzleBackgroundColor
-        if checkIfSafeHaven() { backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1) }
+        backgroundColor = currentPuzzle.isLocationAnObstacle(locationStringValue) ? obstacleColor : puzzleBackgroundColor
+        if currentPuzzle.isLocationSafe(locationStringValue) { backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1) }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func checkIfObstacle() -> Bool {
-        return currentPuzzle.isLocationAnObstacle(locationStringValue)
-    }
-    
-    func checkIfSafeHaven() -> Bool {
-        return currentPuzzle.isLocationSafe(locationStringValue)
-    }
-    
     func explode() {
-        if checkIfObstacle() { return }
-        if checkIfSafeHaven() { return }
+        if currentPuzzle.isLocationAnObstacle(locationStringValue) || currentPuzzle.isLocationSafe(locationStringValue) { return }
         backgroundColor = explosionColor
         UIView.animate(withDuration: 0.6, delay: 0.1, options: [UIViewAnimationOptions.allowUserInteraction], animations: { [weak self] in
             self?.backgroundColor = self?.puzzleBackgroundColor
