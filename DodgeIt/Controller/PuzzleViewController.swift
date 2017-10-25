@@ -40,7 +40,7 @@ class PuzzleViewController: UIViewController {
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
         if currentPlayer != nil { return }
-        currentPlayer = PlayerView(skin: .cyan, playerSize: 1, puzzle: puzzle, boundingView: view)
+        currentPlayer = PlayerView(skin: .cyan, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: view)
         currentPuzzleView.gridContainerView.player = currentPlayer
         currentPuzzleView.gridContainerView.mainView = view
         view.addSubview(currentPlayer!)
