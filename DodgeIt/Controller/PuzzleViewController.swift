@@ -19,23 +19,26 @@ class PuzzleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let testData = PuzzleTestData()
-        let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
-        puzzleLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
-        currentPuzzleView = PuzzleView(currentPuzzle: puzzleLevel)
-        dataOfSquares = currentPuzzleView.gridContainerView.squareData
-        setupPuzzleView()
+        let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1))
+        setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
+        setupPuzzleProperties(nextLevel)
         addSwipeGestures(directions: swipeDirections)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupPlayer(squareData: dataOfSquares, puzzle: puzzleLevel)
     }
     
-    func setupPuzzleView() {
-        view.addSubview(currentPuzzleView)
-        currentPuzzleView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+    func setupPuzzleProperties(_ nextPuzzle: NextPuzzle) {
+        puzzleLevel = nextPuzzle.puzzle
+        currentPuzzleView = nextPuzzle.puzzleView
+        dataOfSquares = nextPuzzle.squareData
+    }
+    
+    func setupPuzzleViewFrame(_ puzzleView: PuzzleView, isFirstLevel: Bool) {
+        view.addSubview(puzzleView)
+        puzzleView.frame = CGRect(x: 0, y: isFirstLevel ? 0 : -view.frame.height, width: view.frame.width, height: view.frame.height)
     }
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
@@ -45,6 +48,21 @@ class PuzzleViewController: UIViewController {
             currentPuzzleView.gridContainerView.player = currentPlayer
             currentPuzzleView.gridContainerView.mainView = view
             view.addSubview(currentPlayer ?? UIView())
+        }
+    }
+    
+    func getNextPuzzleLevelWithDifficulty(_ difficulty: Int) -> Puzzle {
+        let randomNum = Int(arc4random_uniform(UInt32(2)))
+        let puzzleOne = PuzzleTestData()
+        let puzzleTwo = PuzzleTestDataTwo()
+        let puzzleWidth = puzzleOne.totalWidth * Double(view.frame.width)
+        switch randomNum {
+        case 0:
+            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
+        case 1:
+            return Puzzle(difficulty: puzzleTwo.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleTwo.numberOfCellsInWidth, numberOfCellsInHeight: puzzleTwo.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleTwo.lengthOfPuzzleCycle, safeHavens: puzzleTwo.safeHavens, obstaclePositions: puzzleTwo.obstaclePositions, explosionPositionAndTiming: puzzleTwo.explosionPositionAndTiming)
+        default:
+            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
         }
     }
     
@@ -60,33 +78,21 @@ class PuzzleViewController: UIViewController {
         currentPlayer!.move(gesture.direction)
     }
 }
-// Pick next puzzle getNextPuzzleData() -> Puzzle
-// Create Puzzle/PuzzleView/SquareData objects
-// Create view and slide in views setupNextLevelView()
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
-        let testData = PuzzleTestDataTwo()
-        let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
-        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
-        let newView = PuzzleView(currentPuzzle: newLevel)
-        newView.backgroundColor = .blue
-        let newData = newView.gridContainerView.squareData
-        view.addSubview(newView)
-        newView.frame = CGRect(x: 0, y: -view.frame.height, width: view.frame.width, height: view.frame.height)
-        //view.bringSubview(toFront: newView)
+        let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1))
+        setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: false)
         UIView.animate(withDuration: 1.5, animations: { [weak self] in
             guard let weakSelf = self else { return }
             weakSelf.currentPuzzleView.frame = CGRect(x: 0, y: weakSelf.view.frame.height, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
-            newView.frame = CGRect(x: 0, y: 0, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
+            nextLevel.puzzleView.frame = CGRect(x: 0, y: 0, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
         }) { [weak self] completed in
             self!.currentPuzzleView.removeFromSuperview()
             print("player won from VC.")
-            self!.puzzleLevel = newLevel
-            self!.currentPuzzleView = newView
-            self!.dataOfSquares = newData
+            self!.setupPuzzleProperties(nextLevel)
             self!.currentPlayer = nil
-            self!.setupPlayer(squareData: newData, puzzle: newLevel)
+            self!.setupPlayer(squareData: nextLevel.squareData, puzzle: nextLevel.puzzle)
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */; };
 		8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD951F97F6FD00E791FA /* AppDelegate.swift */; };
 		8B61DD981F97F6FD00E791FA /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */; };
 		8B61DD9E1F97F6FD00E791FA /* DodgeIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD9C1F97F6FD00E791FA /* DodgeIt.xcdatamodeld */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPuzzle.swift; sourceTree = "<group>"; };
 		8B61DD921F97F6FD00E791FA /* DodgeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DodgeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B61DD951F97F6FD00E791FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				8B61DDB01F98017800E791FA /* Puzzle.swift */,
+				8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */,
 				8B61DDC81F992B0B00E791FA /* SquareData.swift */,
 			);
 			path = Model;
@@ -259,6 +262,7 @@
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* String+TupleValue.swift in Sources */,
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,
+				8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */,
 				8B61DDAF1F97FE6400E791FA /* SquareView.swift in Sources */,
 				8B61DD9E1F97F6FD00E791FA /* DodgeIt.xcdatamodeld in Sources */,
 				8B61DDAD1F97FDFC00E791FA /* GridContainerView.swift in Sources */,

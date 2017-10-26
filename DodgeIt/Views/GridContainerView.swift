@@ -84,6 +84,7 @@ class GridContainerView: UIView {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle) { [weak self] in
+            print("recursive call \(self?.currentPuzzle.lengthOfPuzzleCycle ?? 0)")
             self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
         }
     }
