@@ -72,7 +72,9 @@ class GridContainerView: UIView {
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
-                guard let playerFrame = self?.player else { return }
+                guard let playerFrame = self!.player else {
+                    return
+                }
                 let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
                 if isPlayerInsideExplosiveSquare {
                     print("player died!")
@@ -81,6 +83,7 @@ class GridContainerView: UIView {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle) { [weak self] in
+            print("recursive call still going! : \(self?.currentPuzzle.lengthOfPuzzleCycle ?? 0)")
             self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
         }
     }

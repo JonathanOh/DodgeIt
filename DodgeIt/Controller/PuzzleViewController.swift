@@ -35,12 +35,8 @@ class PuzzleViewController: UIViewController {
     }
     
     func setupPuzzleView() {
-        currentPuzzleView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(currentPuzzleView)
-        currentPuzzleView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        currentPuzzleView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        currentPuzzleView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        currentPuzzleView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        currentPuzzleView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
@@ -72,24 +68,24 @@ extension PuzzleViewController: VictoryDelegate {
         let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
         let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: 1, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
         let newView = PuzzleView(currentPuzzle: newLevel)
+        newView.backgroundColor = .blue
         let newData = newView.gridContainerView.squareData
-        newView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newView)
-        newView.widthAnchor.constraint(equalToConstant: currentPuzzleView.frame.width).isActive = true
-        newView.heightAnchor.constraint(equalToConstant: currentPuzzleView.frame.height).isActive = true
-        newView.centerXAnchor.constraint(equalTo: currentPuzzleView.centerXAnchor).isActive = true
-        newView.bottomAnchor.constraint(equalTo: currentPuzzleView.topAnchor).isActive = true
-        
-        UIView.animate(withDuration: 1, animations: { [weak self] in
+        newView.frame = CGRect(x: 0, y: -view.frame.height, width: view.frame.width, height: view.frame.height)
+        //view.bringSubview(toFront: newView)
+        UIView.animate(withDuration: 1.5, animations: { [weak self] in
             guard let weakSelf = self else { return }
-            newView.center = CGPoint(x: newView.center.x, y: newView.center.y * 3)
-            weakSelf.currentPuzzleView.center = CGPoint(x: weakSelf.currentPuzzleView.center.x, y: weakSelf.currentPuzzleView.center.y * 3)
+            weakSelf.currentPuzzleView.frame = CGRect(x: 0, y: weakSelf.view.frame.height, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
+            newView.frame = CGRect(x: 0, y: 0, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
         }) { [weak self] completed in
+            //newView.center = newCenter
             self!.currentPuzzleView.removeFromSuperview()
             print("player won from VC.")
             self!.puzzleLevel = newLevel
             self!.currentPuzzleView = newView
             self!.dataOfSquares = newData
+            self!.currentPlayer = nil
+            self!.setupPlayer(squareData: newData, puzzle: newLevel)
         }
     }
 }
