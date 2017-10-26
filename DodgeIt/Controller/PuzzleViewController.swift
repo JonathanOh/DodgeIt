@@ -68,11 +68,28 @@ class PuzzleViewController: UIViewController {
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
+        let testData = PuzzleTestData()
+        let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
+        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: 1, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
+        let newView = PuzzleView(currentPuzzle: newLevel)
+        let newData = newView.gridContainerView.squareData
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(newView)
+        newView.widthAnchor.constraint(equalToConstant: currentPuzzleView.frame.width).isActive = true
+        newView.heightAnchor.constraint(equalToConstant: currentPuzzleView.frame.height).isActive = true
+        newView.centerXAnchor.constraint(equalTo: currentPuzzleView.centerXAnchor).isActive = true
+        newView.bottomAnchor.constraint(equalTo: currentPuzzleView.topAnchor).isActive = true
+        
         UIView.animate(withDuration: 1, animations: { [weak self] in
             guard let weakSelf = self else { return }
+            newView.center = CGPoint(x: newView.center.x, y: newView.center.y * 3)
             weakSelf.currentPuzzleView.center = CGPoint(x: weakSelf.currentPuzzleView.center.x, y: weakSelf.currentPuzzleView.center.y * 3)
-        }) { completed in
+        }) { [weak self] completed in
+            self!.currentPuzzleView.removeFromSuperview()
             print("player won from VC.")
+            self!.puzzleLevel = newLevel
+            self!.currentPuzzleView = newView
+            self!.dataOfSquares = newData
         }
     }
 }
