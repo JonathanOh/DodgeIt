@@ -75,6 +75,9 @@ class GridContainerView: UIView {
                 guard let playerFrame = self!.player else { return }
                 let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
                 if isPlayerInsideExplosiveSquare {
+                    UIView.animate(withDuration: 0.4, animations: {
+                        playerFrame.center = playerFrame.startingLocation
+                    })
                     print("player died!")
                 }
                 square.explode()

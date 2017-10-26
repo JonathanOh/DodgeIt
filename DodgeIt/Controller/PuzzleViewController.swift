@@ -60,12 +60,15 @@ class PuzzleViewController: UIViewController {
         currentPlayer!.move(gesture.direction)
     }
 }
+// Pick next puzzle getNextPuzzleData() -> Puzzle
+// Create Puzzle/PuzzleView/SquareData objects
+// Create view and slide in views setupNextLevelView()
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
         let testData = PuzzleTestDataTwo()
         let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
-        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: 10, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
+        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: testData.lengthOfPuzzleCycle, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
         let newView = PuzzleView(currentPuzzle: newLevel)
         newView.backgroundColor = .blue
         let newData = newView.gridContainerView.squareData

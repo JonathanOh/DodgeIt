@@ -76,8 +76,8 @@ class PlayerView: UIView {
     func isNewLocationObstacle(_ newLocation: CGPoint) -> Bool {
         guard let parentView = boundingView else { return true }
         var obstacleTuples = [(Int, Int)]()
-        for (key, value) in puzzle.obstaclePositions {
-            if value == 1 { obstacleTuples.append(key.tupleValue()!) }
+        for (key, _) in puzzle.obstaclePositions {
+            if puzzle.isLocationAnObstacle(key) { obstacleTuples.append(key.tupleValue()!) }
         }
         let obstacleSquares = squareData.getSquaresAt(obstacleTuples)
         for obstacle in obstacleSquares { // This is an O(n) look up
