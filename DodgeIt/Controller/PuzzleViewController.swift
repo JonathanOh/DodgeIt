@@ -25,7 +25,6 @@ class PuzzleViewController: UIViewController {
         currentPuzzleView = PuzzleView(currentPuzzle: puzzleLevel)
         dataOfSquares = currentPuzzleView.gridContainerView.squareData
         setupPuzzleView()
-        //setupPlayer(squareData: dataOfSquares, puzzle: testPuzzle)
         addSwipeGestures(directions: swipeDirections)
     }
 
@@ -64,9 +63,9 @@ class PuzzleViewController: UIViewController {
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
-        let testData = PuzzleTestData()
+        let testData = PuzzleTestDataTwo()
         let widthOfPuzzle: Double = testData.totalWidth * Double(view.frame.width)
-        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: 1, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
+        let newLevel = Puzzle(difficulty: testData.difficulty, totalWidth: widthOfPuzzle, numberOfCellsInWidth: testData.numberOfCellsInWidth, numberOfCellsInHeight: testData.numberOfCellsInHeight, lengthOfPuzzleCycle: 10, safeHavens: testData.safeHavens, obstaclePositions: testData.obstaclePositions, explosionPositionAndTiming: testData.explosionPositionAndTiming)
         let newView = PuzzleView(currentPuzzle: newLevel)
         newView.backgroundColor = .blue
         let newData = newView.gridContainerView.squareData
@@ -78,7 +77,6 @@ extension PuzzleViewController: VictoryDelegate {
             weakSelf.currentPuzzleView.frame = CGRect(x: 0, y: weakSelf.view.frame.height, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
             newView.frame = CGRect(x: 0, y: 0, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
         }) { [weak self] completed in
-            //newView.center = newCenter
             self!.currentPuzzleView.removeFromSuperview()
             print("player won from VC.")
             self!.puzzleLevel = newLevel
