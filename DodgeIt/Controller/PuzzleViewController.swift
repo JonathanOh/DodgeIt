@@ -23,6 +23,12 @@ class PuzzleViewController: UIViewController {
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
         setupPuzzleProperties(nextLevel)
         addSwipeGestures(directions: swipeDirections)
+        
+        let puzzles = PoolOfPossiblePuzzles()
+        _ = puzzles.possiblePuzzles.map {
+            print($0.lengthOfPuzzleCycle)
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
