@@ -23,12 +23,6 @@ class PuzzleViewController: UIViewController {
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
         setupPuzzleProperties(nextLevel)
         addSwipeGestures(directions: swipeDirections)
-        
-        let puzzles = PoolOfPossiblePuzzles()
-        _ = puzzles.possiblePuzzles.map {
-            print($0.lengthOfPuzzleCycle)
-            
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,18 +52,21 @@ class PuzzleViewController: UIViewController {
     }
     
     func getNextPuzzleLevelWithDifficulty(_ difficulty: Int) -> Puzzle {
-        let randomNum = Int(arc4random_uniform(UInt32(2)))
-        let puzzleOne = PuzzleTestData()
-        let puzzleTwo = PuzzleTestDataTwo()
-        let puzzleWidth = puzzleOne.totalWidth * Double(view.frame.width)
-        switch randomNum {
-        case 0:
-            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
-        case 1:
-            return Puzzle(difficulty: puzzleTwo.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleTwo.numberOfCellsInWidth, numberOfCellsInHeight: puzzleTwo.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleTwo.lengthOfPuzzleCycle, safeHavens: puzzleTwo.safeHavens, obstaclePositions: puzzleTwo.obstaclePositions, explosionPositionAndTiming: puzzleTwo.explosionPositionAndTiming)
-        default:
-            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
-        }
+        let poolOfPossiblePuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(view.frame.width))
+        let randomNum = Int(arc4random_uniform(UInt32(poolOfPossiblePuzzles.possiblePuzzles.count)))
+        
+        return poolOfPossiblePuzzles.possiblePuzzles[randomNum]
+        //        let puzzleOne = PuzzleTestData()
+//        let puzzleTwo = PuzzleTestDataTwo()
+//        let puzzleWidth = puzzleOne.totalWidth * Double(view.frame.width)
+//        switch randomNum {
+//        case 0:
+//            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
+//        case 1:
+//            return Puzzle(difficulty: puzzleTwo.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleTwo.numberOfCellsInWidth, numberOfCellsInHeight: puzzleTwo.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleTwo.lengthOfPuzzleCycle, safeHavens: puzzleTwo.safeHavens, obstaclePositions: puzzleTwo.obstaclePositions, explosionPositionAndTiming: puzzleTwo.explosionPositionAndTiming)
+//        default:
+//            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
+//        }
     }
     
     func addSwipeGestures(directions: [UISwipeGestureRecognizerDirection]) {

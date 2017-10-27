@@ -62,7 +62,7 @@ class GridContainerView: UIView {
 
     func applyExplosions() {
         for (explosionTimer, explosionPositions) in currentPuzzle.explosionPositionAndTiming {
-            dispatchExplosions(explosionTimer, positionsOfExplosions: explosionPositions)
+            dispatchExplosions(Double(explosionTimer)!, positionsOfExplosions: explosionPositions)
         }
     }
     

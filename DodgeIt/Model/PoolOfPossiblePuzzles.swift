@@ -9,22 +9,12 @@
 import Foundation
 
 struct PoolOfPossiblePuzzles {
-    let possiblePuzzles: [TestPuzzle]
-    init() {
+    var possiblePuzzles: [Puzzle]
+    init(viewsWidth: Double) {
         let path = Bundle.main.path(forResource: "LocallyStoredPuzzles", ofType: "json")
         let data = try! Data(contentsOf: URL(fileURLWithPath: path!))
-//        let url = URL(fileURLWithPath: "LocallyStoredPuzzles")
-//        let data = try! Data(contentsOf: url)
-        let puzzles = try! JSONDecoder().decode([TestPuzzle].self, from: data)
+        let puzzles = try! JSONDecoder().decode([Puzzle].self, from: data)
         self.possiblePuzzles = puzzles
-        // do {
-        //let json = try! JSONSerialization.jsonObject(with: data) as! [String:Any]
-//        for entry in json["1"] as! [[String:Any]] {
-//            let entryData = Data(
-//            let puzzle = try! JSONDecoder().decode(Puzzle.self, from: <#T##Data#>)
-//        }
-//        } catch {
-//
-//        }
+        _ = possiblePuzzles.map { $0.updateTotalWidth(viewsWidth) }
     }
 }
