@@ -61,16 +61,9 @@ class GridContainerView: UIView {
     }
 
     func applyExplosions() {
-        var timers = [Int]()
         for (explosionTimer, explosionPositions) in currentPuzzle.explosionPositionAndTiming {
-            timers.append(Int(explosionTimer)!)
-            //dispatchExplosions(Int(explosionTimer)!, positionsOfExplosions: explosionPositions)
+            dispatchExplosions(Int(explosionTimer)!, positionsOfExplosions: explosionPositions)
         }
-        timers.sort()
-        for time in timers {
-            dispatchExplosions(time, positionsOfExplosions: currentPuzzle.explosionPositionAndTiming[String(time)]!)
-        }
-        
     }
     
     func dispatchExplosions(_ delay: Int, positionsOfExplosions: [[Int]]) {

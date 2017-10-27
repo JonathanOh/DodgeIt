@@ -89,7 +89,7 @@
  "totalWidth": 1,
  "numberOfCellsInWidth": 10,
  "numberOfCellsInHeight": 10,
- "lengthOfPuzzleCycle": 25,
+ "lengthOfPuzzleCycle": 15,
  "safeHavens": {
  
  },
