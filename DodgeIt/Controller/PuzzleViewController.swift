@@ -33,6 +33,7 @@ class PuzzleViewController: UIViewController {
     func setupPuzzleProperties(_ nextPuzzle: NextPuzzle) {
         puzzleLevel = nextPuzzle.puzzle
         currentPuzzleView = nextPuzzle.puzzleView
+        currentPuzzleView.gridContainerView.playerRespawnDelegate = self
         dataOfSquares = nextPuzzle.squareData
     }
     
@@ -43,10 +44,10 @@ class PuzzleViewController: UIViewController {
     
     func setupPlayer(squareData: SquareData, puzzle: Puzzle) {
         if currentPlayer == nil {
-            currentPlayer = PlayerView(skin: .red, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: view)
+            currentPlayer = PlayerView(skin: .red, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: currentPuzzleView)
             currentPlayer?.victoryDelegate = self
             currentPuzzleView.gridContainerView.player = currentPlayer
-            currentPuzzleView.gridContainerView.mainView = view
+            currentPuzzleView.gridContainerView.mainView = currentPuzzleView
             view.addSubview(currentPlayer ?? UIView())
         }
     }
@@ -54,19 +55,7 @@ class PuzzleViewController: UIViewController {
     func getNextPuzzleLevelWithDifficulty(_ difficulty: Int) -> Puzzle {
         let poolOfPossiblePuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(view.frame.width))
         let randomNum = Int(arc4random_uniform(UInt32(poolOfPossiblePuzzles.possiblePuzzles.count)))
-        
         return poolOfPossiblePuzzles.possiblePuzzles[randomNum]
-        //        let puzzleOne = PuzzleTestData()
-//        let puzzleTwo = PuzzleTestDataTwo()
-//        let puzzleWidth = puzzleOne.totalWidth * Double(view.frame.width)
-//        switch randomNum {
-//        case 0:
-//            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
-//        case 1:
-//            return Puzzle(difficulty: puzzleTwo.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleTwo.numberOfCellsInWidth, numberOfCellsInHeight: puzzleTwo.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleTwo.lengthOfPuzzleCycle, safeHavens: puzzleTwo.safeHavens, obstaclePositions: puzzleTwo.obstaclePositions, explosionPositionAndTiming: puzzleTwo.explosionPositionAndTiming)
-//        default:
-//            return Puzzle(difficulty: puzzleOne.difficulty, totalWidth: puzzleWidth, numberOfCellsInWidth: puzzleOne.numberOfCellsInWidth, numberOfCellsInHeight: puzzleOne.numberOfCellsInHeight, lengthOfPuzzleCycle: puzzleOne.lengthOfPuzzleCycle, safeHavens: puzzleOne.safeHavens, obstaclePositions: puzzleOne.obstaclePositions, explosionPositionAndTiming: puzzleOne.explosionPositionAndTiming)
-//        }
     }
     
     func addSwipeGestures(directions: [UISwipeGestureRecognizerDirection]) {
@@ -97,5 +86,14 @@ extension PuzzleViewController: VictoryDelegate {
             self!.currentPlayer = nil
             self!.setupPlayer(squareData: nextLevel.squareData, puzzle: nextLevel.puzzle)
         }
+    }
+}
+
+extension PuzzleViewController: PlayerRespawnEventDelegate {
+    func playerIsRespawning() {
+        view.isUserInteractionEnabled = false
+    }
+    func playerRespawned() {
+        view.isUserInteractionEnabled = true
     }
 }

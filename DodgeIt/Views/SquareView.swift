@@ -23,6 +23,8 @@ class SquareView: UIView {
         self.location = location
         self.locationStringValue = "\(location.0),\(location.1)"
         super.init(frame: .zero)
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.cgColor
         backgroundColor = isObstacle() ? obstacleColor : puzzleBackgroundColor
         if isSafe() { backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1) }
     }

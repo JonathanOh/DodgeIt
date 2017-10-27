@@ -20,13 +20,14 @@ class PlayerView: UIView {
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
     weak private var boundingView: UIView?
     
-    init(skin: UIColor, playerSize: Int, puzzle: Puzzle, squareData: SquareData, boundingView: UIView) {
+    init(skin: UIColor, playerSize: Int, puzzle: Puzzle, squareData: SquareData, boundingView: PuzzleView) {
         self.boundingView = boundingView
         self.puzzle = puzzle
         self.squareData = squareData
-        let width = puzzle.squareWidth * Double(playerSize)
-        let height = puzzle.squareWidth * Double(playerSize)
+        let width = puzzle.squareWidth * Double(playerSize) * 0.9
+        let height = puzzle.squareWidth * Double(playerSize) * 0.9
         self.startingLocation = CGPoint(x: boundingView.center.x + CGFloat(puzzle.squareWidth/2), y: boundingView.center.y + CGFloat(puzzle.squareWidth/2) + CGFloat(puzzle.squareWidth * 7))
+        
         super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: height)))
         center = startingLocation
         backgroundColor = skin

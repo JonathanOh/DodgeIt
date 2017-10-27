@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol PlayerRespawnEventDelegate {
+    func playerIsRespawning()
+    func playerRespawned()
+}
+
 class GridContainerView: UIView {
     let currentPuzzle: Puzzle
     let squareData: SquareData
+    var playerRespawnDelegate: PlayerRespawnEventDelegate?
     weak var player: PlayerView?
-    weak var mainView: UIView?
+    weak var mainView: PuzzleView?
     
     init(currentPuzzle: Puzzle) {
         self.currentPuzzle = currentPuzzle
@@ -75,10 +81,12 @@ class GridContainerView: UIView {
                 guard let playerFrame = self!.player else { return }
                 let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
                 if isPlayerInsideExplosiveSquare {
-                    UIView.animate(withDuration: 0.4, animations: {
+                    self?.playerRespawnDelegate?.playerIsRespawning()
+                    UIView.animate(withDuration: 0.75, animations: {
                         playerFrame.center = playerFrame.startingLocation
+                    }, completion: { [weak self] (completed) in
+                        self?.playerRespawnDelegate?.playerRespawned()
                     })
-                    print("player died!")
                 }
                 square.explode()
             }
