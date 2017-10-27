@@ -8,9 +8,10 @@
 
 import Foundation
 
-class Player {
-    //let playerID: String
-    private var currentScore: Int
-    private var highScore: Int
-    private var livesRemaining: Int
-}
+//class Player {
+//    //let playerID: String
+//    private var currentScore: Int
+//    private var highScore: Int
+//    private var livesRemaining: Int
+//}
+
