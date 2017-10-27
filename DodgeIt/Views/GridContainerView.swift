@@ -75,8 +75,7 @@ class GridContainerView: UIView {
     
     func dispatchExplosions(_ delay: Int, positionsOfExplosions: [[Int]]) {
         let explosionDelay = Double(delay)/Double(100) * currentPuzzle.lengthOfPuzzleCycle
-        print(explosionDelay)
-        DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay, qos: .userInitiated) { [weak self] in
+        Timer.scheduledTimer(withTimeInterval: explosionDelay, repeats: false) { [weak self] (timer) in
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
@@ -91,8 +90,7 @@ class GridContainerView: UIView {
                 square.explode()
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle, qos: .userInitiated) { [weak self] in
-            //print("recursive call \(self?.currentPuzzle.lengthOfPuzzleCycle ?? 0)")
+        Timer.scheduledTimer(withTimeInterval: currentPuzzle.lengthOfPuzzleCycle, repeats: false) { [weak self] (timer) in
             self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
         }
     }
