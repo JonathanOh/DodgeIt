@@ -61,14 +61,22 @@ class GridContainerView: UIView {
     }
 
     func applyExplosions() {
+        var timers = [Int]()
         for (explosionTimer, explosionPositions) in currentPuzzle.explosionPositionAndTiming {
-            dispatchExplosions(Double(explosionTimer)!, positionsOfExplosions: explosionPositions)
+            timers.append(Int(explosionTimer)!)
+            //dispatchExplosions(Int(explosionTimer)!, positionsOfExplosions: explosionPositions)
         }
+        timers.sort()
+        for time in timers {
+            dispatchExplosions(time, positionsOfExplosions: currentPuzzle.explosionPositionAndTiming[String(time)]!)
+        }
+        
     }
     
-    func dispatchExplosions(_ delay: Double, positionsOfExplosions: [[Int]]) {
-        let explosionDelay = delay * currentPuzzle.lengthOfPuzzleCycle
-        DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay) { [weak self] in
+    func dispatchExplosions(_ delay: Int, positionsOfExplosions: [[Int]]) {
+        let explosionDelay = Double(delay)/Double(100) * currentPuzzle.lengthOfPuzzleCycle
+        print(explosionDelay)
+        DispatchQueue.main.asyncAfter(deadline: .now() + explosionDelay, qos: .userInitiated) { [weak self] in
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
@@ -83,8 +91,8 @@ class GridContainerView: UIView {
                 square.explode()
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle) { [weak self] in
-            print("recursive call \(self?.currentPuzzle.lengthOfPuzzleCycle ?? 0)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + currentPuzzle.lengthOfPuzzleCycle, qos: .userInitiated) { [weak self] in
+            //print("recursive call \(self?.currentPuzzle.lengthOfPuzzleCycle ?? 0)")
             self?.dispatchExplosions(delay, positionsOfExplosions: positionsOfExplosions)
         }
     }
