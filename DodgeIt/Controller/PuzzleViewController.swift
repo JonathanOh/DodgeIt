@@ -54,8 +54,7 @@ class PuzzleViewController: UIViewController {
     
     func getNextPuzzleLevelWithDifficulty(_ difficulty: Int) -> Puzzle {
         let poolOfPossiblePuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(view.frame.width))
-        let randomNum = Int(arc4random_uniform(UInt32(poolOfPossiblePuzzles.possiblePuzzles.count)))
-        return poolOfPossiblePuzzles.possiblePuzzles[randomNum]
+        return poolOfPossiblePuzzles.getRandomPuzzle()
     }
     
     func addSwipeGestures(directions: [UISwipeGestureRecognizerDirection]) {

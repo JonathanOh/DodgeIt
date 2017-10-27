@@ -9,6 +9,7 @@
 import Foundation
 
 class Puzzle: Codable {
+    let puzzleID: Int
     let difficulty: Int // value of 1-10, 1 being an easy puzzle
     var totalWidth: Double // total width of puzzle
     let numberOfCellsInWidth: Int // number of cells along its width

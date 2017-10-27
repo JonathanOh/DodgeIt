@@ -1,6 +1,7 @@
 [
     {
-        "difficulty": 1,
+        "puzzleID": 1,
+        "difficulty": 2,
         "totalWidth": 1,
         "numberOfCellsInWidth": 10,
         "numberOfCellsInHeight": 10,
@@ -26,7 +27,8 @@
         }
     },
     {
-         "difficulty": 1,
+         "puzzleID": 2,
+         "difficulty": 6,
          "totalWidth": 1,
          "numberOfCellsInWidth": 10,
          "numberOfCellsInHeight": 10,
@@ -60,6 +62,7 @@
          }
      },
  {
+ "puzzleID": 3,
  "difficulty": 1,
  "totalWidth": 1,
  "numberOfCellsInWidth": 10,
@@ -85,7 +88,8 @@
  }
  },
  {
- "difficulty": 1,
+ "puzzleID": 4,
+ "difficulty": 7,
  "totalWidth": 1,
  "numberOfCellsInWidth": 10,
  "numberOfCellsInHeight": 10,
