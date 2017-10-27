@@ -26,7 +26,10 @@ class SquareView: UIView {
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
         backgroundColor = isObstacle() ? obstacleColor : puzzleBackgroundColor
-        if isSafe() { backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1) }
+        if isSafe() {
+            backgroundColor = UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
+            layer.borderWidth = 0
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +46,7 @@ class SquareView: UIView {
     func explode() {
         if isSafe() || isObstacle() { return }
         backgroundColor = explosionColor
-        UIView.animate(withDuration: 0.6, delay: 0.1, options: [UIViewAnimationOptions.allowUserInteraction], animations: { [weak self] in
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [UIViewAnimationOptions.allowUserInteraction], animations: { [weak self] in
             self?.backgroundColor = self?.puzzleBackgroundColor
         }, completion: nil)
     }

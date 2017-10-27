@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B1DA6B01FA3C9C700C10ABE /* PuzzleTesting.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B1DA6AF1FA3C9C700C10ABE /* PuzzleTesting.json */; };
 		8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */; };
 		8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */; };
 		8B35EBE81FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */; };
@@ -39,7 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B1DA6AF1FA3C9C700C10ABE /* PuzzleTesting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PuzzleTesting.json; sourceTree = "<group>"; };
 		8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
 		8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPuzzle.swift; sourceTree = "<group>"; };
 		8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredPuzzles.json; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				8B61DDB21F9806B300E791FA /* Views */,
 				8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */,
 				8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */,
-				8B1DA6AF1FA3C9C700C10ABE /* PuzzleTesting.json */,
 				8B61DD9F1F97F6FD00E791FA /* Assets.xcassets */,
 				8B61DDA11F97F6FD00E791FA /* LaunchScreen.storyboard */,
 				8B61DDA41F97F6FD00E791FA /* Info.plist */,
@@ -250,7 +247,6 @@
 			files = (
 				8B61DDA31F97F6FD00E791FA /* LaunchScreen.storyboard in Resources */,
 				8B61DDA01F97F6FD00E791FA /* Assets.xcassets in Resources */,
-				8B1DA6B01FA3C9C700C10ABE /* PuzzleTesting.json in Resources */,
 				8B35EBE81FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

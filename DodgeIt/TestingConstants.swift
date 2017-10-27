@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Test {
-    static let IS_TEST_MODE: Bool = true
-    static let PUZZLE_ID: Int = 1
+class TEST {
+    static let IS_TEST_MODE: Bool = false
+    static let PUZZLE_ID: Int = 6
 }

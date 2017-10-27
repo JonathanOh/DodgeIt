@@ -11,14 +11,40 @@ import UIKit
 class PuzzleView: UIView {
     let currentPuzzle: Puzzle
     let gridContainerView: GridContainerView
+    let currentScoreLabel = UILabel()
+    let highScoreLabel = UILabel()
     
     init(currentPuzzle: Puzzle) {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle)
         super.init(frame: .zero)
-        backgroundColor = UIColor(red: 100/255.0, green: 1.0, blue: 100/255.0, alpha: 1)
+        backgroundColor = UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
         setupContainerViewWith(puzzle: currentPuzzle)
+        setupLabels()
     }
+    
+    func setupLabels() {
+        currentScoreLabel.text = "Current Score: 123"
+        currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(currentScoreLabel)
+        currentScoreLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        currentScoreLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        currentScoreLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        currentScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        
+        highScoreLabel.text = "High Score: 1,302"
+        highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(highScoreLabel)
+        highScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        highScoreLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        highScoreLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        highScoreLabel.bottomAnchor.constraint(equalTo: currentScoreLabel.topAnchor, constant: -7).isActive = true
+    }
+        
+        
+    
     
     func setupContainerViewWith(puzzle: Puzzle) {
         addSubview(gridContainerView)

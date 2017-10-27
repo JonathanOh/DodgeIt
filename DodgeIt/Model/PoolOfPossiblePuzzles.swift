@@ -12,14 +12,14 @@ struct PoolOfPossiblePuzzles {
     var possiblePuzzles: [Puzzle]
     func getRandomPuzzle() -> Puzzle {
         let randomNum = Int(arc4random_uniform(UInt32(possiblePuzzles.count)))
-        if Test.IS_TEST_MODE {
+        if TEST.IS_TEST_MODE {
             for puzzle in possiblePuzzles {
-                if puzzle.puzzleID == Test.PUZZLE_ID {
+                if puzzle.puzzleID == TEST.PUZZLE_ID {
                     return puzzle
                 }
             }
         } else {
-            print("could not find puzzle ID \(Test.PUZZLE_ID)")
+            print("could not find puzzle ID \(TEST.PUZZLE_ID)")
         }
         return possiblePuzzles[randomNum]
     }
