@@ -25,6 +25,7 @@
 		8B61DDC71F98155C00E791FA /* String+TupleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDB61F98089C00E791FA /* String+TupleValue.swift */; };
 		8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDC81F992B0B00E791FA /* SquareData.swift */; };
 		8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */; };
+		8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8B61DDC01F9814BA00E791FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B61DDC81F992B0B00E791FA /* SquareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareData.swift; sourceTree = "<group>"; };
 		8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				8B61DDB01F98017800E791FA /* Puzzle.swift */,
+				8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */,
 				8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */,
 				8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */,
 				8B61DDC81F992B0B00E791FA /* SquareData.swift */,
@@ -269,6 +272,7 @@
 				8B61DDB11F98017800E791FA /* Puzzle.swift in Sources */,
 				8B61DD981F97F6FD00E791FA /* PuzzleViewController.swift in Sources */,
 				8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */,
+				8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */,
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* String+TupleValue.swift in Sources */,
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,

@@ -9,7 +9,28 @@
 import Foundation
 
 struct PoolOfPossiblePuzzles {
-    var possiblePuzzles: [Puzzle]
+    enum Difficulty {
+        case veryEasy
+        case easy
+        case medium
+        case hard
+        case veryHard
+    }
+    
+    private var possiblePuzzles: [Puzzle]
+    private var puzzleLookupByID = [String:Puzzle]()
+    
+//    func getRandomPuzzleByDifficulty(_ difficulty: Difficulty) -> Puzzle {
+//        
+//    }
+    
+    func getPuzzleByID(_ id: Int) -> Puzzle {
+        if let puzzleExists = puzzleLookupByID[String(id)] {
+            return puzzleExists
+        } else {
+            return getRandomPuzzle()
+        }
+    }
     func getRandomPuzzle() -> Puzzle {
         let randomNum = Int(arc4random_uniform(UInt32(possiblePuzzles.count)))
         if TEST.IS_TEST_MODE {
@@ -28,6 +49,9 @@ struct PoolOfPossiblePuzzles {
         let data = try! Data(contentsOf: URL(fileURLWithPath: path!))
         let puzzles = try! JSONDecoder().decode([Puzzle].self, from: data)
         self.possiblePuzzles = puzzles
-        _ = possiblePuzzles.map { $0.updateTotalWidth(viewsWidth) }
+        for puzzle in self.possiblePuzzles {
+            puzzle.updateTotalWidth(viewsWidth)
+            puzzleLookupByID[String(puzzle.puzzleID)] = puzzle
+        }
     }
 }
