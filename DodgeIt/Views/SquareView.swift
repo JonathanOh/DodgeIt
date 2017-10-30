@@ -15,7 +15,7 @@ class SquareView: UIView {
     let explosionSheet = UIImage(imageLiteralResourceName: "explosion3")
     
     let puzzleBackgroundColor: UIColor = UIColor(red: 1, green: 1, blue: 100.0/255.0, alpha: 1)
-    let explosionColor: UIColor = .black
+    let explosionColor: UIColor = .blue
     let obstacleColor: UIColor = .darkGray
     
     init(currentPuzzle: Puzzle, location: (Int, Int)) {
@@ -27,7 +27,7 @@ class SquareView: UIView {
         layer.borderColor = UIColor.black.cgColor
         backgroundColor = isObstacle() ? obstacleColor : puzzleBackgroundColor
         if isSafe() {
-            backgroundColor = UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
+            backgroundColor = .black//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
             layer.borderWidth = 0
         }
     }

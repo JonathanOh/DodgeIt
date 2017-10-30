@@ -37,10 +37,10 @@ struct PoolOfPossiblePuzzles {
             for puzzle in possiblePuzzles {
                 if puzzle.puzzleID == TEST.PUZZLE_ID {
                     return puzzle
+                } else {
+                    print("could not find puzzle ID \(TEST.PUZZLE_ID)")
                 }
             }
-        } else {
-            print("could not find puzzle ID \(TEST.PUZZLE_ID)")
         }
         return possiblePuzzles[randomNum]
     }
