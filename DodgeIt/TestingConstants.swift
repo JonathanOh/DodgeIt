@@ -9,6 +9,6 @@
 import Foundation
 
 class TEST {
-    static let IS_TEST_MODE: Bool = false
+    static let IS_TEST_MODE: Bool = true
     static let PUZZLE_ID: Int = 6
 }

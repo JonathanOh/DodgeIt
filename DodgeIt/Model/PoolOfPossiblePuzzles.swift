@@ -28,22 +28,18 @@ struct PoolOfPossiblePuzzles {
         if let puzzleExists = puzzleLookupByID[String(id)] {
             return puzzleExists
         } else {
+            print("could not find puzzle ID \(TEST.PUZZLE_ID). Serving random puzzl.")
             return getRandomPuzzle()
         }
     }
     func getRandomPuzzle() -> Puzzle {
-        let randomNum = Int(arc4random_uniform(UInt32(possiblePuzzles.count)))
         if TEST.IS_TEST_MODE {
-            for puzzle in possiblePuzzles {
-                if puzzle.puzzleID == TEST.PUZZLE_ID {
-                    return puzzle
-                } else {
-                    print("could not find puzzle ID \(TEST.PUZZLE_ID)")
-                }
-            }
+            return getPuzzleByID(TEST.PUZZLE_ID)
         }
+        let randomNum = Int(arc4random_uniform(UInt32(possiblePuzzles.count)))
         return possiblePuzzles[randomNum]
     }
+    
     init(viewsWidth: Double) {
         let path = Bundle.main.path(forResource: "LocallyStoredPuzzles", ofType: "json")
         let data = try! Data(contentsOf: URL(fileURLWithPath: path!))
