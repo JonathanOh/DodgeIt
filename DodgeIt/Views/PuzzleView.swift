@@ -14,17 +14,17 @@ class PuzzleView: UIView {
     let currentScoreLabel = UILabel()
     let highScoreLabel = UILabel()
     
-    init(currentPuzzle: Puzzle) {
+    init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle)
         super.init(frame: .zero)
         backgroundColor = .black//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
         setupContainerViewWith(puzzle: currentPuzzle)
-        setupLabels()
+        setupLabels(player)
     }
     
-    func setupLabels() {
-        currentScoreLabel.text = "Current Score: 123"
+    func setupLabels(_ player: Player) {
+        currentScoreLabel.text = "Current Score: \(player.currentScore)"
         currentScoreLabel.textColor = .white
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class PuzzleView: UIView {
         currentScoreLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
         currentScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
-        highScoreLabel.text = "High Score: 1,302"
+        highScoreLabel.text = "High Score: \(player.highScore)"
         highScoreLabel.textColor = .white
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false

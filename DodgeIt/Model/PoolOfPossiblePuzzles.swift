@@ -17,7 +17,7 @@ struct PoolOfPossiblePuzzles {
         case veryHard
     }
     
-    private var possiblePuzzles: [Puzzle]
+    private(set) var possiblePuzzles: [Puzzle]
     private var puzzleLookupByID = [String:Puzzle]()
     
 //    func getRandomPuzzleByDifficulty(_ difficulty: Difficulty) -> Puzzle {
