@@ -23,10 +23,7 @@ class PuzzleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        setupPlayer()
-        let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
-        setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
-        setupPuzzleProperties(nextLevel)
+        newGameSetup(true)
         addSwipeGestures(directions: swipeDirections)
     }
     
@@ -38,6 +35,21 @@ class PuzzleViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: playerLostNotification, object: nil)
+    }
+    
+    func newGameSetup(_ loadSavedPlayer: Bool) {
+        playerView = nil
+        puzzleLevel = nil
+        currentPuzzleView = nil
+        dataOfSquares = nil
+        if loadSavedPlayer || player == nil {
+            setupPlayer()
+        } else {
+            player!.resetPlayer()
+        }
+        let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
+        setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
+        setupPuzzleProperties(nextLevel)
     }
     
     func setupPlayer() {
@@ -79,6 +91,9 @@ class PuzzleViewController: UIViewController {
     
     @objc func playerLost() {
         print("player lost!!!!")
+        let gameOverViewController = GameOverViewController()
+        gameOverViewController.puzzleVC = self
+        present(gameOverViewController, animated: true, completion: nil)
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {

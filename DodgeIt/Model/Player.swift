@@ -36,16 +36,21 @@ class Player {
         completedPuzzlesByID.append(poolOfPuzzlesByID.last!)
         poolOfPuzzlesByID.removeLast()
     }
+    func resetPlayer() {
+        currentScore = 0
+        livesRemaining = 3
+        poolOfPuzzlesByID += completedPuzzlesByID
+        completedPuzzlesByID = []
+    }
     func playerDied() {
         if playerLost() {
-            currentScore = 0
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Player.playerLostNotification), object: nil)
             return
         }
         livesRemaining -= 1
     }
     func playerLost() -> Bool {
-        return livesRemaining <= 0
+        return livesRemaining <= 1
     }
     func increasePlayerScoreBy(_ puzzleScore: Int) {
         currentScore += puzzleScore
