@@ -107,11 +107,13 @@ extension PuzzleViewController: VictoryDelegate {
 
 extension PuzzleViewController: PlayerRespawnEventDelegate {
     func playerIsRespawning() {
+        guard let playerExists = player else { return }
+        playerExists.playerDied()
+        currentPuzzleView.updateLivesTo(playerExists.livesRemaining)
+        print("Player Lives Remaining: \(playerExists.livesRemaining)")
         view.isUserInteractionEnabled = false
     }
     func playerRespawned() {
-        player?.playerDied()
-        print("Player Lives Remaining: \(player?.livesRemaining ?? 0)")
         view.isUserInteractionEnabled = true
     }
 }

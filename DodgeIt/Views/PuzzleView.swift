@@ -13,6 +13,7 @@ class PuzzleView: UIView {
     let gridContainerView: GridContainerView
     let currentScoreLabel = UILabel()
     let highScoreLabel = UILabel()
+    let livesRemainingLabel = UILabel()
     
     init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
@@ -24,6 +25,18 @@ class PuzzleView: UIView {
     }
     
     func setupLabels(_ player: Player) {
+        livesRemainingLabel.text = "\(player.livesRemaining)"
+        livesRemainingLabel.textColor = .white
+        livesRemainingLabel.textAlignment = .center
+        livesRemainingLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
+        livesRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(livesRemainingLabel)
+        livesRemainingLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        livesRemainingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
+        livesRemainingLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        livesRemainingLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        //livesRemainingLabel.widthAnchor.constraint(equalToConstant: frame.width * 0.9).isActive = true
+        
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
         currentScoreLabel.textColor = .white
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
@@ -45,8 +58,10 @@ class PuzzleView: UIView {
         highScoreLabel.bottomAnchor.constraint(equalTo: currentScoreLabel.topAnchor, constant: -7).isActive = true
     }
         
-        
-    
+    func updateLivesTo(_ text: Int) {
+        //let livesLeft = Int(livesRemainingLabel.text!)!
+        livesRemainingLabel.text = "\(text)"
+    }
     
     func setupContainerViewWith(puzzle: Puzzle) {
         addSubview(gridContainerView)

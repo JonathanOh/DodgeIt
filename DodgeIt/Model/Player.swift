@@ -38,6 +38,7 @@ class Player {
     }
     func playerDied() {
         if playerLost() {
+            currentScore = 0
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Player.playerLostNotification), object: nil)
             return
         }
