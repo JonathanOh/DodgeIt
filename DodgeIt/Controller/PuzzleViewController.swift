@@ -16,7 +16,9 @@ class PuzzleViewController: UIViewController {
     private var puzzleLevel: Puzzle!
     private var currentPuzzleView: PuzzleView!
     private var dataOfSquares: SquareData!
-    private var interstitial: GADInterstitial!
+    
+    private var googleAd: GoogleAdService!
+    
     
     let poolOfPossiblePuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(UIScreen.main.bounds.width))
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
@@ -25,8 +27,8 @@ class PuzzleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //interstitial = getNewGoogleAd()
-
+        googleAd = GoogleAdService()
+        googleAd.interstitial.delegate = self
         newGameSetup(true)
         addSwipeGestures(directions: swipeDirections)
     }
@@ -40,15 +42,6 @@ class PuzzleViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: playerLostNotification, object: nil)
     }
-    
-//    func getNewGoogleAd() -> GADInterstitial {
-//        let newInterstitial = GADInterstitial(adUnitID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_UNIT_ID)
-//        let request = GADRequest()
-//        request.testDevices = ["49f1a24302c679c5d1896fc1935385ef"]
-//        //interstitial.load(request)
-//        newInterstitial.load(request)
-//        return newInterstitial
-//    }
     
     func newGameSetup(_ loadSavedPlayer: Bool) {
         playerView = nil
@@ -116,8 +109,7 @@ class PuzzleViewController: UIViewController {
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
-        GoogleAdService.shared.getInterstitialIfReady()?.present(fromRootViewController: self)
-        GoogleAdService.shared.loadNewAd()
+        setupGoogleAdAfterLevelDone()
         player?.playerCompletedCurrent(puzzle: puzzleLevel)
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: false)
@@ -133,6 +125,11 @@ extension PuzzleViewController: VictoryDelegate {
             self!.setupPlayerView(squareData: nextLevel.squareData, puzzle: nextLevel.puzzle)
         }
     }
+    func setupGoogleAdAfterLevelDone() {
+        googleAd.getInterstitialIfReady()?.present(fromRootViewController: self)
+        googleAd = GoogleAdService()
+        googleAd.startTimer()
+    }
 }
 
 extension PuzzleViewController: PlayerRespawnEventDelegate {
@@ -145,5 +142,12 @@ extension PuzzleViewController: PlayerRespawnEventDelegate {
     }
     func playerRespawned() {
         view.isUserInteractionEnabled = true
+    }
+}
+
+extension PuzzleViewController: GADInterstitialDelegate {
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+        print("interstitialWillDismissScreen")
+        googleAd.startTimer()
     }
 }
