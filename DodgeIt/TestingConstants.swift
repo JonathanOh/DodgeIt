@@ -11,6 +11,7 @@ import Foundation
 class TEST {
     static let IS_TEST_MODE: Bool = false
     static let PUZZLE_ID: Int = 6
+    static let SERVE_TEST_ADS: Bool = true
 }
 
 class PlayerDummyData {

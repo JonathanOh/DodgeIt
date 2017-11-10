@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = puzzleViewController
+        
+        setupGoogleAds(adMobAppID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_APP_ID)
+        GoogleAdService.shared.loadNewAd()
+
         return true
     }
 
@@ -45,6 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    // MARK: - Created Methods
+    func setupGoogleAds(adMobAppID: String) {
+        GADMobileAds.configure(withApplicationID: adMobAppID)
     }
 
     // MARK: - Core Data stack

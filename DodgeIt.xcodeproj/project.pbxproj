@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C82AC1FB62E6300A0D100 /* Constants.swift */; };
 		8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */; };
 		8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */; };
 		8B35EBE81FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */; };
@@ -25,8 +26,11 @@
 		8B61DDC71F98155C00E791FA /* String+TupleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDB61F98089C00E791FA /* String+TupleValue.swift */; };
 		8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDC81F992B0B00E791FA /* SquareData.swift */; };
 		8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */; };
+		8BD323CA1FB6333C00BE9720 /* GoogleAdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */; };
 		8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */; };
 		8BF18F8E1FA7D1E600FC1FF4 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8D1FA7D1E600FC1FF4 /* GameOverViewController.swift */; };
+		A3878F9E0C6EE95E203B7930 /* Pods_DodgeIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3848B730DEFDC43D28AE5E5C /* Pods_DodgeIt.framework */; };
+		A7D66B768C4B8CE89C15591F /* Pods_DodgeItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B51C812B6149F79B2317BB5 /* Pods_DodgeItTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3848B730DEFDC43D28AE5E5C /* Pods_DodgeIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DodgeIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		481D1F6885C6FB53388171F4 /* Pods-DodgeItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeItTests/Pods-DodgeItTests.release.xcconfig"; sourceTree = "<group>"; };
+		5D098B9F8D8DB05EE71C33B7 /* Pods-DodgeIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt.debug.xcconfig"; sourceTree = "<group>"; };
+		7B51C812B6149F79B2317BB5 /* Pods_DodgeItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DodgeItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		843ECF144AE34495F489110D /* Pods-DodgeIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt.release.xcconfig"; sourceTree = "<group>"; };
+		8B1C82AC1FB62E6300A0D100 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
 		8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPuzzle.swift; sourceTree = "<group>"; };
 		8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredPuzzles.json; sourceTree = "<group>"; };
@@ -61,8 +71,10 @@
 		8B61DDC01F9814BA00E791FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B61DDC81F992B0B00E791FA /* SquareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareData.swift; sourceTree = "<group>"; };
 		8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdService.swift; sourceTree = "<group>"; };
 		8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8BF18F8D1FA7D1E600FC1FF4 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		E1F8F5F4E45D2847629B749F /* Pods-DodgeItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeItTests/Pods-DodgeItTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3878F9E0C6EE95E203B7930 /* Pods_DodgeIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,18 +90,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D66B768C4B8CE89C15591F /* Pods_DodgeItTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3851EC0CA96E6A55CD3AB7D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D098B9F8D8DB05EE71C33B7 /* Pods-DodgeIt.debug.xcconfig */,
+				843ECF144AE34495F489110D /* Pods-DodgeIt.release.xcconfig */,
+				E1F8F5F4E45D2847629B749F /* Pods-DodgeItTests.debug.xcconfig */,
+				481D1F6885C6FB53388171F4 /* Pods-DodgeItTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		82DD189D9F975BC798D0739D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3848B730DEFDC43D28AE5E5C /* Pods_DodgeIt.framework */,
+				7B51C812B6149F79B2317BB5 /* Pods_DodgeItTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8B61DD891F97F6FD00E791FA = {
 			isa = PBXGroup;
 			children = (
 				8B61DD941F97F6FD00E791FA /* DodgeIt */,
 				8B61DDBD1F9814BA00E791FA /* DodgeItTests */,
 				8B61DD931F97F6FD00E791FA /* Products */,
+				3851EC0CA96E6A55CD3AB7D6 /* Pods */,
+				82DD189D9F975BC798D0739D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				8B61DD951F97F6FD00E791FA /* AppDelegate.swift */,
+				8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */,
+				8B1C82AC1FB62E6300A0D100 /* Constants.swift */,
 				8B61DDB51F98086B00E791FA /* Extensions */,
 				8B61DDB41F9806DF00E791FA /* Controller */,
 				8B61DDB31F9806CE00E791FA /* Model */,
@@ -175,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B61DDA71F97F6FD00E791FA /* Build configuration list for PBXNativeTarget "DodgeIt" */;
 			buildPhases = (
+				0B8CDF587997DF0222D4B094 /* [CP] Check Pods Manifest.lock */,
 				8B61DD8E1F97F6FD00E791FA /* Sources */,
 				8B61DD8F1F97F6FD00E791FA /* Frameworks */,
 				8B61DD901F97F6FD00E791FA /* Resources */,
+				6CFB9B807F8888DF7EE7D2BD /* [CP] Embed Pods Frameworks */,
+				73E606DBCFBA859C82CF89FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,9 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B61DDC31F9814BA00E791FA /* Build configuration list for PBXNativeTarget "DodgeItTests" */;
 			buildPhases = (
+				1F6A76DBB1B2636DC3C86125 /* [CP] Check Pods Manifest.lock */,
 				8B61DDB81F9814BA00E791FA /* Sources */,
 				8B61DDB91F9814BA00E791FA /* Frameworks */,
 				8B61DDBA1F9814BA00E791FA /* Resources */,
+				284B1D897E4EDEB3737BFC97 /* [CP] Embed Pods Frameworks */,
+				9220F6AFAB4EA050479579D3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,6 +310,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B8CDF587997DF0222D4B094 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1F6A76DBB1B2636DC3C86125 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		284B1D897E4EDEB3737BFC97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DodgeItTests/Pods-DodgeItTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CFB9B807F8888DF7EE7D2BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73E606DBCFBA859C82CF89FD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9220F6AFAB4EA050479579D3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DodgeItTests/Pods-DodgeItTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B61DD8E1F97F6FD00E791FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -273,11 +410,13 @@
 			files = (
 				8B61DDAB1F97F8D100E791FA /* PuzzleView.swift in Sources */,
 				8B61DDB11F98017800E791FA /* Puzzle.swift in Sources */,
+				8BD323CA1FB6333C00BE9720 /* GoogleAdService.swift in Sources */,
 				8B61DD981F97F6FD00E791FA /* PuzzleViewController.swift in Sources */,
 				8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */,
 				8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */,
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* String+TupleValue.swift in Sources */,
+				8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */,
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,
 				8B35EBEA1FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift in Sources */,
 				8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */,
@@ -429,6 +568,7 @@
 		};
 		8B61DDA81F97F6FD00E791FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D098B9F8D8DB05EE71C33B7 /* Pods-DodgeIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -444,6 +584,7 @@
 		};
 		8B61DDA91F97F6FD00E791FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 843ECF144AE34495F489110D /* Pods-DodgeIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +600,7 @@
 		};
 		8B61DDC41F9814BA00E791FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1F8F5F4E45D2847629B749F /* Pods-DodgeItTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -475,6 +617,7 @@
 		};
 		8B61DDC51F9814BA00E791FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 481D1F6885C6FB53388171F4 /* Pods-DodgeItTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

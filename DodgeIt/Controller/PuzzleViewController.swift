@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class PuzzleViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class PuzzleViewController: UIViewController {
     private var puzzleLevel: Puzzle!
     private var currentPuzzleView: PuzzleView!
     private var dataOfSquares: SquareData!
+    private var interstitial: GADInterstitial!
     
     let poolOfPossiblePuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(UIScreen.main.bounds.width))
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
@@ -23,6 +25,8 @@ class PuzzleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //interstitial = getNewGoogleAd()
+
         newGameSetup(true)
         addSwipeGestures(directions: swipeDirections)
     }
@@ -36,6 +40,15 @@ class PuzzleViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: playerLostNotification, object: nil)
     }
+    
+//    func getNewGoogleAd() -> GADInterstitial {
+//        let newInterstitial = GADInterstitial(adUnitID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_UNIT_ID)
+//        let request = GADRequest()
+//        request.testDevices = ["49f1a24302c679c5d1896fc1935385ef"]
+//        //interstitial.load(request)
+//        newInterstitial.load(request)
+//        return newInterstitial
+//    }
     
     func newGameSetup(_ loadSavedPlayer: Bool) {
         playerView = nil
@@ -103,6 +116,8 @@ class PuzzleViewController: UIViewController {
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
+        GoogleAdService.shared.getInterstitialIfReady()?.present(fromRootViewController: self)
+        GoogleAdService.shared.loadNewAd()
         player?.playerCompletedCurrent(puzzle: puzzleLevel)
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: false)
