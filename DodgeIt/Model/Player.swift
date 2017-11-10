@@ -8,6 +8,9 @@
 
 import UIKit
 
+// userdefault saves
+// current score, high score, lives remaining, [pool of puzzlesbyid], [completedpuzzlesbyid], current puzzle
+
 class Player {
     //let playerID: String
     static let playerLostNotification: String = "playerLostNotification"
@@ -21,12 +24,13 @@ class Player {
         self.highScore = highScore
         self.livesRemaining = livesRemaining
         _ = poolOfPuzzlesByID.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
+        self.poolOfPuzzlesByID.shuffle()
         self.completedPuzzlesByID = completedPuzzlesByID
     }
     
     func getNextLevelByID() -> Int {
         if poolOfPuzzlesByID.count <= 0 {
-            poolOfPuzzlesByID = completedPuzzlesByID
+            poolOfPuzzlesByID = completedPuzzlesByID.shuffled()
             completedPuzzlesByID = []
         }
         return poolOfPuzzlesByID.last!
@@ -40,6 +44,7 @@ class Player {
         currentScore = 0
         livesRemaining = 3
         poolOfPuzzlesByID += completedPuzzlesByID
+        poolOfPuzzlesByID.shuffle()
         completedPuzzlesByID = []
     }
     func playerDied() {

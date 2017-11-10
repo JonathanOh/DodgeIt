@@ -25,7 +25,6 @@ class GoogleAdService {
     }
     
     func startTimer() {
-        //elapsedTime = Timer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         elapsedTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     

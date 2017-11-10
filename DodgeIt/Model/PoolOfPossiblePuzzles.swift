@@ -28,7 +28,7 @@ struct PoolOfPossiblePuzzles {
         if let puzzleExists = puzzleLookupByID[String(id)] {
             return puzzleExists
         } else {
-            print("could not find puzzle ID \(TEST.PUZZLE_ID). Serving random puzzl.")
+            print("could not find puzzle ID \(TEST.PUZZLE_ID). Serving random puzzle.")
             return getRandomPuzzle()
         }
     }
