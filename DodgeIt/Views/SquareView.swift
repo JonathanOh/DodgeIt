@@ -14,9 +14,9 @@ class SquareView: UIView {
     let locationStringValue: String
     let explosionSheet = UIImage(imageLiteralResourceName: "explosion3")
     
-    let puzzleBackgroundColor: UIColor = UIColor(red: 1, green: 1, blue: 100.0/255.0, alpha: 1)
-    let explosionColor: UIColor = .blue
-    let obstacleColor: UIColor = .darkGray
+//    let puzzleBackgroundColor: UIColor = CONSTANTS.COLORS.PUZZLE_SQUARE//.black//UIColor(red: 1, green: 1, blue: 100.0/255.0, alpha: 1)
+//    let explosionColor: UIColor = CONSTANTS.COLORS.PUZZLE_SQUARE_EXPLOSION
+//    let obstacleColor: UIColor = CONSTANTS.COLORS.OBSTACLE
     
     init(currentPuzzle: Puzzle, location: (Int, Int)) {
         self.currentPuzzle = currentPuzzle
@@ -24,10 +24,11 @@ class SquareView: UIView {
         self.locationStringValue = "\(location.0),\(location.1)"
         super.init(frame: .zero)
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
-        backgroundColor = isObstacle() ? obstacleColor : puzzleBackgroundColor
+        layer.cornerRadius = CGFloat(currentPuzzle.squareWidth) / 6
+        layer.borderColor = CONSTANTS.COLORS.BACKGROUND_VIEW.cgColor//UIColor.black.cgColor
+        backgroundColor = isObstacle() ? CONSTANTS.COLORS.OBSTACLE : CONSTANTS.COLORS.PUZZLE_SQUARE
         if isSafe() {
-            backgroundColor = .black//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
+            backgroundColor = CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
             layer.borderWidth = 0
         }
     }
@@ -45,9 +46,9 @@ class SquareView: UIView {
     
     func explode() {
         if isSafe() || isObstacle() { return }
-        backgroundColor = explosionColor
+        backgroundColor = CONSTANTS.COLORS.PUZZLE_SQUARE_EXPLOSION
         UIView.animate(withDuration: 0.3, delay: 0.1, options: [UIViewAnimationOptions.allowUserInteraction], animations: { [weak self] in
-            self?.backgroundColor = self?.puzzleBackgroundColor
+            self?.backgroundColor = CONSTANTS.COLORS.PUZZLE_SQUARE
         }, completion: nil)
     }
     

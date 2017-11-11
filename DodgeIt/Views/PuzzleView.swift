@@ -19,14 +19,14 @@ class PuzzleView: UIView {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle)
         super.init(frame: .zero)
-        backgroundColor = .black//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
+        backgroundColor = CONSTANTS.COLORS.BACKGROUND_VIEW//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
         setupContainerViewWith(puzzle: currentPuzzle)
         setupLabels(player)
     }
     
     func setupLabels(_ player: Player) {
         livesRemainingLabel.text = "\(player.livesRemaining)"
-        livesRemainingLabel.textColor = .white
+        livesRemainingLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
         livesRemainingLabel.textAlignment = .center
         livesRemainingLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
         livesRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class PuzzleView: UIView {
         //livesRemainingLabel.widthAnchor.constraint(equalToConstant: frame.width * 0.9).isActive = true
         
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
-        currentScoreLabel.textColor = .white
+        currentScoreLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(currentScoreLabel)
@@ -48,7 +48,7 @@ class PuzzleView: UIView {
         currentScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
         highScoreLabel.text = "High Score: \(player.highScore)"
-        highScoreLabel.textColor = .white
+        highScoreLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(highScoreLabel)

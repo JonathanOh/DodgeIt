@@ -25,7 +25,7 @@ class GridContainerView: UIView {
         self.squareData = SquareData(matrix: GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle))
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .yellow
+        backgroundColor = CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
         addAllSquareViews(self.squareData.matrix)
         applyExplosions()
     }

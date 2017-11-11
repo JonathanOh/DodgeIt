@@ -32,6 +32,8 @@ class PlayerView: UIView {
         center = startingLocation
         backgroundColor = skin
         layer.cornerRadius = frame.size.width/2
+        layer.borderWidth = 3
+        layer.borderColor = UIColor.black.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
