@@ -59,7 +59,7 @@ class PuzzleViewController: UIViewController {
     }
     
     func setupPlayer() {
-        player = Player(currentScore: PlayerDummyData.currentScore, highScore: PlayerDummyData.highScore, livesRemaining: PlayerDummyData.livesRemaining, poolOfPuzzlesByID: poolOfPossiblePuzzles.possiblePuzzles, completedPuzzlesByID: [])
+        player = Player()
     }
     func setupPlayerView(squareData: SquareData, puzzle: Puzzle) {
         if playerView == nil {
