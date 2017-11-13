@@ -17,7 +17,7 @@ class TEST {
 class PlayerDummyData {
     static let currentScore = 234
     static let highScore = 1000
-    static let livesRemaining = 3
+    static let livesRemaining = 1
 }
 
 //

@@ -25,17 +25,16 @@ class PuzzleView: UIView {
     }
     
     func setupLabels(_ player: Player) {
-        livesRemainingLabel.text = "\(player.livesRemaining)"
-        livesRemainingLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
-        livesRemainingLabel.textAlignment = .center
-        livesRemainingLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
-        livesRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(livesRemainingLabel)
-        livesRemainingLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        livesRemainingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-        livesRemainingLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        livesRemainingLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        //livesRemainingLabel.widthAnchor.constraint(equalToConstant: frame.width * 0.9).isActive = true
+//        livesRemainingLabel.text = "\(player.livesRemaining)"
+//        livesRemainingLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
+//        livesRemainingLabel.textAlignment = .center
+//        livesRemainingLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
+//        livesRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(livesRemainingLabel)
+//        livesRemainingLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        livesRemainingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
+//        livesRemainingLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        livesRemainingLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
         currentScoreLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR

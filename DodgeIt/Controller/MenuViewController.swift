@@ -20,7 +20,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //135-206-250
-        view.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 250/255, alpha: 1)
+        view.backgroundColor = .black
         print("im game over bros!")
         // Do any additional setup after loading the view.
         setupViews()
@@ -34,36 +34,41 @@ class MenuViewController: UIViewController {
             view.addSubview(highScoreLabel)
             view.addSubview(currentScoreLabel)
         }
-        let playButton = UIButton()
-        playButton.addTarget(self, action: #selector(didTapPlay), for: .touchUpInside)
-        playButton.setTitle("Play", for: .normal)
-        
-        let removeAdsButton = UIButton()
-        removeAdsButton.addTarget(self, action: #selector(didTapRemoveAds), for: .touchUpInside)
-        removeAdsButton.setTitle("Remove Ads", for: .normal)
-        
-        let mapThemesButton = UIButton()
-        mapThemesButton.addTarget(self, action: #selector(didTapMapThemese), for: .touchUpInside)
-        mapThemesButton.setTitle("Map Themes", for: .normal)
-        
+
+        let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play")
+        let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
+        let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
         let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton, mapThemesButton])
         menuButtonStackView.axis = .vertical
+        menuButtonStackView.alignment = .center
+        menuButtonStackView.distribution = .equalSpacing
+        
+        menuButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuButtonStackView)
+
+        menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        menuButtonStackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+                
     }
     
-    func didTapPlay() {
+    @objc func didTapPlay() {
         print("play tapped!")
+        puzzleVC?.newGameSetup(false)
+        dismiss(animated: true, completion: nil)
     }
-    func didTapRemoveAds() {
+    @objc func didTapRemoveAds() {
         print("remove ads tapped!")
     }
-    func didTapMapThemese() {
+    @objc func didTapMapThemese() {
         print("map themes tapped!")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        puzzleVC?.newGameSetup(false)
-        dismiss(animated: true, completion: nil)
+        //puzzleVC?.newGameSetup(false)
+        //dismiss(animated: true, completion: nil)
     }
 }

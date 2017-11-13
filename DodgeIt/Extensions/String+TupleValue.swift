@@ -61,7 +61,7 @@ extension UIImage {
 }
 
 extension UIView {
-    func addConstraintsWithVisualFormat(vfl: String, views: UIView...) {
+    static func addConstraintsWithVisualFormat(vfl: String, views: UIView...) {
         var viewsDictionary = [String:UIView]()
         for (index, view) in views.enumerated() {
             view.translatesAutoresizingMaskIntoConstraints = false

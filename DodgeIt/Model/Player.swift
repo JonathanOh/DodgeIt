@@ -87,7 +87,7 @@ class Player {
     }
     func resetPlayer() {
         currentScore = 0
-        livesRemaining = 3
+        livesRemaining = 1
         poolOfPuzzlesByID += completedPuzzlesByID
         poolOfPuzzlesByID.shuffle()
         completedPuzzlesByID = []

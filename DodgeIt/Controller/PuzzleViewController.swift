@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 class PuzzleViewController: UIViewController {
 
-    private var player: Player?
+    var player: Player?
     private var playerView: PlayerView?
     private var puzzleLevel: Puzzle!
     private var currentPuzzleView: PuzzleView!
