@@ -60,6 +60,17 @@ extension UIImage {
     }
 }
 
+extension UIView {
+    func addConstraintsWithVisualFormat(vfl: String, views: UIView...) {
+        var viewsDictionary = [String:UIView]()
+        for (index, view) in views.enumerated() {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionary["v\(index)"] = view
+        }
+        NSLayoutConstraint.constraints(withVisualFormat: vfl, metrics: nil, views: viewsDictionary)
+    }
+}
+
 extension MutableCollection {
     /// Shuffles the contents of this collection.
     mutating func shuffle() {

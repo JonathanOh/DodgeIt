@@ -97,9 +97,10 @@ class PuzzleViewController: UIViewController {
     
     @objc func playerLost() {
         print("player lost!!!!")
-        let gameOverViewController = GameOverViewController()
-        gameOverViewController.puzzleVC = self
-        present(gameOverViewController, animated: true, completion: nil)
+        let menuViewController = MenuViewController()
+        menuViewController.currentPlayer = player
+        menuViewController.puzzleVC = self
+        present(menuViewController, animated: true, completion: nil)
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {
