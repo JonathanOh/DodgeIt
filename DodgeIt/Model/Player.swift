@@ -66,7 +66,7 @@ class Player {
         } else {
             self.currentScore = 0
             self.highScore = 0
-            self.livesRemaining = 3
+            self.livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
             _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
             self.poolOfPuzzlesByID.shuffle()
             self.completedPuzzlesByID = []
@@ -87,7 +87,7 @@ class Player {
     }
     func resetPlayer() {
         currentScore = 0
-        livesRemaining = 1
+        livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
         poolOfPuzzlesByID += completedPuzzlesByID
         poolOfPuzzlesByID.shuffle()
         completedPuzzlesByID = []

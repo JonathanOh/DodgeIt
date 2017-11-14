@@ -12,8 +12,7 @@ class MenuViewController: UIViewController {
 
     weak var puzzleVC: PuzzleViewController?
     var currentPlayer: Player?
-//    let highScoreLabel = UILabel()
-//    let currentScoreLabel = UILabel()
+    let titleLabel = UILabel()
     
     // play, remove ads, map themes, sounds(jump, die, map win)
     
@@ -31,9 +30,11 @@ class MenuViewController: UIViewController {
         if currentPlayer != nil {
             let highScoreLabel = UILabel()
             let currentScoreLabel = UILabel()
-        
             view.addSubview(highScoreLabel)
             view.addSubview(currentScoreLabel)
+            
+            
+            
         }
         setupMenuButtons()
 
@@ -41,7 +42,7 @@ class MenuViewController: UIViewController {
     }
     
     func setupTitleLabel() {
-        let titleLabel = UILabel()
+        //let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Dodge Block"
         titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)

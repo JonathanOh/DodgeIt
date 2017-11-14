@@ -25,6 +25,9 @@ struct CONSTANTS {
         static let PLAYER: UIColor = CONSTANTS.getRGB(R: 252, G: 207, B: 77)
         static let LABEL_COLOR: UIColor = UIColor.black
     }
+    struct GAME_DEFAULTS {
+        static let LIVES: Int = 1
+    }
     
     static func getRGB(R: Int, G: Int, B: Int) -> UIColor {
         return UIColor(red: CGFloat(R)/255, green: CGFloat(G)/255, blue: CGFloat(B)/255, alpha: 1)
