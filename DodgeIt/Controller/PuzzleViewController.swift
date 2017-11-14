@@ -102,7 +102,7 @@ class PuzzleViewController: UIViewController {
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {
-        playerView!.move(gesture.direction)
+        playerView?.move(gesture.direction)
     }
 }
 
@@ -120,6 +120,7 @@ extension PuzzleViewController: VictoryDelegate {
             self!.currentPuzzleView.removeFromSuperview()
             print("player won from VC.")
             self!.setupPuzzleProperties(nextLevel)
+            self!.playerView?.removeFromSuperview()
             self!.playerView = nil
             self!.setupPlayerView(squareData: nextLevel.squareData, puzzle: nextLevel.puzzle)
         }

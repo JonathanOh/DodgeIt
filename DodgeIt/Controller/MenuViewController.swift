@@ -12,6 +12,10 @@ class MenuViewController: UIViewController {
 
     private var puzzleVC: PuzzleViewController?
     var currentPlayer: Player?
+    
+    private var playButtonTitle: String = "Play"
+    private let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play")
+    
     let titleLabel = UILabel()
     
     // play, remove ads, map themes, sounds(jump, die, map win)
@@ -25,6 +29,11 @@ class MenuViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updatePlayButton()
+    }
+    
     func setupViews() {
         setupTitleLabel()
         if currentPlayer != nil {
@@ -32,13 +41,8 @@ class MenuViewController: UIViewController {
             let currentScoreLabel = UILabel()
             view.addSubview(highScoreLabel)
             view.addSubview(currentScoreLabel)
-            
-            
-            
         }
         setupMenuButtons()
-
-                
     }
     
     func setupTitleLabel() {
@@ -56,8 +60,14 @@ class MenuViewController: UIViewController {
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
     }
     
+    func updatePlayButton() {
+        let currentGameExists = ((UserDefaults.standard.object(forKey: "current_score") as? Int) ?? 0) > 0
+        playButtonTitle = currentGameExists ? "Continue" : "Play"
+        playButton.setTitle(playButtonTitle, for: .normal)
+    }
+    
     func setupMenuButtons() {
-        let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play")
+        updatePlayButton()
         let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
         let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
