@@ -93,10 +93,10 @@ class Player {
         completedPuzzlesByID = []
     }
     func playerDied() {
-        if playerLost() {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Player.playerLostNotification), object: nil)
-            return
-        }
+//        if playerLost() {
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Player.playerLostNotification), object: nil)
+//            return
+//        }
         livesRemaining -= 1
     }
     func playerLost() -> Bool {

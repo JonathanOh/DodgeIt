@@ -34,12 +34,7 @@ class PuzzleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(playerLost), name: playerLostNotification, object: nil)
         setupPlayerView(squareData: dataOfSquares, puzzle: puzzleLevel)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: playerLostNotification, object: nil)
     }
     
     func newGameSetup() {
@@ -89,17 +84,21 @@ class PuzzleViewController: UIViewController {
         }
     }
     
-    @objc func playerLost() {
+    func playerLost() {
         print("player lost!!!!")
-        let bloodSplatImageView = UIImageView(frame: CGRect(x: playerView!.frame.origin.x - 15, y: playerView!.frame.origin.y - 15, width: playerView!.frame.width * 2, height: playerView!.frame.height * 2))
-        bloodSplatImageView.image = UIImage(imageLiteralResourceName: "redSplat")
-        playerView?.removeFromSuperview()
-        view.addSubview(bloodSplatImageView)
-        view.layoutIfNeeded()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] (timer) in
+        replacePlayerViewWithBloodSplat()
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] (timer) in
             self!.player!.resetPlayer()
             self!.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func replacePlayerViewWithBloodSplat() {
+        let bloodSplatImageView = UIImageView(frame: CGRect(x: playerView!.frame.origin.x - 15, y: playerView!.frame.origin.y - 15, width: playerView!.frame.width * 2, height: playerView!.frame.height * 2))
+        bloodSplatImageView.image = UIImage(imageLiteralResourceName: "redSplat")
+        playerView!.removeFromSuperview()
+        playerView = nil
+        view.addSubview(bloodSplatImageView)
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {
@@ -133,22 +132,18 @@ extension PuzzleViewController: VictoryDelegate {
 }
 
 extension PuzzleViewController: PlayerEventDelegate {
-//    func playerIsRespawning() {
-//        guard let playerExists = player else { return }
-//        playerExists.playerDied()
-//        currentPuzzleView.updateLivesTo(playerExists.livesRemaining)
-//        print("Player Lives Remaining: \(playerExists.livesRemaining)")
-//        view.isUserInteractionEnabled = false
-//    }
-//    func playerRespawned() {
-//        view.isUserInteractionEnabled = true
-//    }
+
     func playerDied() {
         guard let playerExists = player else { return }
         view.isUserInteractionEnabled = false
         playerExists.playerDied()
         currentPuzzleView.updateLivesTo(playerExists.livesRemaining)
         
+        if playerExists.playerLost() {
+            playerLost()
+            //view.isUserInteractionEnabled = true
+            return
+        }
         UIView.animate(withDuration: 0.75, animations: { [weak self] in
             self?.playerView?.center = self!.playerView!.startingLocation
         }) { [weak self] (completed) in
