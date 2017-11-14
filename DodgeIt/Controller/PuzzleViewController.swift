@@ -29,7 +29,6 @@ class PuzzleViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         googleAd = GoogleAdService()
         googleAd.interstitial.delegate = self
-        newGameSetup(true)
         addSwipeGestures(directions: swipeDirections)
     }
     
@@ -43,24 +42,19 @@ class PuzzleViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: playerLostNotification, object: nil)
     }
     
-    func newGameSetup(_ loadSavedPlayer: Bool) {
+    func newGameSetup() {
         playerView = nil
         puzzleLevel = nil
         currentPuzzleView = nil
         dataOfSquares = nil
-        if loadSavedPlayer || player == nil {
-            setupPlayer()
-        } else {
-            player!.resetPlayer()
+        if player == nil {
+            player = Player()
         }
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
         setupPuzzleProperties(nextLevel)
     }
-    
-    func setupPlayer() {
-        player = Player()
-    }
+
     func setupPlayerView(squareData: SquareData, puzzle: Puzzle) {
         if playerView == nil {
             playerView = PlayerView(skin: CONSTANTS.COLORS.PLAYER, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: currentPuzzleView)
@@ -97,10 +91,12 @@ class PuzzleViewController: UIViewController {
     
     @objc func playerLost() {
         print("player lost!!!!")
-        let menuViewController = MenuViewController()
-        menuViewController.currentPlayer = player
-        menuViewController.puzzleVC = self
-        present(menuViewController, animated: true, completion: nil)
+        player!.resetPlayer()
+        dismiss(animated: true, completion: nil)
+        //        let menuViewController = MenuViewController()
+//        menuViewController.currentPlayer = player
+//        menuViewController.puzzleVC = self
+//        present(menuViewController, animated: true, completion: nil)
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {

@@ -10,7 +10,7 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
-    weak var puzzleVC: PuzzleViewController?
+    private var puzzleVC: PuzzleViewController?
     var currentPlayer: Player?
     let titleLabel = UILabel()
     
@@ -77,19 +77,14 @@ class MenuViewController: UIViewController {
     
     @objc func didTapPlay() {
         print("play tapped!")
-        puzzleVC?.newGameSetup(false)
-        dismiss(animated: true, completion: nil)
+        puzzleVC = PuzzleViewController()
+        puzzleVC?.newGameSetup()
+        present(puzzleVC!, animated: true, completion: nil)
     }
     @objc func didTapRemoveAds() {
         print("remove ads tapped!")
     }
     @objc func didTapMapThemese() {
         print("map themes tapped!")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //puzzleVC?.newGameSetup(false)
-        //dismiss(animated: true, completion: nil)
     }
 }
