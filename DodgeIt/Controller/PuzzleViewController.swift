@@ -93,10 +93,6 @@ class PuzzleViewController: UIViewController {
         print("player lost!!!!")
         player!.resetPlayer()
         dismiss(animated: true, completion: nil)
-        //        let menuViewController = MenuViewController()
-//        menuViewController.currentPlayer = player
-//        menuViewController.puzzleVC = self
-//        present(menuViewController, animated: true, completion: nil)
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {
