@@ -15,7 +15,7 @@ class MapThemeManager {
     
 }
 
-struct MapTheme {
+struct MapTheme: Codable {
     let description: String
     let id: String
     let backgroundColor: [Int]
