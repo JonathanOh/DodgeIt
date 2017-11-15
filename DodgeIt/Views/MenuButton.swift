@@ -27,7 +27,7 @@ class MenuButton: UIButton {
         layer.cornerRadius = 5
         setTitle(buttonTitle, for: .normal)
         setTitleColor(.black, for: .normal)
-        backgroundColor = CONSTANTS.COLORS.BACKGROUND_VIEW
+        backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         widthAnchor.constraint(equalToConstant: 200).isActive = true
         heightAnchor.constraint(equalToConstant: 50).isActive = true
     }

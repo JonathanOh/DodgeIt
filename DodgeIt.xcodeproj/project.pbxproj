@@ -26,7 +26,10 @@
 		8B61DDC71F98155C00E791FA /* String+TupleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDB61F98089C00E791FA /* String+TupleValue.swift */; };
 		8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDC81F992B0B00E791FA /* SquareData.swift */; };
 		8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */; };
+		8B6B06361FBBC0E900C98851 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B06351FBBC0E900C98851 /* StoreKit.framework */; };
+		8B6B06381FBCC7E300C98851 /* MapTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B06371FBCC7E300C98851 /* MapTheme.swift */; };
 		8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */; };
+		8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */; };
 		8BD323CA1FB6333C00BE9720 /* GoogleAdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */; };
 		8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */; };
 		8BF18F8E1FA7D1E600FC1FF4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */; };
@@ -72,7 +75,10 @@
 		8B61DDC01F9814BA00E791FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B61DDC81F992B0B00E791FA /* SquareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareData.swift; sourceTree = "<group>"; };
 		8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		8B6B06351FBBC0E900C98851 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8B6B06371FBCC7E300C98851 /* MapTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTheme.swift; sourceTree = "<group>"; };
 		8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredMapThemes.json; sourceTree = "<group>"; };
 		8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdService.swift; sourceTree = "<group>"; };
 		8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3878F9E0C6EE95E203B7930 /* Pods_DodgeIt.framework in Frameworks */,
+				8B6B06361FBBC0E900C98851 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +120,7 @@
 		82DD189D9F975BC798D0739D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B6B06351FBBC0E900C98851 /* StoreKit.framework */,
 				3848B730DEFDC43D28AE5E5C /* Pods_DodgeIt.framework */,
 				7B51C812B6149F79B2317BB5 /* Pods_DodgeItTests.framework */,
 			);
@@ -150,6 +158,7 @@
 				8B61DDB31F9806CE00E791FA /* Model */,
 				8B61DDB21F9806B300E791FA /* Views */,
 				8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */,
+				8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */,
 				8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */,
 				8B61DD9F1F97F6FD00E791FA /* Assets.xcassets */,
 				8B61DDA11F97F6FD00E791FA /* LaunchScreen.storyboard */,
@@ -176,6 +185,7 @@
 			children = (
 				8B61DDB01F98017800E791FA /* Puzzle.swift */,
 				8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */,
+				8B6B06371FBCC7E300C98851 /* MapTheme.swift */,
 				8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */,
 				8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */,
 				8B61DDC81F992B0B00E791FA /* SquareData.swift */,
@@ -266,6 +276,11 @@
 					8B61DD911F97F6FD00E791FA = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					8B61DDBB1F9814BA00E791FA = {
 						CreatedOnToolsVersion = 9.0;
@@ -298,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */,
 				8B61DDA31F97F6FD00E791FA /* LaunchScreen.storyboard in Resources */,
 				8B61DDA01F97F6FD00E791FA /* Assets.xcassets in Resources */,
 				8B35EBE81FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json in Resources */,
@@ -419,6 +435,7 @@
 				8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */,
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* String+TupleValue.swift in Sources */,
+				8B6B06381FBCC7E300C98851 /* MapTheme.swift in Sources */,
 				8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */,
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,
 				8B35EBEA1FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift in Sources */,

@@ -16,6 +16,9 @@ class MenuViewController: UIViewController {
     private var playButtonTitle: String = "Play"
     private let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play")
     
+    private let highScoreLabel = UILabel()
+    private let currentScoreLabel = UILabel()
+    
     let titleLabel = UILabel()
     
     // play, remove ads, map themes, sounds(jump, die, map win)
@@ -32,6 +35,15 @@ class MenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updatePlayButton()
+        updateCurrentScoreLabel()
+    }
+    
+    func updateCurrentScoreLabel() {
+        let currentScore = UserDefaults.standard.object(forKey: "current_score") as? Int ?? 0
+        let highScore = UserDefaults.standard.object(forKey: "high_score") as? Int ?? 0
+        
+        currentScoreLabel.text = currentScore == 0 ? "" : "Current Score: \(currentScore)"
+        highScoreLabel.text = highScore == 0 ? "" : "High Score: \(highScore)"
     }
     
     func setupViews() {
@@ -48,7 +60,7 @@ class MenuViewController: UIViewController {
     func setupTitleLabel() {
         //let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Dodge Block"
+        titleLabel.text = "Blocksie"
         titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
@@ -62,7 +74,7 @@ class MenuViewController: UIViewController {
     
     func updatePlayButton() {
         let currentGameExists = ((UserDefaults.standard.object(forKey: "current_score") as? Int) ?? 0) > 0
-        playButtonTitle = currentGameExists ? "Continue" : "Play"
+        playButtonTitle = currentGameExists ? "Continue" : "New Game"
         playButton.setTitle(playButtonTitle, for: .normal)
     }
     
@@ -71,7 +83,7 @@ class MenuViewController: UIViewController {
         let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
         let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
-        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton, mapThemesButton])
+        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton])//, removeAdsButton, mapThemesButton])
         menuButtonStackView.axis = .vertical
         menuButtonStackView.alignment = .center
         menuButtonStackView.distribution = .equalSpacing
@@ -80,9 +92,35 @@ class MenuViewController: UIViewController {
         view.addSubview(menuButtonStackView)
         
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        menuButtonStackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        menuButtonStackView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        //menuButtonStackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        
+        setupScoreLabels()
+    }
+    
+    func setupScoreLabels() {
+        currentScoreLabel.textAlignment = .center
+        currentScoreLabel.textColor = .white
+        currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        view.addSubview(currentScoreLabel)
+        currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        currentScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width * 0.9).isActive = true
+        currentScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        currentScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        currentScoreLabel.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -45).isActive = true
+        
+        highScoreLabel.textAlignment = .center
+        highScoreLabel.textColor = .white
+        highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        view.addSubview(highScoreLabel)
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        highScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width * 0.9).isActive = true
+        highScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        highScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        highScoreLabel.bottomAnchor.constraint(equalTo: currentScoreLabel.topAnchor, constant: -10).isActive = true
+        
     }
     
     @objc func didTapPlay() {

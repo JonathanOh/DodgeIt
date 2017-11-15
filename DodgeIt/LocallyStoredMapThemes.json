@@ -1,0 +1,52 @@
+[
+ {
+ "description": "Default",
+ "id": "1"
+ "backgroundColor": [161, 234, 251],
+ "courseColor": [161, 234, 251],
+ "labelColors": [0, 0, 0],
+ "obstacleColor": [0, 0, 0],
+ "explosionColor": [207, 10, 44],
+ "isPaidTheme": 0
+ },
+ {
+ "description": "Dark",
+ "id": "2"
+ "backgroundColor": [0, 0, 0],
+ "courseColor": [0, 0, 0],
+ "labelColors": [255, 255, 255],
+ "obstacleColor": [255, 255, 255],
+ "explosionColor": [30, 144, 255],
+ "isPaidTheme": 0
+ },
+ {
+ "description": "Green Pastel",
+ "id": "3"
+ "backgroundColor": [0, 0, 0],
+ "courseColor": [0, 0, 0],
+ "labelColors": [255, 255, 255],
+ "obstacleColor": [255, 255, 255],
+ "explosionColor": [30, 144, 255],
+ "isPaidTheme": 0
+ },
+ {
+ "description": "White Pink",
+ "id": "4"
+ "backgroundColor": [241, 242, 243],
+ "courseColor": [241, 242, 243],
+ "labelColors": [0, 0, 0],
+ "obstacleColor": [62, 67, 119],
+ "explosionColor": [253, 54, 126],
+ "isPaidTheme": 0
+ },
+ {
+ "description": "Deep Blue",
+ "id": "5"
+ "backgroundColor": [21, 22, 128],
+ "courseColor": [21, 22, 128],
+ "labelColors": [255, 255, 255],
+ "obstacleColor": [241, 254, 164],
+ "explosionColor": [255, 20, 20],
+ "isPaidTheme": 0
+ }
+]

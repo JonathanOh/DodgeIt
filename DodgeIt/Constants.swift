@@ -17,13 +17,21 @@ struct CONSTANTS {
         }
     }
     struct COLORS {
-        static let BACKGROUND_VIEW: UIColor = CONSTANTS.getRGB(R: 161, G: 234, B: 251)//CONSTANTS.getRGB(R: 207, G: 238, B: 145)//R: 207 G: 238 B: 145
+//        static let BACKGROUND_VIEW: UIColor = CONSTANTS.getRGB(R: 161, G: 234, B: 251)//CONSTANTS.getRGB(R: 207, G: 238, B: 145)//R: 207 G: 238 B: 145
+//        static let PUZZLE_CONTAINER_VIEW: UIColor = CONSTANTS.COLORS.BACKGROUND_VIEW
+//        static let OBSTACLE: UIColor = .black//CONSTANTS.getRGB(R: 8, G: 95, B: 99)
+//        static let PUZZLE_SQUARE: UIColor = CONSTANTS.COLORS.BACKGROUND_VIEW
+//        static let PUZZLE_SQUARE_EXPLOSION: UIColor = CONSTANTS.getRGB(R: 207, G: 10, B: 44)//R: 207 G: 10 B: 44
+//        static let PLAYER: UIColor = CONSTANTS.getRGB(R: 252, G: 207, B: 77)
+//        static let LABEL_COLOR: UIColor = UIColor.black
+        static let BACKGROUND_VIEW: UIColor = CONSTANTS.getRGB(R: 21, G: 22, B: 128)//21,22,128
         static let PUZZLE_CONTAINER_VIEW: UIColor = CONSTANTS.COLORS.BACKGROUND_VIEW
-        static let OBSTACLE: UIColor = .black//CONSTANTS.getRGB(R: 8, G: 95, B: 99)
+        static let OBSTACLE: UIColor = CONSTANTS.getRGB(R: 241, G: 254, B: 164)//241,254,164
         static let PUZZLE_SQUARE: UIColor = CONSTANTS.COLORS.BACKGROUND_VIEW
-        static let PUZZLE_SQUARE_EXPLOSION: UIColor = CONSTANTS.getRGB(R: 207, G: 10, B: 44)//R: 207 G: 10 B: 44
+        static let PUZZLE_SQUARE_EXPLOSION: UIColor = CONSTANTS.getRGB(R: 255, G: 0, B: 0)//255,0,0
         static let PLAYER: UIColor = CONSTANTS.getRGB(R: 252, G: 207, B: 77)
-        static let LABEL_COLOR: UIColor = UIColor.black
+        static let LABEL_COLOR: UIColor = UIColor.white
+        static let MENU_BUTTONS: UIColor = CONSTANTS.getRGB(R: 161, G: 234, B: 251)
     }
     struct GAME_DEFAULTS {
         static let LIVES: Int = 1
