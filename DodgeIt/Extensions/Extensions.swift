@@ -1,5 +1,5 @@
 //
-//  String+TupleValue.swift
+//  Extensions.swift
 //  DodgeIt
 //
 //  Created by Jonathan Oh on 10/18/17.
@@ -91,5 +91,12 @@ extension Sequence {
         var result = Array(self)
         result.shuffle()
         return result
+    }
+}
+
+extension UIColor {
+    static func getRGBFromArray(_ array: [Int]) -> UIColor? {
+        if array.count != 3 { return nil }
+        return UIColor(red: CGFloat(array[0])/255, green: CGFloat(array[1])/255, blue: CGFloat(array[2])/255, alpha: 1)
     }
 }

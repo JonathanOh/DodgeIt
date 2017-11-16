@@ -8,13 +8,6 @@
 
 import UIKit
 
-class MapThemeManager {
-    static let shared = MapThemeManager()
-    private init() {}
-    
-    
-}
-
 struct MapTheme: Codable {
     let description: String
     let id: String

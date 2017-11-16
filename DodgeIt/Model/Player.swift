@@ -40,19 +40,14 @@ class Player {
             UserDefaults.standard.set(completedPuzzlesByID, forKey: "completed_puzzles_by_id")
         }
     }
+    let mapThemes: [MapTheme]
+    private(set) var randomMapTheme: MapTheme!
+
     init() {
-//        //currentScore: PlayerDummyData.currentScore, highScore: PlayerDummyData.highScore, livesRemaining: PlayerDummyData.livesRemaining, poolOfPuzzlesByID: poolOfPossiblePuzzles.possiblePuzzles, completedPuzzlesByID: []
-//        self.currentScore = PlayerDummyData.currentScore
-//        self.highScore = PlayerDummyData.highScore
-//        self.livesRemaining = PlayerDummyData.livesRemaining
-//        _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
-//        self.poolOfPuzzlesByID.shuffle()
-//        self.completedPuzzlesByID = []
-//        /*
-//         if we have userDefaults, set users stuff
-//         else
-//         set all to 0
-//         */
+        let mapPath = Bundle.main.path(forResource: "LocallyStoredMapThemes", ofType: "json")
+        let data = try! Data(contentsOf: URL(fileURLWithPath: mapPath!))
+        self.mapThemes = try! JSONDecoder().decode([MapTheme].self, from: data)
+        
         if let savedCurrentScore = UserDefaults.standard.object(forKey: "current_score") as? Int,
         let savedHighScore = UserDefaults.standard.object(forKey: "high_score") as? Int,
         let savedLivesRemaining = UserDefaults.standard.object(forKey: "lives_remaining") as? Int,
@@ -71,6 +66,12 @@ class Player {
             self.poolOfPuzzlesByID.shuffle()
             self.completedPuzzlesByID = []
         }
+        setNewMapTheme()
+    }
+    
+    func setNewMapTheme() {
+        let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
+        self.randomMapTheme = self.mapThemes[Int(randomNumber)]
     }
     
     func getNextLevelByID() -> Int {
@@ -81,6 +82,7 @@ class Player {
         return poolOfPuzzlesByID.last!
     }
     func playerCompletedCurrent(puzzle: Puzzle) {
+        setNewMapTheme()
         increasePlayerScoreBy(puzzle.difficulty * 100)
         completedPuzzlesByID.append(poolOfPuzzlesByID.last!)
         poolOfPuzzlesByID.removeLast()

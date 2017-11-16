@@ -29,13 +29,34 @@ class MenuViewController: UIViewController {
         view.backgroundColor = .black
         print("im game over bros!")
         // Do any additional setup after loading the view.
+        setupPlayer()
         setupViews()
+        
+        
+        
+        
+        IAPHandler.shared.fetchAvailableProducts()
+        IAPHandler.shared.purchaseStatusBlock = {[weak self] (type) in
+            guard let strongSelf = self else { return }
+            if type == .purchased {
+                let alertView = UIAlertController(title: "", message: type.message(), preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                    
+                })
+                alertView.addAction(action)
+                strongSelf.present(alertView, animated: true, completion: nil)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updatePlayButton()
         updateCurrentScoreLabel()
+    }
+    
+    func setupPlayer() {
+        currentPlayer = Player()
     }
     
     func updateCurrentScoreLabel() {
@@ -60,7 +81,7 @@ class MenuViewController: UIViewController {
     func setupTitleLabel() {
         //let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Blocksie"
+        titleLabel.text = "Splodey Blocks"
         titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
@@ -83,7 +104,7 @@ class MenuViewController: UIViewController {
         let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
         let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
-        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton])//, removeAdsButton, mapThemesButton])
+        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton])//, mapThemesButton])
         menuButtonStackView.axis = .vertical
         menuButtonStackView.alignment = .center
         menuButtonStackView.distribution = .equalSpacing
@@ -92,7 +113,7 @@ class MenuViewController: UIViewController {
         view.addSubview(menuButtonStackView)
         
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        menuButtonStackView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        menuButtonStackView.heightAnchor.constraint(equalToConstant: 125).isActive = true
         //menuButtonStackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
@@ -131,6 +152,7 @@ class MenuViewController: UIViewController {
     }
     @objc func didTapRemoveAds() {
         print("remove ads tapped!")
+        IAPHandler.shared.purchaseMyProduct(index: 0)
     }
     @objc func didTapMapThemese() {
         print("map themes tapped!")

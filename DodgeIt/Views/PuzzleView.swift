@@ -17,9 +17,9 @@ class PuzzleView: UIView {
     
     init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
-        self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle)
+        self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
         super.init(frame: .zero)
-        backgroundColor = CONSTANTS.COLORS.BACKGROUND_VIEW//UIColor(red: 119.0/255.0, green: 221.0/255.0, blue: 119.0/255.0, alpha: 1)
+        backgroundColor = UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
         setupContainerViewWith(puzzle: currentPuzzle)
         setupLabels(player)
     }
@@ -37,7 +37,7 @@ class PuzzleView: UIView {
 //        livesRemainingLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
-        currentScoreLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
+        currentScoreLabel.textColor = UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(currentScoreLabel)
@@ -47,7 +47,7 @@ class PuzzleView: UIView {
         currentScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
         highScoreLabel.text = "High Score: \(player.highScore)"
-        highScoreLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
+        highScoreLabel.textColor = UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(highScoreLabel)

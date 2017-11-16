@@ -14,27 +14,29 @@ protocol PlayerEventDelegate {
 
 class GridContainerView: UIView {
     let currentPuzzle: Puzzle
+    let currentPlayer: Player
     let squareData: SquareData
     var playerEventDelegate: PlayerEventDelegate?
     weak var player: PlayerView?
     weak var mainView: PuzzleView?
     
-    init(currentPuzzle: Puzzle) {
+    init(currentPuzzle: Puzzle, currentPlayer: Player) {
         self.currentPuzzle = currentPuzzle
-        self.squareData = SquareData(matrix: GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle))
+        self.currentPlayer = currentPlayer
+        self.squareData = SquareData(matrix: GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle, currentPlayer: currentPlayer))
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
+        backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)//CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
         addAllSquareViews(self.squareData.matrix)
         applyExplosions()
     }
     
-    static func generateSquareViews(currentPuzzle: Puzzle) -> [[SquareView]] {
+    static func generateSquareViews(currentPuzzle: Puzzle, currentPlayer: Player) -> [[SquareView]] {
         var squareViews = [[SquareView]]()
         for y in 0..<currentPuzzle.numberOfCellsInHeight {
             var squareRow = [SquareView]()
             for x in 0..<currentPuzzle.numberOfCellsInWidth {
-                squareRow.append(SquareView(currentPuzzle: currentPuzzle, location: (x, y)))
+                squareRow.append(SquareView(currentPuzzle: currentPuzzle, location: (x, y), currentPlayer: currentPlayer))
             }
             squareViews.append(squareRow)
         }

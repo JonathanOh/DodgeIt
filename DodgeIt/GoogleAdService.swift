@@ -9,14 +9,15 @@
 import Foundation
 import GoogleMobileAds
 
-class GoogleAdService {
+class GoogleAdService: NSObject, GADInterstitialDelegate {
     let interstitial: GADInterstitial
     private var elapsedTime: Timer!
-    let timeToCompleteLevelToAvoidAd: Int = 20
+    let timeToCompleteLevelToAvoidAd: Int = 10
     private var timeTrack: Int = 0
     
-    init() {
+    override init() {
         self.interstitial = GADInterstitial(adUnitID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_UNIT_ID)
+        super.init()
         let request = GADRequest()
         if TEST.SERVE_TEST_ADS {
             request.testDevices = ["49f1a24302c679c5d1896fc1935385ef"]
@@ -33,6 +34,9 @@ class GoogleAdService {
     }
     
     func getInterstitialIfReady() -> GADInterstitial? {
+        if let userPurchasedAdRemoval = UserDefaults.standard.object(forKey: "adRemovalPurchase") as? Bool {
+            if userPurchasedAdRemoval { return nil }
+        }
         if timeTrack >= timeToCompleteLevelToAvoidAd {
             return interstitial.isReady ? interstitial : nil
         } else {
