@@ -40,6 +40,12 @@ class Player {
             UserDefaults.standard.set(completedPuzzlesByID, forKey: "completed_puzzles_by_id")
         }
     }
+    private(set) var isUserBeginner: Bool {
+        didSet {
+            UserDefaults.standard.set(isUserBeginner, forKey: "isUserBeginner")
+        }
+    }
+    private var beginnerPuzzlesByID = [Int]()
     let mapThemes: [MapTheme]
     private(set) var randomMapTheme: MapTheme!
 
@@ -47,6 +53,8 @@ class Player {
         let mapPath = Bundle.main.path(forResource: "LocallyStoredMapThemes", ofType: "json")
         let data = try! Data(contentsOf: URL(fileURLWithPath: mapPath!))
         self.mapThemes = try! JSONDecoder().decode([MapTheme].self, from: data)
+        
+        self.isUserBeginner = UserDefaults.standard.object(forKey: "isUserBeginner") as? Bool ?? true
         
         if let savedCurrentScore = UserDefaults.standard.object(forKey: "current_score") as? Int,
         let savedHighScore = UserDefaults.standard.object(forKey: "high_score") as? Int,
@@ -66,6 +74,9 @@ class Player {
             self.poolOfPuzzlesByID.shuffle()
             self.completedPuzzlesByID = []
         }
+        if self.isUserBeginner {
+            _ = poolOfPuzzles.beginnerPuzzles.map { self.beginnerPuzzlesByID.append($0.puzzleID) }
+        }
         setNewMapTheme()
     }
     
@@ -75,6 +86,13 @@ class Player {
     }
     
     func getNextLevelByID() -> Int {
+        if TEST.USER_IS_BEGINNER { return TEST.BEGGINNER_PUZZLE_ID }
+        if TEST.IS_TEST_MODE { return TEST.PUZZLE_ID }
+        
+        if !beginnerPuzzlesByID.isEmpty {
+            return beginnerPuzzlesByID.first!
+        }
+        
         if poolOfPuzzlesByID.count <= 0 {
             poolOfPuzzlesByID = completedPuzzlesByID.shuffled()
             completedPuzzlesByID = []
@@ -84,6 +102,16 @@ class Player {
     func playerCompletedCurrent(puzzle: Puzzle) {
         setNewMapTheme()
         increasePlayerScoreBy(puzzle.difficulty * 100)
+        if TEST.IS_TEST_MODE { return }
+        
+        if isUserBeginner {
+            beginnerPuzzlesByID.removeFirst()
+            if beginnerPuzzlesByID.isEmpty {
+                isUserBeginner = false
+                return
+            }
+        }
+        
         completedPuzzlesByID.append(poolOfPuzzlesByID.last!)
         poolOfPuzzlesByID.removeLast()
     }
@@ -93,6 +121,12 @@ class Player {
         poolOfPuzzlesByID += completedPuzzlesByID
         poolOfPuzzlesByID.shuffle()
         completedPuzzlesByID = []
+        
+        //Restore beginner puzzles
+        if isUserBeginner {
+            self.beginnerPuzzlesByID = []
+            _ = poolOfPuzzles.beginnerPuzzles.map { self.beginnerPuzzlesByID.append($0.puzzleID) }
+        }
     }
     func playerDied() {
 //        if playerLost() {

@@ -6,6 +6,8 @@
 //  Copyright © 2017 esohjay. All rights reserved.
 //
 
+// TODO: Always check at start of app if user is the actual purchaser (user logs in with apple id with purchase, restores then goes in to old accout to keep userdefaults)
+
 import UIKit
 import StoreKit
 

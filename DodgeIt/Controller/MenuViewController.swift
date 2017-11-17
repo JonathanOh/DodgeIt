@@ -32,16 +32,12 @@ class MenuViewController: UIViewController {
         setupPlayer()
         setupViews()
         
-        
-        
-        
         IAPHandler.shared.fetchAvailableProducts()
         IAPHandler.shared.purchaseStatusBlock = {[weak self] (type) in
             guard let strongSelf = self else { return }
             if type == .purchased {
                 let alertView = UIAlertController(title: "", message: type.message(), preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-                    
+                let action = UIAlertAction(title: "OK", style: .default, handler: { alert in
                 })
                 alertView.addAction(action)
                 strongSelf.present(alertView, animated: true, completion: nil)
@@ -102,7 +98,7 @@ class MenuViewController: UIViewController {
     func setupMenuButtons() {
         updatePlayButton()
         let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
-        let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
+        //let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
         let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton])//, mapThemesButton])
         menuButtonStackView.axis = .vertical

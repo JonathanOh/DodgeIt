@@ -31,6 +31,7 @@
 		8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */; };
 		8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */; };
 		8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3F3791FBD10550051F779 /* IAPHelper.swift */; };
+		8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */; };
 		8BD323CA1FB6333C00BE9720 /* GoogleAdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */; };
 		8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */; };
 		8BF18F8E1FA7D1E600FC1FF4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */; };
@@ -81,6 +82,7 @@
 		8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredMapThemes.json; sourceTree = "<group>"; };
 		8BB3F3791FBD10550051F779 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredBeginnersPuzzles.json; sourceTree = "<group>"; };
 		8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdService.swift; sourceTree = "<group>"; };
 		8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				8B61DDB31F9806CE00E791FA /* Model */,
 				8B61DDB21F9806B300E791FA /* Views */,
 				8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */,
+				8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */,
 				8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */,
 				8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */,
 				8B61DD9F1F97F6FD00E791FA /* Assets.xcassets */,
@@ -316,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */,
 				8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */,
 				8B61DDA31F97F6FD00E791FA /* LaunchScreen.storyboard in Resources */,
 				8B61DDA01F97F6FD00E791FA /* Assets.xcassets in Resources */,

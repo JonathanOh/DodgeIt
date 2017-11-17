@@ -16,5 +16,6 @@ struct NextPuzzle {
         self.puzzle = puzzle
         self.puzzleView = PuzzleView(currentPuzzle: puzzle, player: player)
         self.squareData = SquareData(matrix: self.puzzleView.gridContainerView.squareData.matrix)
+        print("Level #: \(puzzle.puzzleID)")
     }
 }

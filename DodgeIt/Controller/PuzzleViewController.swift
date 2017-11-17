@@ -73,6 +73,8 @@ class PuzzleViewController: UIViewController {
     }
     
     func getNextPuzzleLevelWithDifficulty(_ difficulty: Int) -> Puzzle {
+        if TEST.USER_IS_BEGINNER { return poolOfPossiblePuzzles.getBeginnerPuzzleByID(player!.getNextLevelByID()) }
+        if player!.isUserBeginner { return poolOfPossiblePuzzles.getBeginnerPuzzleByID(player!.getNextLevelByID()) }
         return poolOfPossiblePuzzles.getPuzzleByID(player!.getNextLevelByID())
     }
     

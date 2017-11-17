@@ -10,7 +10,9 @@ import Foundation
 
 class TEST {
     static let IS_TEST_MODE: Bool = false
-    static let PUZZLE_ID: Int = 6
+    static let PUZZLE_ID: Int = 1
+    static let USER_IS_BEGINNER: Bool = false
+    static let BEGGINNER_PUZZLE_ID: Int = 1
     static let SERVE_TEST_ADS: Bool = true
 }
 

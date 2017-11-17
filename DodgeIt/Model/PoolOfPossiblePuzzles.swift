@@ -17,12 +17,23 @@ struct PoolOfPossiblePuzzles {
         case veryHard
     }
     
+    private(set) var beginnerPuzzles: [Puzzle]
+    private var beginnerPuzzleLookupByID = [String:Puzzle]()
+    
     private(set) var possiblePuzzles: [Puzzle]
     private var puzzleLookupByID = [String:Puzzle]()
     
 //    func getRandomPuzzleByDifficulty(_ difficulty: Difficulty) -> Puzzle {
 //        
 //    }
+    func getBeginnerPuzzleByID(_ id: Int) -> Puzzle {
+        if let puzzleExists = beginnerPuzzleLookupByID[String(id)] {
+            return puzzleExists
+        } else {
+            print("could not find puzzle ID \(TEST.PUZZLE_ID). Serving first beginner puzzle.")
+            return beginnerPuzzles[0]
+        }
+    }
     
     func getPuzzleByID(_ id: Int) -> Puzzle {
         if let puzzleExists = puzzleLookupByID[String(id)] {
@@ -48,6 +59,15 @@ struct PoolOfPossiblePuzzles {
         for puzzle in self.possiblePuzzles {
             puzzle.updateTotalWidth(viewsWidth)
             puzzleLookupByID[String(puzzle.puzzleID)] = puzzle
+        }
+        
+        let begginerPath = Bundle.main.path(forResource: "LocallyStoredBeginnersPuzzles", ofType: "json")
+        let beginnerData = try! Data(contentsOf: URL(fileURLWithPath: begginerPath!))
+        let beginnerPuzzles = try! JSONDecoder().decode([Puzzle].self, from: beginnerData)
+        self.beginnerPuzzles = beginnerPuzzles
+        for puzzle in self.beginnerPuzzles {
+            puzzle.updateTotalWidth(viewsWidth)
+            beginnerPuzzleLookupByID[String(puzzle.puzzleID)] = puzzle
         }
     }
 }
