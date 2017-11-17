@@ -37,6 +37,9 @@ class GoogleAdService: NSObject, GADInterstitialDelegate {
         if let userPurchasedAdRemoval = UserDefaults.standard.object(forKey: "adRemovalPurchase") as? Bool {
             if userPurchasedAdRemoval { return nil }
         }
+        if let userIsBeginner = UserDefaults.standard.object(forKey: "isUserBeginner") as? Bool {
+            if userIsBeginner { return nil }
+        }
         if timeTrack >= timeToCompleteLevelToAvoidAd {
             return interstitial.isReady ? interstitial : nil
         } else {

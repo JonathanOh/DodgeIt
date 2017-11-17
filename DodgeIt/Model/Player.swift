@@ -55,6 +55,7 @@ class Player {
         self.mapThemes = try! JSONDecoder().decode([MapTheme].self, from: data)
         
         self.isUserBeginner = UserDefaults.standard.object(forKey: "isUserBeginner") as? Bool ?? true
+        UserDefaults.standard.set(self.isUserBeginner, forKey: "isUserBeginner")
         
         if let savedCurrentScore = UserDefaults.standard.object(forKey: "current_score") as? Int,
         let savedHighScore = UserDefaults.standard.object(forKey: "high_score") as? Int,

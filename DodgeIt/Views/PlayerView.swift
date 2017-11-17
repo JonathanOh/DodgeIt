@@ -12,7 +12,7 @@ protocol VictoryDelegate {
     func playerWonLevel()
 }
 
-class PlayerView: UIView {
+class PlayerView: UIImageView {
     var victoryDelegate: VictoryDelegate?
     let puzzle: Puzzle
     let squareData: SquareData
@@ -32,8 +32,10 @@ class PlayerView: UIView {
         center = startingLocation
         backgroundColor = skin
         layer.cornerRadius = frame.size.width/2
-        layer.borderWidth = 3
+        layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
+        image = UIImage(imageLiteralResourceName: "smileyMeme")
+        contentMode = .scaleAspectFit
     }
     
     required init?(coder aDecoder: NSCoder) {
