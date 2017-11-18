@@ -83,7 +83,7 @@ class MenuViewController: UIViewController {
         titleLabel.textAlignment = .center
         
         view.addSubview(titleLabel)
-        titleLabel.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
