@@ -20,13 +20,13 @@
  "isPaidTheme": false
  },
  {
- "description": "Green Pastel",
+ "description": "Pink/Green Pastel",
  "id": "3",
- "backgroundColor": [0, 0, 0],
- "courseColor": [0, 0, 0],
- "labelColors": [255, 255, 255],
- "obstacleColor": [255, 255, 255],
- "explosionColor": [30, 144, 255],
+ "backgroundColor": [255, 93, 110],
+ "courseColor": [255, 93, 110],
+ "labelColors": [0, 0, 0],
+ "obstacleColor": [163, 222, 131],
+ "explosionColor": [254, 255, 234],
  "isPaidTheme": false
  },
  {

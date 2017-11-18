@@ -84,6 +84,7 @@ class Player {
     func setNewMapTheme() {
         let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
         self.randomMapTheme = self.mapThemes[Int(randomNumber)]
+        //self.randomMapTheme = self.mapThemes[2]
     }
     
     func getNextLevelByID() -> Int {
