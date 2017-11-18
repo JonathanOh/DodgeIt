@@ -12,7 +12,7 @@ import GoogleMobileAds
 class GoogleAdService: NSObject, GADInterstitialDelegate {
     let interstitial: GADInterstitial
     private var elapsedTime: Timer!
-    let timeToCompleteLevelToAvoidAd: Int = 10
+    let timeToCompleteLevelToAvoidAd: Int = 15
     private var timeTrack: Int = 0
     
     override init() {

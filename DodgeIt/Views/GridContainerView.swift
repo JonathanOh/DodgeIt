@@ -74,7 +74,7 @@ class GridContainerView: UIView {
     }
     
     func dispatchExplosions(_ delay: Int, positionsOfExplosions: [[Int]]) {
-        let explosionDelay = Double(delay)/Double(100) * currentPuzzle.lengthOfPuzzleCycle
+        let explosionDelay = Double(delay)/Double(1000) * currentPuzzle.lengthOfPuzzleCycle
         Timer.scheduledTimer(withTimeInterval: explosionDelay, repeats: false) { [weak self] (timer) in
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
