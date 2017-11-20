@@ -11,9 +11,13 @@ import UIKit
 protocol VictoryDelegate {
     func playerWonLevel()
 }
+protocol GemDelegate {
+    func playerDidGetGem()
+}
 
 class PlayerView: UIImageView {
     var victoryDelegate: VictoryDelegate?
+    var gemAcquiredDelegate: GemDelegate?
     let puzzle: Puzzle
     let squareData: SquareData
     let startingLocation: CGPoint
@@ -51,6 +55,12 @@ class PlayerView: UIImageView {
             let isNewCenterWithinView = parentView.point(inside: newCenter, with: nil)
             if isNewCenterWithinView {
                 if weakSelf.isNewLocationObstacle(newCenter) { return }
+                if let gemSquare = weakSelf.getSquareViewIfContainsGem(newCenter) {
+                    if !gemSquare.gemImageView.isHidden {
+                        gemSquare.gemImageView.isHidden = true
+                        weakSelf.gemAcquiredDelegate?.playerDidGetGem()
+                    }
+                }
                 weakSelf.center = newCenter
             } else {
                 if direction == .up {
@@ -76,6 +86,22 @@ class PlayerView: UIImageView {
         default:
             return CGPoint(x: 0, y: 0) // Should never hit this
         }
+    }
+    
+    func getSquareViewIfContainsGem(_ newLocation: CGPoint) -> SquareView? {
+        guard let parentView = boundingView else { return nil }
+        var gemLocationTuples = [(Int, Int)]()
+        for (key, _) in puzzle.gemPositions {
+            if puzzle.isLocationAGem(key) { gemLocationTuples.append(key.tupleValue()!) }
+        }
+        let gemSquares = squareData.getSquaresAt(gemLocationTuples)
+        for gem in gemSquares {
+            let convertedGemLocation = gem!.convert(gem!.bounds, to: parentView)
+            if convertedGemLocation.contains(newLocation) {
+                return gem
+            }
+        }
+        return nil
     }
     
     func isNewLocationObstacle(_ newLocation: CGPoint) -> Bool {

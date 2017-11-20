@@ -54,6 +54,7 @@ class PuzzleViewController: UIViewController {
         if playerView == nil {
             playerView = PlayerView(skin: CONSTANTS.COLORS.PLAYER, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: currentPuzzleView)
             playerView?.victoryDelegate = self
+            playerView?.gemAcquiredDelegate = self
             currentPuzzleView.gridContainerView.player = playerView
             currentPuzzleView.gridContainerView.mainView = currentPuzzleView
             view.addSubview(playerView ?? UIView())
@@ -131,6 +132,12 @@ extension PuzzleViewController: VictoryDelegate {
         googleAd.getInterstitialIfReady()?.present(fromRootViewController: self)
         googleAd = GoogleAdService()
         googleAd.startTimer()
+    }
+}
+
+extension PuzzleViewController: GemDelegate {
+    func playerDidGetGem() {
+        print("I GOT THE GEM")
     }
 }
 

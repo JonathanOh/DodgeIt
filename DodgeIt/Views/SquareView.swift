@@ -11,6 +11,7 @@ import UIKit
 class SquareView: UIView {
     let currentPuzzle: Puzzle
     let currentPlayer: Player
+    let gemImageView = UIImageView(image: UIImage(imageLiteralResourceName: "yellow_gem"))
     let location: (Int, Int)
     let locationStringValue: String
     let explosionSheet = UIImage(imageLiteralResourceName: "explosion3")
@@ -33,10 +34,24 @@ class SquareView: UIView {
             backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)//CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
             layer.borderWidth = 0
         }
+
+        if isGemLocation() {
+            gemImageView.contentMode = .scaleAspectFit
+            addSubview(gemImageView)
+            gemImageView.translatesAutoresizingMaskIntoConstraints = false
+            gemImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            gemImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+            gemImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
+            gemImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9).isActive = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func isGemLocation() -> Bool {
+        return currentPuzzle.isLocationAGem(locationStringValue)
     }
     
     func isSafe() -> Bool {
