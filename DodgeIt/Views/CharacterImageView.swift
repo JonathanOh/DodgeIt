@@ -83,7 +83,6 @@ class CharacterImageView: UIImageView {
     
     private var animationStartCounter: Int = 0
     func animateImageViewFor(_ duration: TimeInterval) {
-        //stopAnimating()
         startAnimating()
         animationStartCounter += 1
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { [weak self] (timer) in
@@ -94,11 +93,5 @@ class CharacterImageView: UIImageView {
                 }
             }
         })
-//        if !isAnimating {
-//            startAnimating()
-//            Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { [weak self] (timer) in
-//                self?.stopAnimating()
-//            })
-//        }
     }
 }
