@@ -40,6 +40,11 @@ class Player {
             UserDefaults.standard.set(completedPuzzlesByID, forKey: "completed_puzzles_by_id")
         }
     }
+    private(set) var playerCoins: Int {
+        didSet {
+            UserDefaults.standard.set(playerCoins, forKey: "player_coins")
+        }
+    }
     private(set) var isUserBeginner: Bool {
         didSet {
             UserDefaults.standard.set(isUserBeginner, forKey: "isUserBeginner")
@@ -61,15 +66,18 @@ class Player {
         let savedHighScore = UserDefaults.standard.object(forKey: "high_score") as? Int,
         let savedLivesRemaining = UserDefaults.standard.object(forKey: "lives_remaining") as? Int,
         let savedPoolOfPuzzlesByID = UserDefaults.standard.object(forKey: "pool_of_puzzles_by_id") as? [Int],
-        let savedCompletedPuzzlesByID = UserDefaults.standard.object(forKey: "completed_puzzles_by_id") as? [Int] {
+        let savedCompletedPuzzlesByID = UserDefaults.standard.object(forKey: "completed_puzzles_by_id") as? [Int],
+        let savedPlayerCoins = UserDefaults.standard.object(forKey: "player_coins") as? Int {
             self.currentScore = savedCurrentScore
             self.highScore = savedHighScore
             self.livesRemaining = savedLivesRemaining
             self.poolOfPuzzlesByID = savedPoolOfPuzzlesByID
             self.completedPuzzlesByID = savedCompletedPuzzlesByID
+            self.playerCoins = savedPlayerCoins
         } else {
             self.currentScore = 0
             self.highScore = 0
+            self.playerCoins = 0
             self.livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
             _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
             self.poolOfPuzzlesByID.shuffle()
@@ -101,11 +109,24 @@ class Player {
         }
         return poolOfPuzzlesByID.last!
     }
+    
+    func playerObtainedCoins(_ numberOfCoins: Int = 1) {
+        playerCoins += numberOfCoins
+    }
+    
+    @discardableResult
+    func playerSpentCoins(_ numberOfCoins: Int) -> Bool {
+        if playerCoins < numberOfCoins { return false }
+        playerCoins -= numberOfCoins
+        return true
+    }
+    
     func playerCompletedCurrent(puzzle: Puzzle) {
+        playerObtainedCoins(numberOfCoinsToAwardBasedOnDifficulty(puzzle.difficulty))
         setNewMapTheme()
-        increasePlayerScoreBy(puzzle.difficulty * 100)
-        if TEST.IS_TEST_MODE { return }
+        increasePlayerScoreBy(puzzle.difficulty)
         
+        if TEST.IS_TEST_MODE { return }
         if isUserBeginner {
             beginnerPuzzlesByID.removeFirst()
             if beginnerPuzzlesByID.isEmpty {
@@ -117,6 +138,19 @@ class Player {
         completedPuzzlesByID.append(poolOfPuzzlesByID.last!)
         poolOfPuzzlesByID.removeLast()
     }
+    
+    func numberOfCoinsToAwardBasedOnDifficulty(_ difficulty: Int) -> Int {
+        if difficulty < 3 {
+            return 1
+        } else if difficulty < 6 {
+            return 2
+        } else if difficulty < 9 {
+            return 3
+        } else {
+            return 5
+        }
+    }
+    
     func resetPlayer() {
         currentScore = 0
         livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES

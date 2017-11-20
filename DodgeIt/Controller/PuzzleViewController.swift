@@ -138,6 +138,7 @@ extension PuzzleViewController: VictoryDelegate {
 extension PuzzleViewController: GemDelegate {
     func playerDidGetGem() {
         print("I GOT THE GEM")
+        player?.playerObtainedCoins(1)
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847B1CB81FC2741D00BC6882 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CB71FC2741D00BC6882 /* CoinView.swift */; };
 		8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C82AC1FB62E6300A0D100 /* Constants.swift */; };
 		8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */; };
 		8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */; };
@@ -55,6 +56,7 @@
 		5D098B9F8D8DB05EE71C33B7 /* Pods-DodgeIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt.debug.xcconfig"; sourceTree = "<group>"; };
 		7B51C812B6149F79B2317BB5 /* Pods_DodgeItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DodgeItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		843ECF144AE34495F489110D /* Pods-DodgeIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DodgeIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt.release.xcconfig"; sourceTree = "<group>"; };
+		847B1CB71FC2741D00BC6882 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		8B1C82AC1FB62E6300A0D100 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
 		8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPuzzle.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				8B61DDAA1F97F8D100E791FA /* PuzzleView.swift */,
+				847B1CB71FC2741D00BC6882 /* CoinView.swift */,
 				8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */,
 				8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */,
 				8B61DDAC1F97FDFC00E791FA /* GridContainerView.swift */,
@@ -443,6 +446,7 @@
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* Extensions.swift in Sources */,
 				8B6B06381FBCC7E300C98851 /* MapTheme.swift in Sources */,
+				847B1CB81FC2741D00BC6882 /* CoinView.swift in Sources */,
 				8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */,
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,
 				8B35EBEA1FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift in Sources */,

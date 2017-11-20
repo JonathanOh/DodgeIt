@@ -18,6 +18,7 @@ class MenuViewController: UIViewController {
     
     private let highScoreLabel = UILabel()
     private let currentScoreLabel = UILabel()
+    private let coinView = CoinView(numberOfCoins: 0)
     
     let titleLabel = UILabel()
     
@@ -49,6 +50,7 @@ class MenuViewController: UIViewController {
         super.viewWillAppear(animated)
         updatePlayButton()
         updateCurrentScoreLabel()
+        updateCurrentGemCount()
     }
     
     func setupPlayer() {
@@ -61,6 +63,11 @@ class MenuViewController: UIViewController {
         
         currentScoreLabel.text = currentScore == 0 ? "" : "Current Score: \(currentScore)"
         highScoreLabel.text = highScore == 0 ? "" : "High Score: \(highScore)"
+    }
+    
+    func updateCurrentGemCount() {
+        let coinCount = UserDefaults.standard.object(forKey: "player_coins") as? Int ?? 0
+        coinView.updateCoinCount(coinCount)
     }
     
     func setupViews() {
@@ -87,6 +94,14 @@ class MenuViewController: UIViewController {
         titleLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        if let _ = currentPlayer {
+            view.addSubview(coinView)
+            coinView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+            coinView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            coinView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            coinView.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+        }
     }
     
     func updatePlayButton() {
