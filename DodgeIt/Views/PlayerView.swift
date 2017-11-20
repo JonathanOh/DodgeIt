@@ -15,16 +15,19 @@ protocol GemDelegate {
     func playerDidGetGem()
 }
 
-class PlayerView: UIImageView {
+class PlayerView: UIView {
     var victoryDelegate: VictoryDelegate?
     var gemAcquiredDelegate: GemDelegate?
     let puzzle: Puzzle
     let squareData: SquareData
     let startingLocation: CGPoint
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
+    private var characterImageView = CharacterImageView(characterID: "0")
+    let characterID: String
     weak private var boundingView: UIView?
     
-    init(skin: UIColor, playerSize: Int, puzzle: Puzzle, squareData: SquareData, boundingView: PuzzleView) {
+    init(characterID: String, playerSize: Int, puzzle: Puzzle, squareData: SquareData, boundingView: PuzzleView) {
+        self.characterID = characterID
         self.boundingView = boundingView
         self.puzzle = puzzle
         self.squareData = squareData
@@ -34,12 +37,14 @@ class PlayerView: UIImageView {
         
         super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: height)))
         center = startingLocation
-        backgroundColor = skin
-        layer.cornerRadius = frame.size.width/2
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
-        image = UIImage(imageLiteralResourceName: "smileyMeme")
-        contentMode = .scaleAspectFit
+
+        characterImageView = CharacterImageView(characterID: characterID)
+        let character = PoolOfPossibleCharacters.shared.getCharacterByID(characterID)!
+        addSubview(characterImageView)
+        characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
+        characterImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: CGFloat(character.yOffsetConstant)).isActive = true
+        characterImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(character.widthMultiplier)).isActive = true
+        characterImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: CGFloat(character.heightMultiplier)).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +53,9 @@ class PlayerView: UIImageView {
     
     func move(_ direction: UISwipeGestureRecognizerDirection) {
         var playerDidWin = false
+        characterImageView.readjustImageAccordingTo(swipeDirection: direction)
+        characterImageView.animateImageViewFor(0.40)
+        
         UIView.animate(withDuration: 0.05, animations: { [weak self] in
             guard let weakSelf = self else { return }
             guard let parentView = weakSelf.boundingView else { return }

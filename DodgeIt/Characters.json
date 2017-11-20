@@ -1,0 +1,11 @@
+[
+    {
+        "character_id": "0",
+        "character_name": "Anubis",
+        "right_facing_asset_name_literal": "Anubis_Running_000",
+        "number_of_images": 12,
+        "yOffsetConstant": -10,
+        "widthMultiplier": 2,
+        "heightMultiplier": 2
+    },
+]

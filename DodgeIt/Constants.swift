@@ -16,6 +16,9 @@ struct CONSTANTS {
             static let AD_MOB_UNIT_ID = "ca-app-pub-2890175151799850/1427495570"
         }
     }
+    struct CHARACTERS {
+        static let DEFAULT: String = "0"
+    }
     struct COLORS {
 //        static let BACKGROUND_VIEW: UIColor = CONSTANTS.getRGB(R: 161, G: 234, B: 251)//CONSTANTS.getRGB(R: 207, G: 238, B: 145)//R: 207 G: 238 B: 145
 //        static let PUZZLE_CONTAINER_VIEW: UIColor = CONSTANTS.COLORS.BACKGROUND_VIEW
