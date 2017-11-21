@@ -54,7 +54,7 @@ class PlayerView: UIView {
     func move(_ direction: UISwipeGestureRecognizerDirection) {
         var playerDidWin = false
         characterImageView.readjustImageAccordingTo(swipeDirection: direction)
-        characterImageView.animateImageViewFor(0.40)
+        //characterImageView.animateImageViewFor(0.40)
         
         UIView.animate(withDuration: 0.05, animations: { [weak self] in
             guard let weakSelf = self else { return }

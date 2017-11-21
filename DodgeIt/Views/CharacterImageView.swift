@@ -53,9 +53,10 @@ class CharacterImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         image = self.rightFacingImage
         
-        animationDuration = 0.40
+        animationDuration = 0.60//0.40
         animationImages = self.imageLeftAnimationArray
         contentMode = .scaleAspectFit
+        startAnimating()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,20 +79,21 @@ class CharacterImageView: UIImageView {
         default:
             break
         }
+        startAnimating()
         layoutIfNeeded()
     }
     
-    private var animationStartCounter: Int = 0
-    func animateImageViewFor(_ duration: TimeInterval) {
-        startAnimating()
-        animationStartCounter += 1
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { [weak self] (timer) in
-            if let weakSelf = self {
-                weakSelf.animationStartCounter -= 1
-                if weakSelf.animationStartCounter <= 0 {
-                    weakSelf.stopAnimating()
-                }
-            }
-        })
-    }
+//    private var animationStartCounter: Int = 0
+//    func animateImageViewFor(_ duration: TimeInterval) {
+//        startAnimating()
+//        animationStartCounter += 1
+//        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { [weak self] (timer) in
+//            if let weakSelf = self {
+//                weakSelf.animationStartCounter -= 1
+//                if weakSelf.animationStartCounter <= 0 {
+//                    weakSelf.stopAnimating()
+//                }
+//            }
+//        })
+//    }
 }
