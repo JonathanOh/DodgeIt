@@ -14,7 +14,7 @@ class SquareView: UIView {
     let gemImageView = UIImageView(image: UIImage(imageLiteralResourceName: "yellow_gem"))
     let location: (Int, Int)
     let locationStringValue: String
-    let explosionSheet = UIImage(imageLiteralResourceName: "explosion3")
+    //let explosionSheet = UIImage(imageLiteralResourceName: "explosion3")
     
 //    let puzzleBackgroundColor: UIColor = CONSTANTS.COLORS.PUZZLE_SQUARE//.black//UIColor(red: 1, green: 1, blue: 100.0/255.0, alpha: 1)
 //    let explosionColor: UIColor = CONSTANTS.COLORS.PUZZLE_SQUARE_EXPLOSION

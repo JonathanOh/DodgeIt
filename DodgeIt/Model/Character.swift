@@ -14,6 +14,8 @@ struct Character: Codable {
     let right_facing_asset_name_literal: String
     let number_of_images: Int
     let yOffsetConstant: Int
-    let widthMultiplier: Int
-    let heightMultiplier: Int
+    let widthMultiplier: Double
+    let heightMultiplier: Double
+    let coinCost: Int
+    let moneyCost: Double
 }

@@ -1,11 +1,46 @@
 [
-    {
-        "character_id": "0",
-        "character_name": "Anubis",
-        "right_facing_asset_name_literal": "Anubis_Running_000",
-        "number_of_images": 12,
-        "yOffsetConstant": -10,
-        "widthMultiplier": 2,
-        "heightMultiplier": 2
-    },
+{
+"character_id": "0",
+"character_name": "Goblin",
+"right_facing_asset_name_literal": "Goblin_Walk_000",
+"number_of_images": 8,
+"yOffsetConstant": -5,
+"widthMultiplier": 1.25,
+"heightMultiplier": 1.25,
+ "coinCost": 10000,
+ "moneyCost": 0.99
+},
+{
+"character_id": "1",
+"character_name": "Anubis",
+"right_facing_asset_name_literal": "Anubis_Running_000",
+"number_of_images": 12,
+"yOffsetConstant": -10,
+"widthMultiplier": 2,
+ "heightMultiplier": 2,
+ "coinCost": 10000,
+ "moneyCost": 0.99
+},
+{
+"character_id": "2",
+"character_name": "Purple Bat",
+"right_facing_asset_name_literal": "Purple_Bat_Fly_000",
+"number_of_images": 8,
+"yOffsetConstant": 0,
+"widthMultiplier": 2,
+ "heightMultiplier": 2,
+ "coinCost": 10000,
+ "moneyCost": 0.99
+},
+{
+"character_id": "3",
+"character_name": "Grim Reaper",
+"right_facing_asset_name_literal": "Grim_Move_000",
+"number_of_images": 8,
+"yOffsetConstant": 0,
+"widthMultiplier": 2,
+ "heightMultiplier": 2,
+ "coinCost": 10000,
+ "moneyCost": 0.99
+}
 ]

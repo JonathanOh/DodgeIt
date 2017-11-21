@@ -35,6 +35,13 @@ class Player {
     private(set) var isUserBeginner: Bool {
         didSet { PlayerDefaults.shared.setIsUserBeginner(isUserBeginner) }
     }
+    private(set) var selectedSkin: String {
+        didSet { PlayerDefaults.shared.setSelectedSkinID(selectedSkin) }
+    }
+    private(set) var allUserSkins: [String] {
+        didSet { PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins) }
+    }
+    
     private var beginnerPuzzlesByID = [Int]()
     let mapThemes: [MapTheme]
     private(set) var randomMapTheme: MapTheme!
@@ -53,6 +60,8 @@ class Player {
         self.playerCoins = playerDefaults.getPlayerCoins()
         self.livesRemaining = playerDefaults.getLivesRemaining()
         self.completedPuzzlesByID = playerDefaults.getCompletedPuzzlesByID()
+        self.selectedSkin = playerDefaults.getSelectedSkinID()
+        self.allUserSkins = playerDefaults.getAllUserSkinsByID()
         if playerDefaults.getPoolOfPuzzlesByID().isEmpty {
             var puzzleIDs = [Int]()
             _ = poolOfPuzzles.possiblePuzzles.map { puzzleIDs.append($0.puzzleID) }
@@ -135,6 +144,7 @@ class Player {
         currentScore = 0
         livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
         
+        setNewMapTheme()
         poolOfPuzzlesByID = []
         _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
         poolOfPuzzlesByID.shuffle()
@@ -170,6 +180,8 @@ class Player {
         PlayerDefaults.shared.setCompletedPuzzlesByID(completedPuzzlesByID)
         PlayerDefaults.shared.setPlayerCoins(playerCoins)
         PlayerDefaults.shared.setIsUserBeginner(isUserBeginner)
+        PlayerDefaults.shared.setSelectedSkinID(selectedSkin)
+        PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins)
     }
     
 }
