@@ -25,17 +25,7 @@ class PuzzleView: UIView {
     }
     
     func setupLabels(_ player: Player) {
-//        livesRemainingLabel.text = "\(player.livesRemaining)"
-//        livesRemainingLabel.textColor = CONSTANTS.COLORS.LABEL_COLOR
-//        livesRemainingLabel.textAlignment = .center
-//        livesRemainingLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
-//        livesRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(livesRemainingLabel)
-//        livesRemainingLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        livesRemainingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-//        livesRemainingLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        livesRemainingLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
+
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
         currentScoreLabel.textColor = UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)

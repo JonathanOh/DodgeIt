@@ -17,5 +17,5 @@ struct Character: Codable {
     let widthMultiplier: Double
     let heightMultiplier: Double
     let coinCost: Int
-    let moneyCost: Double
+    let moneyCost: String
 }
