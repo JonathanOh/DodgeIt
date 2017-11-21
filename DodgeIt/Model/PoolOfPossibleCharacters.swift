@@ -26,4 +26,28 @@ class PoolOfPossibleCharacters {
         return dictionaryOfAllCharacters[id] ?? nil
     }
     
+    func getAllUserOwnedCharacters() -> [Character] {
+        let userOwnedCharactersByStringID = PlayerDefaults.shared.getAllUserSkinsByID()
+        let userOwnedCharacters = userOwnedCharactersByStringID.map { getCharacterByID($0)! }
+        return userOwnedCharacters
+    }
+    
+    func getAllCharactersUserDoesNotHave() -> [Character] {
+        let userOwnedCharactersByStringID = PlayerDefaults.shared.getAllUserSkinsByID()
+        var copyOfDictionaryOfAllCharacters = dictionaryOfAllCharacters
+        //Remove owned characters from dictionary
+        for ownedCharacter in userOwnedCharactersByStringID {
+            copyOfDictionaryOfAllCharacters[ownedCharacter] = nil
+        }
+        //Collect all the key values which are the IDs of all characters
+        var unownedCharactersByStringID = [String]()
+        for (key, _) in copyOfDictionaryOfAllCharacters {
+            if copyOfDictionaryOfAllCharacters[key] != nil {
+                unownedCharactersByStringID.append(key)
+            }
+        }
+        let characters = unownedCharactersByStringID.map { getCharacterByID($0)! }
+        return characters
+    }
+    
 }

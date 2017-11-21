@@ -7,8 +7,8 @@
 "yOffsetConstant": -5,
 "widthMultiplier": 1.25,
 "heightMultiplier": 1.25,
- "coinCost": 10000,
- "moneyCost": 0.99
+ "coinCost": 0,
+ "moneyCost": "Free"
 },
 {
 "character_id": "1",
@@ -18,8 +18,8 @@
 "yOffsetConstant": -10,
 "widthMultiplier": 2,
  "heightMultiplier": 2,
- "coinCost": 10000,
- "moneyCost": 0.99
+ "coinCost": 5000,
+ "moneyCost": "$0.99"
 },
 {
 "character_id": "2",
@@ -29,8 +29,8 @@
 "yOffsetConstant": 0,
 "widthMultiplier": 2,
  "heightMultiplier": 2,
- "coinCost": 10000,
- "moneyCost": 0.99
+ "coinCost": 5000,
+ "moneyCost": "$0.99"
 },
 {
 "character_id": "3",
@@ -40,7 +40,7 @@
 "yOffsetConstant": 0,
 "widthMultiplier": 2,
  "heightMultiplier": 2,
- "coinCost": 10000,
- "moneyCost": 0.99
+ "coinCost": 5000,
+ "moneyCost": "$0.99"
 }
 ]
