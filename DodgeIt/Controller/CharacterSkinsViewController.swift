@@ -23,6 +23,7 @@ class CharacterSkinsViewController: UIViewController {
     
     func setupCharacterSkinTableView() {
         characterSkinTableView.translatesAutoresizingMaskIntoConstraints = false
+        characterSkinTableView.allowsSelection = false
         view.addSubview(characterSkinTableView)
         characterSkinTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
         characterSkinTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true

@@ -54,8 +54,8 @@ class CharacterSkinCell: UITableViewCell {
     func setupViews() {
         skinImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(skinImageView)
-        skinImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        skinImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        skinImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 35).isActive = true
+        skinImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
         skinImageView.heightAnchor.constraint(equalToConstant: 125).isActive = true
         skinImageView.widthAnchor.constraint(equalToConstant: 125).isActive = true
         
@@ -73,7 +73,7 @@ class CharacterSkinCell: UITableViewCell {
             setButton.backgroundColor = .green
             setButton.layer.cornerRadius = 3
             addSubview(setButton)
-            setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
+            setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
             setButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             setButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
             setButton.widthAnchor.constraint(equalToConstant: 125).isActive = true
@@ -101,7 +101,7 @@ class CharacterSkinCell: UITableViewCell {
             buttonStackView.spacing = 25
             addSubview(buttonStackView)
             
-            buttonStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
+            buttonStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
             buttonStackView.widthAnchor.constraint(equalToConstant: 125).isActive = true
             buttonStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             buttonStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
