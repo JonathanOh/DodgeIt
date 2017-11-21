@@ -37,6 +37,7 @@
 		8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */; };
 		8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3F3791FBD10550051F779 /* IAPHelper.swift */; };
 		8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */; };
+		8BB3F37E1FC3700F0051F779 /* PlayerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3F37D1FC3700F0051F779 /* PlayerDefaults.swift */; };
 		8BD323CA1FB6333C00BE9720 /* GoogleAdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */; };
 		8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */; };
 		8BF18F8E1FA7D1E600FC1FF4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */; };
@@ -93,6 +94,7 @@
 		8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredMapThemes.json; sourceTree = "<group>"; };
 		8BB3F3791FBD10550051F779 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredBeginnersPuzzles.json; sourceTree = "<group>"; };
+		8BB3F37D1FC3700F0051F779 /* PlayerDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDefaults.swift; sourceTree = "<group>"; };
 		8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdService.swift; sourceTree = "<group>"; };
 		8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */,
 				8B1C82AC1FB62E6300A0D100 /* Constants.swift */,
 				8BB3F3791FBD10550051F779 /* IAPHelper.swift */,
+				8BB3F37D1FC3700F0051F779 /* PlayerDefaults.swift */,
 				8B61DDB51F98086B00E791FA /* Extensions */,
 				8B61DDB41F9806DF00E791FA /* Controller */,
 				8B61DDB31F9806CE00E791FA /* Model */,
@@ -472,6 +475,7 @@
 				8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */,
 				8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */,
 				8B61DD9E1F97F6FD00E791FA /* DodgeIt.xcdatamodeld in Sources */,
+				8BB3F37E1FC3700F0051F779 /* PlayerDefaults.swift in Sources */,
 				8B61DDAD1F97FDFC00E791FA /* GridContainerView.swift in Sources */,
 				8BF18F8E1FA7D1E600FC1FF4 /* MenuViewController.swift in Sources */,
 			);

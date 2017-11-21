@@ -8,7 +8,6 @@
 
 import UIKit
 
-// userdefault saves
 // current score, high score, lives remaining, [pool of puzzlesbyid], [completedpuzzlesbyid], current puzzle
 
 class Player {
@@ -16,39 +15,25 @@ class Player {
     let poolOfPuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(UIScreen.main.bounds.width))
     static let playerLostNotification: String = "playerLostNotification"
     private(set) var currentScore: Int {
-        didSet {
-            UserDefaults.standard.set(currentScore, forKey: "current_score")
-        }
+        didSet { PlayerDefaults.shared.setCurrentScoreTo(currentScore) }
     }
     private(set) var highScore: Int {
-        didSet {
-            UserDefaults.standard.set(highScore, forKey: "high_score")
-        }
+        didSet { PlayerDefaults.shared.setHighScore(highScore) }
     }
     private(set) var livesRemaining: Int {
-        didSet {
-            UserDefaults.standard.set(livesRemaining, forKey: "lives_remaining")
-        }
+        didSet { PlayerDefaults.shared.setLivesRemaining(livesRemaining) }
     }
-    private var poolOfPuzzlesByID = [Int]() {
-        didSet {
-            UserDefaults.standard.set(poolOfPuzzlesByID, forKey: "pool_of_puzzles_by_id")
-        }
+    private var poolOfPuzzlesByID: [Int] {
+        didSet { PlayerDefaults.shared.setPoolOfPuzzlesByID(poolOfPuzzlesByID) }
     }
     private var completedPuzzlesByID = [Int]() {
-        didSet {
-            UserDefaults.standard.set(completedPuzzlesByID, forKey: "completed_puzzles_by_id")
-        }
+        didSet { PlayerDefaults.shared.setCompletedPuzzlesByID(completedPuzzlesByID) }
     }
     private(set) var playerCoins: Int {
-        didSet {
-            UserDefaults.standard.set(playerCoins, forKey: "player_coins")
-        }
+        didSet { PlayerDefaults.shared.setPlayerCoins(playerCoins) }
     }
     private(set) var isUserBeginner: Bool {
-        didSet {
-            UserDefaults.standard.set(isUserBeginner, forKey: "isUserBeginner")
-        }
+        didSet { PlayerDefaults.shared.setIsUserBeginner(isUserBeginner) }
     }
     private var beginnerPuzzlesByID = [Int]()
     let mapThemes: [MapTheme]
@@ -59,40 +44,34 @@ class Player {
         let data = try! Data(contentsOf: URL(fileURLWithPath: mapPath!))
         self.mapThemes = try! JSONDecoder().decode([MapTheme].self, from: data)
         
-        self.isUserBeginner = UserDefaults.standard.object(forKey: "isUserBeginner") as? Bool ?? true
-        UserDefaults.standard.set(self.isUserBeginner, forKey: "isUserBeginner")
+        let playerDefaults = PlayerDefaults.shared
+        self.isUserBeginner = playerDefaults.getIsUserBeginner()
+        playerDefaults.setIsUserBeginner(self.isUserBeginner)
         
-        if let savedCurrentScore = UserDefaults.standard.object(forKey: "current_score") as? Int,
-        let savedHighScore = UserDefaults.standard.object(forKey: "high_score") as? Int,
-        let savedLivesRemaining = UserDefaults.standard.object(forKey: "lives_remaining") as? Int,
-        let savedPoolOfPuzzlesByID = UserDefaults.standard.object(forKey: "pool_of_puzzles_by_id") as? [Int],
-        let savedCompletedPuzzlesByID = UserDefaults.standard.object(forKey: "completed_puzzles_by_id") as? [Int],
-        let savedPlayerCoins = UserDefaults.standard.object(forKey: "player_coins") as? Int {
-            self.currentScore = savedCurrentScore
-            self.highScore = savedHighScore
-            self.livesRemaining = savedLivesRemaining
-            self.poolOfPuzzlesByID = savedPoolOfPuzzlesByID
-            self.completedPuzzlesByID = savedCompletedPuzzlesByID
-            self.playerCoins = savedPlayerCoins
+        self.currentScore = playerDefaults.getCurrentScore()
+        self.highScore = playerDefaults.getHighScore()
+        self.playerCoins = playerDefaults.getPlayerCoins()
+        self.livesRemaining = playerDefaults.getLivesRemaining()
+        self.completedPuzzlesByID = playerDefaults.getCompletedPuzzlesByID()
+        if playerDefaults.getPoolOfPuzzlesByID().isEmpty {
+            var puzzleIDs = [Int]()
+            _ = poolOfPuzzles.possiblePuzzles.map { puzzleIDs.append($0.puzzleID) }
+            puzzleIDs.shuffle()
+            self.poolOfPuzzlesByID = puzzleIDs
         } else {
-            self.currentScore = 0
-            self.highScore = 0
-            self.playerCoins = 0
-            self.livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
-            _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
-            self.poolOfPuzzlesByID.shuffle()
-            self.completedPuzzlesByID = []
+            self.poolOfPuzzlesByID = playerDefaults.getPoolOfPuzzlesByID()
         }
+        
         if self.isUserBeginner {
             _ = poolOfPuzzles.beginnerPuzzles.map { self.beginnerPuzzlesByID.append($0.puzzleID) }
         }
         setNewMapTheme()
+        syncPlayerDefaults()
     }
     
     func setNewMapTheme() {
         let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
         self.randomMapTheme = self.mapThemes[Int(randomNumber)]
-        //self.randomMapTheme = self.mapThemes[2]
     }
     
     func getNextLevelByID() -> Int {
@@ -104,7 +83,8 @@ class Player {
         }
         
         if poolOfPuzzlesByID.count <= 0 {
-            poolOfPuzzlesByID = completedPuzzlesByID.shuffled()
+            _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
+            poolOfPuzzlesByID.shuffle()
             completedPuzzlesByID = []
         }
         return poolOfPuzzlesByID.last!
@@ -131,8 +111,8 @@ class Player {
             beginnerPuzzlesByID.removeFirst()
             if beginnerPuzzlesByID.isEmpty {
                 isUserBeginner = false
-                return
             }
+            return
         }
         
         completedPuzzlesByID.append(poolOfPuzzlesByID.last!)
@@ -154,7 +134,9 @@ class Player {
     func resetPlayer() {
         currentScore = 0
         livesRemaining = CONSTANTS.GAME_DEFAULTS.LIVES
-        poolOfPuzzlesByID += completedPuzzlesByID
+        
+        poolOfPuzzlesByID = []
+        _ = poolOfPuzzles.possiblePuzzles.map { self.poolOfPuzzlesByID.append($0.puzzleID) }
         poolOfPuzzlesByID.shuffle()
         completedPuzzlesByID = []
         
@@ -165,10 +147,6 @@ class Player {
         }
     }
     func playerDied() {
-//        if playerLost() {
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Player.playerLostNotification), object: nil)
-//            return
-//        }
         livesRemaining -= 1
     }
     func playerLost() -> Bool {
@@ -182,6 +160,16 @@ class Player {
     }
     func getPlayerHighScore() -> Int {
         return highScore
+    }
+    
+    func syncPlayerDefaults() {
+        PlayerDefaults.shared.setCurrentScoreTo(currentScore)
+        PlayerDefaults.shared.setHighScore(highScore)
+        PlayerDefaults.shared.setLivesRemaining(livesRemaining)
+        PlayerDefaults.shared.setPoolOfPuzzlesByID(poolOfPuzzlesByID)
+        PlayerDefaults.shared.setCompletedPuzzlesByID(completedPuzzlesByID)
+        PlayerDefaults.shared.setPlayerCoins(playerCoins)
+        PlayerDefaults.shared.setIsUserBeginner(isUserBeginner)
     }
     
 }

@@ -58,15 +58,14 @@ class MenuViewController: UIViewController {
     }
     
     func updateCurrentScoreLabel() {
-        let currentScore = UserDefaults.standard.object(forKey: "current_score") as? Int ?? 0
-        let highScore = UserDefaults.standard.object(forKey: "high_score") as? Int ?? 0
-        
+        let currentScore = PlayerDefaults.shared.getCurrentScore()
+        let highScore = PlayerDefaults.shared.getHighScore()
         currentScoreLabel.text = currentScore == 0 ? "" : "Current Score: \(currentScore)"
         highScoreLabel.text = highScore == 0 ? "" : "High Score: \(highScore)"
     }
     
     func updateCurrentGemCount() {
-        let coinCount = UserDefaults.standard.object(forKey: "player_coins") as? Int ?? 0
+        let coinCount = PlayerDefaults.shared.getPlayerCoins()
         coinView.updateCoinCount(coinCount)
     }
     
@@ -105,7 +104,7 @@ class MenuViewController: UIViewController {
     }
     
     func updatePlayButton() {
-        let currentGameExists = ((UserDefaults.standard.object(forKey: "current_score") as? Int) ?? 0) > 0
+        let currentGameExists = PlayerDefaults.shared.getCurrentScore() > 0
         playButtonTitle = currentGameExists ? "Continue" : "New Game"
         playButton.setTitle(playButtonTitle, for: .normal)
     }
@@ -113,9 +112,8 @@ class MenuViewController: UIViewController {
     func setupMenuButtons() {
         updatePlayButton()
         let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
-        //let mapThemesButton = MenuButton(target: self, action: #selector(didTapMapThemese), buttonTitle: "Map Themes")
         
-        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton])//, mapThemesButton])
+        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton])
         menuButtonStackView.axis = .vertical
         menuButtonStackView.alignment = .center
         menuButtonStackView.distribution = .equalSpacing
@@ -125,7 +123,6 @@ class MenuViewController: UIViewController {
         
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         menuButtonStackView.heightAnchor.constraint(equalToConstant: 125).isActive = true
-        //menuButtonStackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
@@ -158,6 +155,7 @@ class MenuViewController: UIViewController {
     @objc func didTapPlay() {
         print("play tapped!")
         puzzleVC = PuzzleViewController()
+        puzzleVC?.player = currentPlayer
         puzzleVC?.newGameSetup()
         present(puzzleVC!, animated: true, completion: nil)
     }
