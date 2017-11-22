@@ -19,6 +19,7 @@ class GridContainerView: UIView {
     var playerEventDelegate: PlayerEventDelegate?
     weak var player: PlayerView?
     weak var mainView: PuzzleView?
+    private var isCurrentlyInBackground: Bool = false
     
     init(currentPuzzle: Puzzle, currentPlayer: Player) {
         self.currentPuzzle = currentPuzzle
@@ -29,7 +30,16 @@ class GridContainerView: UIView {
         backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)//CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
         addAllSquareViews(self.squareData.matrix)
         applyExplosions()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func didEnterBackground() { isCurrentlyInBackground = true }
+    @objc func didEnterForeground() { isCurrentlyInBackground = false }
     
     static func generateSquareViews(currentPuzzle: Puzzle, currentPlayer: Player) -> [[SquareView]] {
         var squareViews = [[SquareView]]()
@@ -76,6 +86,7 @@ class GridContainerView: UIView {
     func dispatchExplosions(_ delay: Int, positionsOfExplosions: [[Int]]) {
         let explosionDelay = Double(delay)/Double(1000) * currentPuzzle.lengthOfPuzzleCycle
         Timer.scheduledTimer(withTimeInterval: explosionDelay, repeats: false) { [weak self] (timer) in
+            if self?.isCurrentlyInBackground ?? true { return }
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
