@@ -55,6 +55,10 @@ class MenuViewController: UIViewController {
         updateCurrentScoreLabel()
         updateCurrentGemCount()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coinView.removeFromSuperview()
+    }
     
     func setupPlayer() {
         currentPlayer = Player()
@@ -70,6 +74,26 @@ class MenuViewController: UIViewController {
     func updateCurrentGemCount() {
         let coinCount = PlayerDefaults.shared.getPlayerCoins()
         coinView.updateCoinCount(coinCount)
+        
+        if let playerExists = currentPlayer {
+            view.addSubview(coinView)
+            var xOffset = CGFloat()
+            let offsetUnit = view.frame.width / 25
+            if playerExists.playerCoins < 10 {
+                xOffset = -offsetUnit
+            } else if playerExists.playerCoins < 100 {
+                xOffset = 0
+            } else if playerExists.playerCoins < 1000 {
+                xOffset = offsetUnit
+            } else if playerExists.playerCoins < 10000 {
+                xOffset = offsetUnit * 2
+            }
+
+            coinView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+            coinView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            coinView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(xOffset)).isActive = true
+            coinView.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+        }
     }
     
     func setupViews() {
@@ -96,14 +120,6 @@ class MenuViewController: UIViewController {
         titleLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        
-        if let _ = currentPlayer {
-            view.addSubview(coinView)
-            coinView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-            coinView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            coinView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            coinView.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
-        }
     }
     
     func updatePlayButton() {

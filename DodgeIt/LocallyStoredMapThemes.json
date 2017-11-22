@@ -38,15 +38,5 @@
  "obstacleColor": [62, 67, 119],
  "explosionColor": [253, 54, 126],
  "isPaidTheme": false
- },
- {
- "description": "Deep Blue",
- "id": "5",
- "backgroundColor": [21, 22, 128],
- "courseColor": [21, 22, 128],
- "labelColors": [255, 255, 255],
- "obstacleColor": [241, 254, 164],
- "explosionColor": [255, 20, 20],
- "isPaidTheme": false
  }
 ]
