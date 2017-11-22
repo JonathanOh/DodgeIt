@@ -56,7 +56,7 @@ extension CharacterSkinsViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CharacterSkinCell.reuseID) as! CharacterSkinCell
         cell.setupCellWith(character: characterCollection[indexPath.section][indexPath.row], doesUserOwnSkin: indexPath.section == 0)
-        cell.purchaseButtonDelegate = self
+        cell.buttonDelegate = self
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,7 +76,14 @@ extension CharacterSkinsViewController: UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension CharacterSkinsViewController: CharacterPurchaseButtonDelegate {
+extension CharacterSkinsViewController: CharacterButtonDelegate {
+    func didTapSetButton(character: Character) {
+        print("set")
+        print(character.character_name)
+        currentPlayer?.setSelectedSkinByID(character.character_id)
+        navigationController?.popViewController(animated: true)
+        //currentPlayer?.selectedSkin = character.character_id
+    }
     func didTapRealMoneyPurchaseButton(character: Character) {
         print("money")
         print(character.character_name)

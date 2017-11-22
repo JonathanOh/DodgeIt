@@ -70,7 +70,7 @@ class PlayerDefaults {
     }
     
     func getAllUserSkinsByID() -> [String] {
-        return defaults.object(forKey: "all_user_skins") as? [String] ?? [CONSTANTS.CHARACTERS.DEFAULT]
+        return defaults.object(forKey: "all_user_skins") as? [String] ?? [CONSTANTS.CHARACTERS.DEFAULT, "2"]
     }
     func setAllUserSkinsByID(_ value: [String]) {
         defaults.set(value, forKey: "all_user_skins")

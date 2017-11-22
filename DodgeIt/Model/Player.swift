@@ -35,8 +35,8 @@ class Player {
     private(set) var isUserBeginner: Bool {
         didSet { PlayerDefaults.shared.setIsUserBeginner(isUserBeginner) }
     }
-    private(set) var selectedSkin: String {
-        didSet { PlayerDefaults.shared.setSelectedSkinID(selectedSkin) }
+    private(set) var selectedSkinID: String {
+        didSet { PlayerDefaults.shared.setSelectedSkinID(selectedSkinID) }
     }
     private(set) var allUserSkins: [String] {
         didSet { PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins) }
@@ -60,7 +60,7 @@ class Player {
         self.playerCoins = playerDefaults.getPlayerCoins()
         self.livesRemaining = playerDefaults.getLivesRemaining()
         self.completedPuzzlesByID = playerDefaults.getCompletedPuzzlesByID()
-        self.selectedSkin = playerDefaults.getSelectedSkinID()
+        self.selectedSkinID = playerDefaults.getSelectedSkinID()
         self.allUserSkins = playerDefaults.getAllUserSkinsByID()
         if playerDefaults.getPoolOfPuzzlesByID().isEmpty {
             var puzzleIDs = [Int]()
@@ -172,6 +172,15 @@ class Player {
         return highScore
     }
     
+    func setSelectedSkinByID(_ id: String) {
+        // Check if user has the skin, once found, set it.
+        for skin in allUserSkins {
+            if skin == id {
+                selectedSkinID = id
+            }
+        }
+    }
+    
     func syncPlayerDefaults() {
         PlayerDefaults.shared.setCurrentScoreTo(currentScore)
         PlayerDefaults.shared.setHighScore(highScore)
@@ -180,7 +189,7 @@ class Player {
         PlayerDefaults.shared.setCompletedPuzzlesByID(completedPuzzlesByID)
         PlayerDefaults.shared.setPlayerCoins(playerCoins)
         PlayerDefaults.shared.setIsUserBeginner(isUserBeginner)
-        PlayerDefaults.shared.setSelectedSkinID(selectedSkin)
+        PlayerDefaults.shared.setSelectedSkinID(selectedSkinID)
         PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins)
     }
     

@@ -8,9 +8,10 @@
 
 import UIKit
 
-protocol CharacterPurchaseButtonDelegate {
+protocol CharacterButtonDelegate {
     func didTapRealMoneyPurchaseButton(character: Character)
     func didTapCoinPurchaseButton(character: Character)
+    func didTapSetButton(character: Character)
 }
 
 class CharacterSkinCell: UITableViewCell {
@@ -22,7 +23,7 @@ class CharacterSkinCell: UITableViewCell {
     private var coinPurchaseButton = UIButton()
     private var moneyPurchaseButton = UIButton()
     private var doesUserOwnSkin: Bool = false
-    var purchaseButtonDelegate: CharacterPurchaseButtonDelegate?
+    var buttonDelegate: CharacterButtonDelegate?
     
     func setupCellWith(character: Character, doesUserOwnSkin: Bool) {
         resetAllProperties()
@@ -72,6 +73,7 @@ class CharacterSkinCell: UITableViewCell {
             setButton.setTitle("Set", for: .normal)
             setButton.backgroundColor = buttonColors
             setButton.layer.cornerRadius = 5
+            setButton.addTarget(self, action: #selector(didTapSetButton), for: .touchUpInside)
             addSubview(setButton)
             setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
             setButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -106,10 +108,14 @@ class CharacterSkinCell: UITableViewCell {
         }
     }
     
+    @objc func didTapSetButton() {
+        buttonDelegate?.didTapSetButton(character: character)
+    }
+    
     @objc func didTapRealMoneyPurchaseButton() {
-        purchaseButtonDelegate?.didTapRealMoneyPurchaseButton(character: character)
+        buttonDelegate?.didTapRealMoneyPurchaseButton(character: character)
     }
     @objc func didTapCoinPurchaseButton() {
-        purchaseButtonDelegate?.didTapCoinPurchaseButton(character: character)
+        buttonDelegate?.didTapCoinPurchaseButton(character: character)
     }
 }

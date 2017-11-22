@@ -53,7 +53,7 @@ class PuzzleViewController: UIViewController {
 
     func setupPlayerView(squareData: SquareData, puzzle: Puzzle) {
         if playerView == nil {
-            playerView = PlayerView(characterID: "0"/*CONSTANTS.CHARACTERS.DEFAULT*/, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: currentPuzzleView)
+            playerView = PlayerView(characterID: player!.selectedSkinID/*"0"*//*CONSTANTS.CHARACTERS.DEFAULT*/, playerSize: 1, puzzle: puzzle, squareData: dataOfSquares, boundingView: currentPuzzleView)
             playerView?.victoryDelegate = self
             playerView?.gemAcquiredDelegate = self
             currentPuzzleView.gridContainerView.player = playerView
