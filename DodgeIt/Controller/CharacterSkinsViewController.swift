@@ -99,10 +99,15 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
             coinImageView.updateCoinCount(currentPlayer!.playerCoins)
             characterSkinTableView.reloadData()
             let congratsView = CongratsPurchaseView(character: character)
-            UIApplication.shared.keyWindow?.addSubview(congratsView)
-            congratsView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            let applicationWindow = UIApplication.shared.keyWindow
+            applicationWindow?.addSubview(congratsView)
+            congratsView.topAnchor.constraint(equalTo: applicationWindow!.topAnchor, constant: 0).isActive = true
+            congratsView.rightAnchor.constraint(equalTo: applicationWindow!.rightAnchor, constant: 0).isActive = true
+            congratsView.bottomAnchor.constraint(equalTo: applicationWindow!.bottomAnchor, constant: 0).isActive = true
+            congratsView.leftAnchor.constraint(equalTo: applicationWindow!.leftAnchor, constant: 0).isActive = true
+            //congratsView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             //view.layoutIfNeeded()
-            congratsView.triggerAnimation()
+            //congratsView.triggerAnimation()
         }
     }
 }
