@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CharacterPurchaseButtonDelegate {
+    func didTapRealMoneyPurchaseButton(character: Character)
+    func didTapCoinPurchaseButton(character: Character)
+}
+
 class CharacterSkinCell: UITableViewCell {
     static let reuseID = "skinCell"
     private var character: Character!
@@ -17,14 +22,7 @@ class CharacterSkinCell: UITableViewCell {
     private var coinPurchaseButton = UIButton()
     private var moneyPurchaseButton = UIButton()
     private var doesUserOwnSkin: Bool = false
-    
-//    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    var purchaseButtonDelegate: CharacterPurchaseButtonDelegate?
     
     func setupCellWith(character: Character, doesUserOwnSkin: Bool) {
         resetAllProperties()
@@ -84,12 +82,14 @@ class CharacterSkinCell: UITableViewCell {
             moneyPurchaseButton.setTitle(character.moneyCost, for: .normal)
             moneyPurchaseButton.backgroundColor = buttonColors
             moneyPurchaseButton.layer.cornerRadius = 5
+            moneyPurchaseButton.addTarget(self, action: #selector(didTapRealMoneyPurchaseButton), for: .touchUpInside)
             addSubview(moneyPurchaseButton)
             
             coinPurchaseButton.translatesAutoresizingMaskIntoConstraints = false
             coinPurchaseButton.setTitle(String(character.coinCost), for: .normal)
             coinPurchaseButton.backgroundColor = buttonColors
             coinPurchaseButton.layer.cornerRadius = 5
+            coinPurchaseButton.addTarget(self, action: #selector(didTapCoinPurchaseButton), for: .touchUpInside)
             addSubview(coinPurchaseButton)
             
             let buttonStackView = UIStackView(arrangedSubviews: [moneyPurchaseButton, coinPurchaseButton])
@@ -104,5 +104,12 @@ class CharacterSkinCell: UITableViewCell {
             buttonStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             buttonStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         }
+    }
+    
+    @objc func didTapRealMoneyPurchaseButton() {
+        purchaseButtonDelegate?.didTapRealMoneyPurchaseButton(character: character)
+    }
+    @objc func didTapCoinPurchaseButton() {
+        purchaseButtonDelegate?.didTapCoinPurchaseButton(character: character)
     }
 }

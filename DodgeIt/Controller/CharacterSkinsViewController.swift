@@ -11,7 +11,10 @@ import UIKit
 class CharacterSkinsViewController: UIViewController {
     var currentPlayer: Player?
     let characterSkinTableView = UITableView()
-    let characterCollection = [PoolOfPossibleCharacters.shared.getAllUserOwnedCharacters(), PoolOfPossibleCharacters.shared.getAllCharactersUserDoesNotHave()]
+    var characterCollection: [[Character]] {
+        return [PoolOfPossibleCharacters.shared.getAllUserOwnedCharacters(), PoolOfPossibleCharacters.shared.getAllCharactersUserDoesNotHave()]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -36,7 +39,6 @@ class CharacterSkinsViewController: UIViewController {
         navBar.tintColor = .black
         navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         navBar.barTintColor = CONSTANTS.COLORS.MENU_BUTTONS
-        //navBar.isTranslucent = false
     }
     
     func setupCharacterSkinTableView() {
@@ -50,10 +52,11 @@ class CharacterSkinsViewController: UIViewController {
     }
 }
 
-extension CharacterSkinsViewController: UITableViewDataSource {
+extension CharacterSkinsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CharacterSkinCell.reuseID) as! CharacterSkinCell
         cell.setupCellWith(character: characterCollection[indexPath.section][indexPath.row], doesUserOwnSkin: indexPath.section == 0)
+        cell.purchaseButtonDelegate = self
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,6 +76,14 @@ extension CharacterSkinsViewController: UITableViewDataSource {
     }
 }
 
-extension CharacterSkinsViewController: UITableViewDelegate {
-    
+extension CharacterSkinsViewController: CharacterPurchaseButtonDelegate {
+    func didTapRealMoneyPurchaseButton(character: Character) {
+        print("money")
+        print(character.character_name)
+    }
+    func didTapCoinPurchaseButton(character: Character) {
+        print("gems")
+        print(character.character_name)
+    }
 }
+

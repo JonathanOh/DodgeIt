@@ -1,7 +1,7 @@
 [
 {
 "character_id": "0",
-"character_name": "Goblin",
+"character_name": "Gobby",
 "right_facing_asset_name_literal": "Goblin_Walk_000",
 "number_of_images": 8,
 "yOffsetConstant": -5,
@@ -12,7 +12,7 @@
 },
 {
 "character_id": "1",
-"character_name": "Anubis",
+"character_name": "Nubis",
 "right_facing_asset_name_literal": "Anubis_Running_000",
 "number_of_images": 12,
 "yOffsetConstant": -10,
@@ -23,7 +23,7 @@
 },
 {
 "character_id": "2",
-"character_name": "Purple Bat",
+"character_name": "Pat",
 "right_facing_asset_name_literal": "Purple_Bat_Fly_000",
 "number_of_images": 8,
 "yOffsetConstant": 0,
