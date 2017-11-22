@@ -69,9 +69,11 @@ class CharacterSkinCell: UITableViewCell {
         let buttonColors = UIColor.getRGBFromArray([37,159,108])
         
         if doesUserOwnSkin {
+            let skinIsCurrentlySelected = PlayerDefaults.shared.getSelectedSkinID() == character.character_id
+            
             setButton.translatesAutoresizingMaskIntoConstraints = false
-            setButton.setTitle("Set", for: .normal)
-            setButton.backgroundColor = buttonColors
+            setButton.setTitle(skinIsCurrentlySelected ? "Selected" : "Set", for: .normal)
+            setButton.backgroundColor = skinIsCurrentlySelected ? .gray : buttonColors
             setButton.layer.cornerRadius = 5
             setButton.addTarget(self, action: #selector(didTapSetButton), for: .touchUpInside)
             addSubview(setButton)

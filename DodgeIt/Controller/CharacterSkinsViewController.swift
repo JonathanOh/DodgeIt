@@ -10,6 +10,7 @@ import UIKit
 
 class CharacterSkinsViewController: UIViewController {
     var currentPlayer: Player?
+    private var coinImageView: CoinView!
     let characterSkinTableView = UITableView()
     var characterCollection: [[Character]] {
         return [PoolOfPossibleCharacters.shared.getAllUserOwnedCharacters(), PoolOfPossibleCharacters.shared.getAllCharactersUserDoesNotHave()]
@@ -32,7 +33,7 @@ class CharacterSkinsViewController: UIViewController {
     func setupNavigationBar() {
         title = "Character Skins"
         let font = UIFont(name: "HelveticaNeue", size: 30)
-        let coinImageView = CoinView(numberOfCoins: currentPlayer?.playerCoins ?? 0, textFont: font, fontColor: .black)
+        coinImageView = CoinView(numberOfCoins: currentPlayer?.playerCoins ?? 0, textFont: font, fontColor: .black)
         coinImageView.frame = CGRect(x: coinImageView.frame.origin.x, y: coinImageView.frame.origin.y, width: coinImageView.frame.width * 0.75, height: coinImageView.frame.height * 0.75)
         navigationItem.titleView = coinImageView
         guard let navBar = navigationController?.navigationBar else { return }
@@ -91,6 +92,18 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
     func didTapCoinPurchaseButton(character: Character) {
         print("gems")
         print(character.character_name)
+        if currentPlayer!.playerCoins < character.coinCost {
+            present(AlertView.getCustomAlert(title: "", message: "You need \(character.coinCost - currentPlayer!.playerCoins) more coins!", numberOfButtons: 1), animated: true, completion: nil)
+        } else {
+            currentPlayer!.playerDidPurchaseSkin(character)
+            coinImageView.updateCoinCount(currentPlayer!.playerCoins)
+            characterSkinTableView.reloadData()
+            let congratsView = CongratsPurchaseView(character: character)
+            UIApplication.shared.keyWindow?.addSubview(congratsView)
+            congratsView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            //view.layoutIfNeeded()
+            congratsView.triggerAnimation()
+        }
     }
 }
 

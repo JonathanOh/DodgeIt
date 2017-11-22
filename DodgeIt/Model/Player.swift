@@ -181,6 +181,11 @@ class Player {
         }
     }
     
+    func playerDidPurchaseSkin(_ character: Character) {
+        allUserSkins += [character.character_id]
+        playerCoins -= character.coinCost
+    }
+    
     func syncPlayerDefaults() {
         PlayerDefaults.shared.setCurrentScoreTo(currentScore)
         PlayerDefaults.shared.setHighScore(highScore)

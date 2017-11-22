@@ -29,7 +29,7 @@
 "yOffsetConstant": 0,
 "widthMultiplier": 2,
  "heightMultiplier": 2,
- "coinCost": 5000,
+ "coinCost": 1,
  "moneyCost": "$0.99"
 },
 {
