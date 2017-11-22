@@ -14,6 +14,7 @@ class PuzzleView: UIView {
     let currentScoreLabel = UILabel()
     let highScoreLabel = UILabel()
     let livesRemainingLabel = UILabel()
+    let arrowPadView = ArrowPadView()
     
     init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
@@ -22,6 +23,7 @@ class PuzzleView: UIView {
         backgroundColor = UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
         setupContainerViewWith(puzzle: currentPuzzle)
         setupLabels(player)
+        //setupArrowPad()
     }
     
     func setupLabels(_ player: Player) {
@@ -55,9 +57,19 @@ class PuzzleView: UIView {
     func setupContainerViewWith(puzzle: Puzzle) {
         addSubview(gridContainerView)
         gridContainerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        //gridContainerView.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height / 10).isActive = true
+        //gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -(CGFloat(currentPuzzle.squareWidth) * 3)).isActive = true
         gridContainerView.widthAnchor.constraint(equalToConstant: CGFloat(puzzle.totalWidth)).isActive = true
         gridContainerView.heightAnchor.constraint(equalToConstant: CGFloat(puzzle.totalHeight)).isActive = true
+    }
+    
+    func setupArrowPad() {
+        addSubview(arrowPadView)
+        arrowPadView.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        arrowPadView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        arrowPadView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -35).isActive = true
+        arrowPadView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

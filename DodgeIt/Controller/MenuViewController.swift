@@ -14,11 +14,13 @@ class MenuViewController: UIViewController {
     var currentPlayer: Player?
     
     private var playButtonTitle: String = "Play"
-    private let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play")
+    private let playButton = MenuButton(target: self, action: #selector(didTapPlay), buttonTitle: "Play", buttonImage: nil)
+    
+    private let characterSkinButton = MenuButton(target: self, action: #selector(didTapCharacterSkin), buttonTitle: "", buttonImage: UIImage(imageLiteralResourceName: "yellow_gem"))
     
     private let highScoreLabel = UILabel()
     private let currentScoreLabel = UILabel()
-    private let coinView = CoinView(numberOfCoins: 0)
+    private let coinView = CoinView(numberOfCoins: 0, textFont: nil, fontColor: nil)
     
     let titleLabel = UILabel()
     
@@ -48,6 +50,7 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         updatePlayButton()
         updateCurrentScoreLabel()
         updateCurrentGemCount()
@@ -111,9 +114,9 @@ class MenuViewController: UIViewController {
     
     func setupMenuButtons() {
         updatePlayButton()
-        let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads")
+        let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads", buttonImage: nil)
         
-        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton])
+        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton, characterSkinButton])
         menuButtonStackView.axis = .vertical
         menuButtonStackView.alignment = .center
         menuButtonStackView.distribution = .equalSpacing
@@ -122,7 +125,7 @@ class MenuViewController: UIViewController {
         view.addSubview(menuButtonStackView)
         
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        menuButtonStackView.heightAnchor.constraint(equalToConstant: 125).isActive = true
+        menuButtonStackView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
@@ -138,7 +141,7 @@ class MenuViewController: UIViewController {
         currentScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width * 0.9).isActive = true
         currentScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
         currentScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        currentScoreLabel.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -45).isActive = true
+        currentScoreLabel.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -35).isActive = true
         
         highScoreLabel.textAlignment = .center
         highScoreLabel.textColor = .white
@@ -150,6 +153,12 @@ class MenuViewController: UIViewController {
         highScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         highScoreLabel.bottomAnchor.constraint(equalTo: currentScoreLabel.topAnchor, constant: -10).isActive = true
         
+    }
+    
+    @objc func didTapCharacterSkin() {
+        let characterSkinViewController = CharacterSkinsViewController()
+        characterSkinViewController.currentPlayer = currentPlayer
+        navigationController?.pushViewController(characterSkinViewController, animated: true)
     }
     
     @objc func didTapPlay() {

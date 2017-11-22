@@ -67,11 +67,13 @@ class CharacterSkinCell: UITableViewCell {
         skinLabel.topAnchor.constraint(equalTo: skinImageView.bottomAnchor).isActive = true
         skinLabel.centerXAnchor.constraint(equalTo: skinImageView.centerXAnchor).isActive = true
         
+        let buttonColors = UIColor.getRGBFromArray([37,159,108])
+        
         if doesUserOwnSkin {
             setButton.translatesAutoresizingMaskIntoConstraints = false
             setButton.setTitle("Set", for: .normal)
-            setButton.backgroundColor = .green
-            setButton.layer.cornerRadius = 3
+            setButton.backgroundColor = buttonColors
+            setButton.layer.cornerRadius = 5
             addSubview(setButton)
             setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
             setButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -80,19 +82,15 @@ class CharacterSkinCell: UITableViewCell {
         } else {
             moneyPurchaseButton.translatesAutoresizingMaskIntoConstraints = false
             moneyPurchaseButton.setTitle(character.moneyCost, for: .normal)
-            moneyPurchaseButton.backgroundColor = .green
-            moneyPurchaseButton.layer.cornerRadius = 3
+            moneyPurchaseButton.backgroundColor = buttonColors
+            moneyPurchaseButton.layer.cornerRadius = 5
             addSubview(moneyPurchaseButton)
-            moneyPurchaseButton.widthAnchor.constraint(equalToConstant: 125).isActive = true
-            moneyPurchaseButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
             
             coinPurchaseButton.translatesAutoresizingMaskIntoConstraints = false
             coinPurchaseButton.setTitle(String(character.coinCost), for: .normal)
-            coinPurchaseButton.backgroundColor = .green
-            coinPurchaseButton.layer.cornerRadius = 3
+            coinPurchaseButton.backgroundColor = buttonColors
+            coinPurchaseButton.layer.cornerRadius = 5
             addSubview(coinPurchaseButton)
-            coinPurchaseButton.widthAnchor.constraint(equalToConstant: 125).isActive = true
-            coinPurchaseButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
             
             let buttonStackView = UIStackView(arrangedSubviews: [moneyPurchaseButton, coinPurchaseButton])
             buttonStackView.translatesAutoresizingMaskIntoConstraints = false

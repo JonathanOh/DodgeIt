@@ -13,9 +13,17 @@ class CoinView: UIView {
     private var coinImageView = UIImageView()
     let numberOfCoins: Int
     let numberOfCoinsLabel = UILabel()
+    private var font = UIFont(name: "HelveticaNeue-Thin", size: 50)
+    private var textColor: UIColor = .white
     
-    init(numberOfCoins: Int) {
+    init(numberOfCoins: Int, textFont: UIFont?, fontColor: UIColor?) {
         self.numberOfCoins = numberOfCoins
+        if let fontExists = textFont {
+            self.font = fontExists
+        }
+        if let textColorExists = fontColor {
+            self.textColor = textColorExists
+        }
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setupViews()
@@ -25,8 +33,8 @@ class CoinView: UIView {
         numberOfCoinsLabel.translatesAutoresizingMaskIntoConstraints = false
         numberOfCoinsLabel.text = String(numberOfCoins)
         numberOfCoinsLabel.textAlignment = .right
-        numberOfCoinsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
-        numberOfCoinsLabel.textColor = .white
+        numberOfCoinsLabel.font = font
+        numberOfCoinsLabel.textColor = textColor
         numberOfCoinsLabel.adjustsFontSizeToFitWidth = true
         addSubview(numberOfCoinsLabel)
         numberOfCoinsLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true

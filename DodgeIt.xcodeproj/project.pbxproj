@@ -14,6 +14,8 @@
 		847B1CC01FC2BAA300BC6882 /* PoolOfPossibleCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CBF1FC2BAA300BC6882 /* PoolOfPossibleCharacters.swift */; };
 		847B1CD51FC4287900BC6882 /* CharacterSkinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CD41FC4287900BC6882 /* CharacterSkinsViewController.swift */; };
 		847B1CD71FC42B7F00BC6882 /* CharacterSkinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CD61FC42B7F00BC6882 /* CharacterSkinCell.swift */; };
+		847B1CD91FC50C4B00BC6882 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */; };
+		847B1CDB1FC50E5C00BC6882 /* ArrowPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */; };
 		8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C82AC1FB62E6300A0D100 /* Constants.swift */; };
 		8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */; };
 		8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */; };
@@ -70,6 +72,8 @@
 		847B1CBF1FC2BAA300BC6882 /* PoolOfPossibleCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolOfPossibleCharacters.swift; sourceTree = "<group>"; };
 		847B1CD41FC4287900BC6882 /* CharacterSkinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSkinsViewController.swift; sourceTree = "<group>"; };
 		847B1CD61FC42B7F00BC6882 /* CharacterSkinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSkinCell.swift; sourceTree = "<group>"; };
+		847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
+		847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowPadView.swift; sourceTree = "<group>"; };
 		8B1C82AC1FB62E6300A0D100 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
 		8B35EBE51FA29E87000F8FD4 /* NextPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPuzzle.swift; sourceTree = "<group>"; };
@@ -147,6 +151,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		847B1CDC1FC50E7200BC6882 /* ArrowPad */ = {
+			isa = PBXGroup;
+			children = (
+				847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */,
+				847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */,
+			);
+			path = ArrowPad;
+			sourceTree = "<group>";
+		};
+		847B1CDD1FC50E8C00BC6882 /* MainPuzzleView */ = {
+			isa = PBXGroup;
+			children = (
+				8B61DDAA1F97F8D100E791FA /* PuzzleView.swift */,
+				8B61DDAC1F97FDFC00E791FA /* GridContainerView.swift */,
+				8B61DDAE1F97FE6400E791FA /* SquareView.swift */,
+			);
+			path = MainPuzzleView;
+			sourceTree = "<group>";
+		};
+		847B1CDE1FC50EC900BC6882 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */,
+				847B1CB91FC2B36300BC6882 /* CharacterImageView.swift */,
+				847B1CD61FC42B7F00BC6882 /* CharacterSkinCell.swift */,
+			);
+			name = Character;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		847B1CDF1FC50EE100BC6882 /* IndividualViews */ = {
+			isa = PBXGroup;
+			children = (
+				8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */,
+				847B1CB71FC2741D00BC6882 /* CoinView.swift */,
+			);
+			path = IndividualViews;
+			sourceTree = "<group>";
+		};
 		8B61DD891F97F6FD00E791FA = {
 			isa = PBXGroup;
 			children = (
@@ -195,14 +238,10 @@
 		8B61DDB21F9806B300E791FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8B61DDAA1F97F8D100E791FA /* PuzzleView.swift */,
-				847B1CB71FC2741D00BC6882 /* CoinView.swift */,
-				847B1CB91FC2B36300BC6882 /* CharacterImageView.swift */,
-				8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */,
-				8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */,
-				8B61DDAC1F97FDFC00E791FA /* GridContainerView.swift */,
-				8B61DDAE1F97FE6400E791FA /* SquareView.swift */,
-				847B1CD61FC42B7F00BC6882 /* CharacterSkinCell.swift */,
+				847B1CDC1FC50E7200BC6882 /* ArrowPad */,
+				847B1CDD1FC50E8C00BC6882 /* MainPuzzleView */,
+				847B1CDF1FC50EE100BC6882 /* IndividualViews */,
+				847B1CDE1FC50EC900BC6882 /* Character */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -477,11 +516,13 @@
 				8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */,
 				8B35EBEA1FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift in Sources */,
 				8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */,
+				847B1CDB1FC50E5C00BC6882 /* ArrowPadView.swift in Sources */,
 				8B61DDAF1F97FE6400E791FA /* SquareView.swift in Sources */,
 				847B1CBA1FC2B36300BC6882 /* CharacterImageView.swift in Sources */,
 				8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */,
 				8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */,
 				8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */,
+				847B1CD91FC50C4B00BC6882 /* ArrowButton.swift in Sources */,
 				8B61DD9E1F97F6FD00E791FA /* DodgeIt.xcdatamodeld in Sources */,
 				8BB3F37E1FC3700F0051F779 /* PlayerDefaults.swift in Sources */,
 				8B61DDAD1F97FDFC00E791FA /* GridContainerView.swift in Sources */,

@@ -33,7 +33,7 @@ class PlayerView: UIView {
         self.squareData = squareData
         let width = puzzle.squareWidth * Double(playerSize) * 0.9
         let height = puzzle.squareWidth * Double(playerSize) * 0.9
-        self.startingLocation = CGPoint(x: boundingView.center.x + CGFloat(puzzle.squareWidth/2), y: boundingView.center.y + CGFloat(puzzle.squareWidth/2) + CGFloat(puzzle.squareWidth * 7))
+        self.startingLocation = CGPoint(x: boundingView.center.x + CGFloat(puzzle.squareWidth/2), y: boundingView.center.y + CGFloat(puzzle.squareWidth/2) + CGFloat(puzzle.squareWidth * 5))
         
         super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: height)))
         center = startingLocation

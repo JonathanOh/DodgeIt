@@ -26,6 +26,7 @@ class PuzzleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         googleAd = GoogleAdService()
         googleAd.interstitial.delegate = self
@@ -64,6 +65,7 @@ class PuzzleViewController: UIViewController {
     func setupPuzzleProperties(_ nextPuzzle: NextPuzzle) {
         puzzleLevel = nextPuzzle.puzzle
         currentPuzzleView = nextPuzzle.puzzleView
+        currentPuzzleView.arrowPadView.arrowDelegate = self
         currentPuzzleView.gridContainerView.playerEventDelegate = self
         dataOfSquares = nextPuzzle.squareData
     }
@@ -97,11 +99,13 @@ class PuzzleViewController: UIViewController {
     }
     
     func replacePlayerViewWithBloodSplat() {
-        let bloodSplatImageView = UIImageView(frame: CGRect(x: playerView!.frame.origin.x - 15, y: playerView!.frame.origin.y - 15, width: playerView!.frame.width * 2, height: playerView!.frame.height * 2))
-        bloodSplatImageView.image = UIImage(imageLiteralResourceName: "redSplat")
-        playerView!.removeFromSuperview()
-        playerView = nil
-        view.addSubview(bloodSplatImageView)
+        if let playerViewExists = playerView {
+            let bloodSplatImageView = UIImageView(frame: CGRect(x: playerViewExists.frame.origin.x - 15, y: playerViewExists.frame.origin.y - 15, width: playerViewExists.frame.width * 2, height: playerViewExists.frame.height * 2))
+            bloodSplatImageView.image = UIImage(imageLiteralResourceName: "redSplat")
+            playerViewExists.removeFromSuperview()
+            playerView = nil
+            view.addSubview(bloodSplatImageView)
+        }
     }
 
     @objc func didSwipe(_ gesture: UISwipeGestureRecognizer) {
@@ -167,5 +171,20 @@ extension PuzzleViewController: GADInterstitialDelegate {
     func interstitialWillDismissScreen(_ ad: GADInterstitial) {
         print("interstitialWillDismissScreen")
         googleAd.startTimer()
+    }
+}
+
+extension PuzzleViewController: ArrowDirectionEventDelegate {
+    func didTapArrow(_ direction: ArrowButton.Direction) {
+        switch direction {
+        case .up:
+            playerView?.move(.up)
+        case .right:
+            playerView?.move(.right)
+        case .down:
+            playerView?.move(.down)
+        case .left:
+            playerView?.move(.left)
+        }
     }
 }

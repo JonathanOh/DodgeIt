@@ -20,12 +20,30 @@ class CharacterSkinsViewController: UIViewController {
         characterSkinTableView.register(CharacterSkinCell.self, forCellReuseIdentifier: CharacterSkinCell.reuseID)
         setupCharacterSkinTableView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        title = "Character Skins"
+        let font = UIFont(name: "HelveticaNeue", size: 30)
+        let coinImageView = CoinView(numberOfCoins: currentPlayer?.playerCoins ?? 0, textFont: font, fontColor: .black)
+        coinImageView.frame = CGRect(x: coinImageView.frame.origin.x, y: coinImageView.frame.origin.y, width: coinImageView.frame.width * 0.75, height: coinImageView.frame.height * 0.75)
+        navigationItem.titleView = coinImageView
+        guard let navBar = navigationController?.navigationBar else { return }
+        navBar.tintColor = .black
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        navBar.barTintColor = CONSTANTS.COLORS.MENU_BUTTONS
+        //navBar.isTranslucent = false
+    }
     
     func setupCharacterSkinTableView() {
         characterSkinTableView.translatesAutoresizingMaskIntoConstraints = false
         characterSkinTableView.allowsSelection = false
         view.addSubview(characterSkinTableView)
-        characterSkinTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
+        characterSkinTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0/*UIApplication.shared.statusBarFrame.height*/).isActive = true
         characterSkinTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         characterSkinTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         characterSkinTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
