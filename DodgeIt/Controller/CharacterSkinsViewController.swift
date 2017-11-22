@@ -88,7 +88,7 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
     }
     func didTapCoinPurchaseButton(character: Character) {
         if currentPlayer!.playerCoins < character.coinCost {
-            present(AlertView.getCustomAlert(title: "", message: "You need \(character.coinCost - currentPlayer!.playerCoins) more coins!", numberOfButtons: 1), animated: true, completion: nil)
+            present(AlertView.getCustomAlert(title: "", message: "You need \((character.coinCost - currentPlayer!.playerCoins).getCommaFormattedNumberToString()) more coins!", numberOfButtons: 1), animated: true, completion: nil)
         } else {
             currentPlayer!.playerDidPurchaseSkin(character)
             coinImageView.updateCoinCount(currentPlayer!.playerCoins)

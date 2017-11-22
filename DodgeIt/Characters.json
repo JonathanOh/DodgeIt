@@ -10,6 +10,17 @@
  "coinCost": 0,
  "moneyCost": "Free"
 },
+ {
+ "character_id": "3",
+ "character_name": "Grim Reaper",
+ "right_facing_asset_name_literal": "Grim_Move_000",
+ "number_of_images": 8,
+ "yOffsetConstant": 0,
+ "widthMultiplier": 2,
+ "heightMultiplier": 2,
+ "coinCost": 100,
+ "moneyCost": "$0.99"
+ },
 {
 "character_id": "1",
 "character_name": "Nubis",
@@ -18,29 +29,19 @@
 "yOffsetConstant": -10,
 "widthMultiplier": 2,
  "heightMultiplier": 2,
- "coinCost": 5000,
+ "coinCost": 1000,
  "moneyCost": "$0.99"
 },
-{
-"character_id": "2",
-"character_name": "Pat",
-"right_facing_asset_name_literal": "Purple_Bat_Fly_000",
-"number_of_images": 8,
-"yOffsetConstant": 0,
-"widthMultiplier": 2,
- "heightMultiplier": 2,
- "coinCost": 1,
- "moneyCost": "$0.99"
-},
-{
-"character_id": "3",
-"character_name": "Grim Reaper",
-"right_facing_asset_name_literal": "Grim_Move_000",
-"number_of_images": 8,
-"yOffsetConstant": 0,
-"widthMultiplier": 2,
+ {
+ "character_id": "2",
+ "character_name": "Pat",
+ "right_facing_asset_name_literal": "Purple_Bat_Fly_000",
+ "number_of_images": 8,
+ "yOffsetConstant": 0,
+ "widthMultiplier": 2,
  "heightMultiplier": 2,
  "coinCost": 5000,
  "moneyCost": "$0.99"
-}
+ },
+
 ]

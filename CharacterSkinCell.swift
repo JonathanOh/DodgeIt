@@ -79,7 +79,7 @@ class CharacterSkinCell: UITableViewCell {
         } else {
             moneyPurchaseButton.setupButton(title: character.moneyCost, colorOfBackground: buttonColors, target: self, action: #selector(didTapRealMoneyPurchaseButton))
             addSubview(moneyPurchaseButton)
-            coinPurchaseButton.setupButton(title: String(character.coinCost), colorOfBackground: buttonColors, target: self, action: #selector(didTapCoinPurchaseButton))
+            coinPurchaseButton.setupButton(title: character.coinCost.getCommaFormattedNumberToString(), colorOfBackground: buttonColors, target: self, action: #selector(didTapCoinPurchaseButton))
             addSubview(coinPurchaseButton)
             
             let buttonStackView = UIStackView(arrangedSubviews: [moneyPurchaseButton, coinPurchaseButton])

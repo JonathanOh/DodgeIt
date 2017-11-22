@@ -31,7 +31,7 @@ class CoinView: UIView {
     
     func setupViews() {
         numberOfCoinsLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfCoinsLabel.text = String(numberOfCoins)
+        numberOfCoinsLabel.text = numberOfCoins.getCommaFormattedNumberToString()
         numberOfCoinsLabel.textAlignment = .right
         numberOfCoinsLabel.font = font
         numberOfCoinsLabel.textColor = textColor
@@ -57,7 +57,7 @@ class CoinView: UIView {
     }
     
     func updateCoinCount(_ cointCount: Int) {
-        numberOfCoinsLabel.text = String(cointCount)
+        numberOfCoinsLabel.text = cointCount.getCommaFormattedNumberToString()
     }
     
     required init?(coder aDecoder: NSCoder) {

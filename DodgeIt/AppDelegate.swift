@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
 
         setupGoogleAds(adMobAppID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_APP_ID)
-
+        
         return true
     }
 

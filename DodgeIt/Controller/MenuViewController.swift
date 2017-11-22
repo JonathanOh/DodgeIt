@@ -79,20 +79,28 @@ class MenuViewController: UIViewController {
             view.addSubview(coinView)
             var xOffset = CGFloat()
             let offsetUnit = view.frame.width / 25
+            
             if playerExists.playerCoins < 10 {
-                xOffset = -offsetUnit
+                xOffset = -(offsetUnit * 3)
             } else if playerExists.playerCoins < 100 {
-                xOffset = 0
+                xOffset = -(offsetUnit * 2)
             } else if playerExists.playerCoins < 1000 {
-                xOffset = offsetUnit
+                xOffset = -offsetUnit
             } else if playerExists.playerCoins < 10000 {
-                xOffset = offsetUnit * 2
+                xOffset = 0
+            } else {
+                xOffset = offsetUnit
             }
-
+//            else if playerExists.playerCoins < 10000 {
+//                xOffset = offsetUnit * 2
+//            } else {
+//                xOffset = offsetUnit * 3
+//            }
+            print(xOffset)
             coinView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
             coinView.heightAnchor.constraint(equalToConstant: 50).isActive = true
             coinView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(xOffset)).isActive = true
-            coinView.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+            coinView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         }
     }
     

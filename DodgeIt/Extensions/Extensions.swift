@@ -22,6 +22,24 @@ extension String {
     }
 }
 
+extension Int {
+    func getCommaFormattedNumberToString() -> String {
+        var string = String(self)
+        if string.count > 3 {
+            let remainder = string.count % 3
+            if remainder == 0 {
+                string.insert(",", at: string.index(string.startIndex, offsetBy: 3))
+                return string
+            } else {
+                string.insert(",", at: string.index(string.startIndex, offsetBy: remainder))
+                return string
+            }
+        } else {
+            return String(self)
+        }
+    }
+}
+
 extension Array {
     func getTupleFromArray() -> (Int, Int)? {
         if self.count != 2 { return nil }
