@@ -75,6 +75,7 @@ class CharacterSkinCell: UITableViewCell {
             setButton.setTitle(skinIsCurrentlySelected ? "Selected" : "Set", for: .normal)
             setButton.backgroundColor = skinIsCurrentlySelected ? .gray : buttonColors
             setButton.layer.cornerRadius = 5
+            setButton.showsTouchWhenHighlighted = true
             setButton.addTarget(self, action: #selector(didTapSetButton), for: .touchUpInside)
             addSubview(setButton)
             setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
@@ -119,5 +120,20 @@ class CharacterSkinCell: UITableViewCell {
     }
     @objc func didTapCoinPurchaseButton() {
         buttonDelegate?.didTapCoinPurchaseButton(character: character)
+    }
+}
+
+class CharacterSkinCellButton: UIButton {
+    init(title: String, colorOfBackground: UIColor, target: Any?, action: Selector) {
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
+        setTitle(title, for: .normal)
+        backgroundColor = colorOfBackground
+        layer.cornerRadius = 5
+        addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

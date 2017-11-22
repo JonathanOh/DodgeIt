@@ -79,36 +79,31 @@ extension CharacterSkinsViewController: UITableViewDataSource, UITableViewDelega
 
 extension CharacterSkinsViewController: CharacterButtonDelegate {
     func didTapSetButton(character: Character) {
-        print("set")
-        print(character.character_name)
         currentPlayer?.setSelectedSkinByID(character.character_id)
         navigationController?.popViewController(animated: true)
-        //currentPlayer?.selectedSkin = character.character_id
     }
     func didTapRealMoneyPurchaseButton(character: Character) {
         print("money")
         print(character.character_name)
     }
     func didTapCoinPurchaseButton(character: Character) {
-        print("gems")
-        print(character.character_name)
         if currentPlayer!.playerCoins < character.coinCost {
             present(AlertView.getCustomAlert(title: "", message: "You need \(character.coinCost - currentPlayer!.playerCoins) more coins!", numberOfButtons: 1), animated: true, completion: nil)
         } else {
             currentPlayer!.playerDidPurchaseSkin(character)
             coinImageView.updateCoinCount(currentPlayer!.playerCoins)
             characterSkinTableView.reloadData()
-            let congratsView = CongratsPurchaseView(character: character)
-            let applicationWindow = UIApplication.shared.keyWindow
-            applicationWindow?.addSubview(congratsView)
-            congratsView.topAnchor.constraint(equalTo: applicationWindow!.topAnchor, constant: 0).isActive = true
-            congratsView.rightAnchor.constraint(equalTo: applicationWindow!.rightAnchor, constant: 0).isActive = true
-            congratsView.bottomAnchor.constraint(equalTo: applicationWindow!.bottomAnchor, constant: 0).isActive = true
-            congratsView.leftAnchor.constraint(equalTo: applicationWindow!.leftAnchor, constant: 0).isActive = true
-            //congratsView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            //view.layoutIfNeeded()
-            //congratsView.triggerAnimation()
+            fadeInCongratsView(character)
         }
+    }
+    func fadeInCongratsView(_ character: Character) {
+        let congratsView = CongratsPurchaseView(character: character)
+        let applicationWindow = UIApplication.shared.keyWindow
+        applicationWindow?.addSubview(congratsView)
+        congratsView.topAnchor.constraint(equalTo: applicationWindow!.topAnchor, constant: 0).isActive = true
+        congratsView.rightAnchor.constraint(equalTo: applicationWindow!.rightAnchor, constant: 0).isActive = true
+        congratsView.bottomAnchor.constraint(equalTo: applicationWindow!.bottomAnchor, constant: 0).isActive = true
+        congratsView.leftAnchor.constraint(equalTo: applicationWindow!.leftAnchor, constant: 0).isActive = true
     }
 }
 
