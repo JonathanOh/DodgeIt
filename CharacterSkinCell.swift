@@ -19,9 +19,9 @@ class CharacterSkinCell: UITableViewCell {
     private var character: Character!
     private var skinImageView = UIImageView()
     private var skinLabel = UILabel()
-    private var setButton = UIButton()
-    private var coinPurchaseButton = UIButton()
-    private var moneyPurchaseButton = UIButton()
+    private var setButton = CharacterSkinCellButton()
+    private var coinPurchaseButton = CharacterSkinCellButton()
+    private var moneyPurchaseButton = CharacterSkinCellButton()
     private var doesUserOwnSkin: Bool = false
     var buttonDelegate: CharacterButtonDelegate?
     
@@ -42,11 +42,11 @@ class CharacterSkinCell: UITableViewCell {
         self.skinLabel.removeFromSuperview()
         self.skinLabel = UILabel()
         self.setButton.removeFromSuperview()
-        self.setButton = UIButton()
+        self.setButton = CharacterSkinCellButton()
         self.coinPurchaseButton.removeFromSuperview()
-        self.coinPurchaseButton = UIButton()
+        self.coinPurchaseButton = CharacterSkinCellButton()
         self.moneyPurchaseButton.removeFromSuperview()
-        self.moneyPurchaseButton = UIButton()
+        self.moneyPurchaseButton = CharacterSkinCellButton()
         self.doesUserOwnSkin = false
     }
     
@@ -70,31 +70,16 @@ class CharacterSkinCell: UITableViewCell {
         
         if doesUserOwnSkin {
             let skinIsCurrentlySelected = PlayerDefaults.shared.getSelectedSkinID() == character.character_id
-            
-            setButton.translatesAutoresizingMaskIntoConstraints = false
-            setButton.setTitle(skinIsCurrentlySelected ? "Selected" : "Set", for: .normal)
-            setButton.backgroundColor = skinIsCurrentlySelected ? .gray : buttonColors
-            setButton.layer.cornerRadius = 5
-            setButton.showsTouchWhenHighlighted = true
-            setButton.addTarget(self, action: #selector(didTapSetButton), for: .touchUpInside)
+            setButton.setupButton(title: skinIsCurrentlySelected ? "Selected" : "Set", colorOfBackground: skinIsCurrentlySelected ? .gray : buttonColors, target: self, action: #selector(didTapSetButton))
             addSubview(setButton)
             setButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -35).isActive = true
             setButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             setButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
             setButton.widthAnchor.constraint(equalToConstant: 125).isActive = true
         } else {
-            moneyPurchaseButton.translatesAutoresizingMaskIntoConstraints = false
-            moneyPurchaseButton.setTitle(character.moneyCost, for: .normal)
-            moneyPurchaseButton.backgroundColor = buttonColors
-            moneyPurchaseButton.layer.cornerRadius = 5
-            moneyPurchaseButton.addTarget(self, action: #selector(didTapRealMoneyPurchaseButton), for: .touchUpInside)
+            moneyPurchaseButton.setupButton(title: character.moneyCost, colorOfBackground: buttonColors, target: self, action: #selector(didTapRealMoneyPurchaseButton))
             addSubview(moneyPurchaseButton)
-            
-            coinPurchaseButton.translatesAutoresizingMaskIntoConstraints = false
-            coinPurchaseButton.setTitle(String(character.coinCost), for: .normal)
-            coinPurchaseButton.backgroundColor = buttonColors
-            coinPurchaseButton.layer.cornerRadius = 5
-            coinPurchaseButton.addTarget(self, action: #selector(didTapCoinPurchaseButton), for: .touchUpInside)
+            coinPurchaseButton.setupButton(title: String(character.coinCost), colorOfBackground: buttonColors, target: self, action: #selector(didTapCoinPurchaseButton))
             addSubview(coinPurchaseButton)
             
             let buttonStackView = UIStackView(arrangedSubviews: [moneyPurchaseButton, coinPurchaseButton])
@@ -124,10 +109,13 @@ class CharacterSkinCell: UITableViewCell {
 }
 
 class CharacterSkinCellButton: UIButton {
-    init(title: String, colorOfBackground: UIColor, target: Any?, action: Selector) {
+    init() {
         super.init(frame: .zero)
+    }
+    func setupButton(title: String = "", colorOfBackground: UIColor?, target: Any?, action: Selector) {
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
+        showsTouchWhenHighlighted = true
         backgroundColor = colorOfBackground
         layer.cornerRadius = 5
         addTarget(target, action: action, for: .touchUpInside)
