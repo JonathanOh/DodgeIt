@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class MenuViewController: UIViewController {
 
+    let localAuthentication = LAContext()
+    
     private var puzzleVC: PuzzleViewController?
     var currentPlayer: Player?
     
@@ -194,8 +197,15 @@ class MenuViewController: UIViewController {
     }
     @objc func didTapRemoveAds() {
         print("remove ads tapped!")
-        IAPHandler.shared.purchaseMyProduct(index: 0)
+        IAPHandler.shared.purchaseMyProduct(productIdentifier: "adRemovalPurchase")
+        IAPHandler.shared.purchaseStatusBlock = { purchaseType in
+
+        }
+        
     }
+    
+    
+    
     @objc func didTapMapThemese() {
         print("map themes tapped!")
     }

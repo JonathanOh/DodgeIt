@@ -15,12 +15,14 @@ enum IAPHandlerAlertType{
     case disabled
     case restored
     case purchased
+    case failed
     
     func message() -> String{
         switch self {
         case .disabled: return "Purchases are disabled in your device!"
         case .restored: return "You've successfully restored your purchase!"
         case .purchased: return "You've successfully bought this purchase!"
+        case .failed: return "Purchase failed!"
         }
     }
 }
@@ -34,24 +36,25 @@ class IAPHandler: NSObject {
     
     fileprivate var productID = ""
     fileprivate var productsRequest = SKProductsRequest()
-    fileprivate var iapProducts = [SKProduct]()
+    //fileprivate var iapProducts = [SKProduct]()
+    fileprivate var iapProductDictionary = [String:SKProduct]()
     
     var purchaseStatusBlock: ((IAPHandlerAlertType) -> Void)?
     
     // MARK: - MAKE PURCHASE OF A PRODUCT
     func canMakePurchases() -> Bool {  return SKPaymentQueue.canMakePayments()  }
     
-    func purchaseMyProduct(index: Int){
-        if iapProducts.count == 0 { return }
-        
+    func purchaseMyProduct(productIdentifier: String){
+        //if iapProducts.count == 0 { return }
+        guard let productExists = iapProductDictionary[productIdentifier] else { return }
         if self.canMakePurchases() {
-            let product = iapProducts[index]
-            let payment = SKPayment(product: product)
+            //let product = iapProducts[index]
+            let payment = SKPayment(product: productExists)
             SKPaymentQueue.default().add(self)
             SKPaymentQueue.default().add(payment)
             
-            print("PRODUCT TO PURCHASE: \(product.productIdentifier)")
-            productID = product.productIdentifier
+            print("PRODUCT TO PURCHASE: \(productExists.productIdentifier)")
+            self.productID = productExists.productIdentifier
         } else {
             purchaseStatusBlock?(.disabled)
         }
@@ -76,13 +79,23 @@ class IAPHandler: NSObject {
     }
 }
 
-extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
+extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver {
     // MARK: - REQUEST IAP PRODUCTS
     func productsRequest (_ request:SKProductsRequest, didReceive response:SKProductsResponse) {
         
         if (response.products.count > 0) {
-            iapProducts = response.products
-            for product in iapProducts{
+//            iapProducts = response.products
+//            for product in iapProducts{
+//                let numberFormatter = NumberFormatter()
+//                numberFormatter.formatterBehavior = .behavior10_4
+//                numberFormatter.numberStyle = .currency
+//                numberFormatter.locale = product.priceLocale
+//                let price1Str = numberFormatter.string(from: product.price)
+//                print(product.localizedDescription + "\nfor just \(price1Str!)")
+//            }
+            let iapProducts = response.products
+            for product in iapProducts {
+                iapProductDictionary[product.productIdentifier] = product
                 let numberFormatter = NumberFormatter()
                 numberFormatter.formatterBehavior = .behavior10_4
                 numberFormatter.numberStyle = .currency
@@ -101,24 +114,26 @@ extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction:AnyObject in transactions {
             if let trans = transaction as? SKPaymentTransaction {
+                print(trans.transactionIdentifier ?? "")
                 switch trans.transactionState {
                 case .purchased:
                     print("purchased")
                     setUsersPurchaseDefaults()
-                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     purchaseStatusBlock?(.purchased)
-                    break
+                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                 case .failed:
                     print("failed")
+                    purchaseStatusBlock?(.failed)
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
-                    break
                 case .restored:
                     print("restored")
                     setUsersPurchaseDefaults()
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
-                    break
-                default:
-                    break
+                    purchaseStatusBlock?(.restored)
+                case .purchasing:
+                    print("purchasing")
+                case .deferred:
+                    print("deferred")
                 }
             }
         }

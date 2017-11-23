@@ -23,9 +23,6 @@ struct PoolOfPossiblePuzzles {
     private(set) var possiblePuzzles: [Puzzle]
     private var puzzleLookupByID = [String:Puzzle]()
     
-//    func getRandomPuzzleByDifficulty(_ difficulty: Difficulty) -> Puzzle {
-//        
-//    }
     func getBeginnerPuzzleByID(_ id: Int) -> Puzzle {
         if let puzzleExists = beginnerPuzzleLookupByID[String(id)] {
             return puzzleExists
