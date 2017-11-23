@@ -181,9 +181,11 @@ class Player {
         }
     }
     
-    func playerDidPurchaseSkin(_ character: Character) {
+    func playerDidPurchaseSkin(_ character: Character, wasRealMoneyPurchase: Bool) {
         allUserSkins += [character.character_id]
-        playerCoins -= character.coinCost
+        if !wasRealMoneyPurchase {
+            playerCoins -= character.coinCost
+        }
     }
     
     func syncPlayerDefaults() {

@@ -85,12 +85,32 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
     func didTapRealMoneyPurchaseButton(character: Character) {
         print("money")
         print(character.character_name)
+        IAPHandler.shared.purchaseMyProduct(productIdentifier: character.product_id)
+        IAPHandler.shared.purchaseStatusBlock = { [weak self] alertType in
+            switch alertType {
+            case .purchased:
+                self?.currentPlayer?.playerDidPurchaseSkin(character, wasRealMoneyPurchase: true)
+                DispatchQueue.main.async { [weak self] in
+                    self?.characterSkinTableView.reloadData()
+                }
+            case .restored:
+                self?.currentPlayer?.playerDidPurchaseSkin(character, wasRealMoneyPurchase: true)
+                DispatchQueue.main.async { [weak self] in
+                    self?.characterSkinTableView.reloadData()
+                }
+            case .failed:
+                print("failed!!!!!")
+            case .disabled:
+                print("disabled!!!")
+            }
+            self?.fadeInCongratsView(character)
+        }
     }
     func didTapCoinPurchaseButton(character: Character) {
         if currentPlayer!.playerCoins < character.coinCost {
             present(AlertView.getCustomAlert(title: "", message: "You need \((character.coinCost - currentPlayer!.playerCoins).getCommaFormattedNumberToString()) more coins!", numberOfButtons: 1), animated: true, completion: nil)
         } else {
-            currentPlayer!.playerDidPurchaseSkin(character)
+            currentPlayer!.playerDidPurchaseSkin(character, wasRealMoneyPurchase: false)
             coinImageView.updateCoinCount(currentPlayer!.playerCoins)
             characterSkinTableView.reloadData()
             fadeInCongratsView(character)

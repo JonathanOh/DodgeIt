@@ -1,6 +1,7 @@
 [
 {
 "character_id": "0",
+ "product_id": "Gobby0",
 "character_name": "Gobby",
 "right_facing_asset_name_literal": "Goblin_Walk_000",
 "number_of_images": 8,
@@ -12,6 +13,7 @@
 },
  {
  "character_id": "3",
+ "product_id": "GrimReaper3",
  "character_name": "Grim Reaper",
  "right_facing_asset_name_literal": "Grim_Move_000",
  "number_of_images": 8,
@@ -23,6 +25,7 @@
  },
 {
 "character_id": "1",
+ "product_id": "Nubis1",
 "character_name": "Nubis",
 "right_facing_asset_name_literal": "Anubis_Running_000",
 "number_of_images": 12,
@@ -34,6 +37,7 @@
 },
  {
  "character_id": "2",
+ "product_id": "Pat2",
  "character_name": "Pat",
  "right_facing_asset_name_literal": "Purple_Bat_Fly_000",
  "number_of_images": 8,
