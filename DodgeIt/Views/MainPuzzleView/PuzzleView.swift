@@ -20,10 +20,11 @@ class PuzzleView: UIView {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
         super.init(frame: .zero)
-        backgroundColor = UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
+        backgroundColor = .clear//UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
         
-        let backgroundImage = UIImage(imageLiteralResourceName: "sandBackground")
-        let backgroundImageView = UIImageView(image: backgroundImage)
+//        let backgroundImage = UIImage(imageLiteralResourceName: "sandBackground")
+//        let backgroundImageView = UIImageView(image: backgroundImage)
+        let backgroundImageView = player.randomMapThemeNew.getBackgroundImageView()
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundImageView)
         backgroundImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -40,7 +41,7 @@ class PuzzleView: UIView {
     func setupLabels(_ player: Player) {
 
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
-        currentScoreLabel.textColor = UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
+        currentScoreLabel.textColor = .black//UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(currentScoreLabel)
@@ -50,7 +51,7 @@ class PuzzleView: UIView {
         currentScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
         highScoreLabel.text = "High Score: \(player.highScore)"
-        highScoreLabel.textColor = UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
+        highScoreLabel.textColor = .black//UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(highScoreLabel)

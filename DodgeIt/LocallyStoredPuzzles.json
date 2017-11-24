@@ -35,7 +35,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 5,
+"lengthOfPuzzleCycle": 6,
 "safeHavens": {
 
 },
@@ -73,7 +73,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 15,
+"lengthOfPuzzleCycle": 20,
 "safeHavens": {
 
 },
@@ -188,7 +188,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 1.3,
+"lengthOfPuzzleCycle": 1.7,
 "safeHavens": {
 
 },
@@ -220,7 +220,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 1.3,
+"lengthOfPuzzleCycle": 1.5,
 "safeHavens": {
 
 },
@@ -264,7 +264,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 1.5,
+"lengthOfPuzzleCycle": 1.75,
 "safeHavens": {
 
 },
@@ -296,7 +296,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 1,
+"lengthOfPuzzleCycle": 2,
 "safeHavens": {
 
 },
@@ -334,7 +334,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 2.5,
+"lengthOfPuzzleCycle": 3,
 "safeHavens": {
 
 },
@@ -373,7 +373,7 @@
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
-"lengthOfPuzzleCycle": 1.5,
+"lengthOfPuzzleCycle": 2,
 "safeHavens": {
 
 },

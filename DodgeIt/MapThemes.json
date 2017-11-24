@@ -1,0 +1,24 @@
+[
+ {
+ "description": "Sand",
+ "id": "1",
+ "courseTiles": ["tileSand1", "tileSand2"],
+ "explosionTiles": "explosion",
+ "numberOfExplosionImages": 4,
+ "obstacleTiles": ["crateMetal", "crateWood"],
+ "backgroundImage": "sandBackground",
+ "isFreeMap": true
+ },
+ {
+ "description": "Grass",
+ "id": "2",
+ "courseTiles": ["tileGrass1", "tileGrass2"],
+ "explosionTiles": "explosion",
+ "numberOfExplosionImages": 4,
+ "obstacleTiles": ["crateMetal", "crateWood"],
+ "backgroundImage": "grassBackground",
+ "isFreeMap": true
+ }
+ 
+ 
+]

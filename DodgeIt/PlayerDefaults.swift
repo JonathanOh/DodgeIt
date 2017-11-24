@@ -75,4 +75,11 @@ class PlayerDefaults {
     func setAllUserSkinsByID(_ value: [String]) {
         defaults.set(value, forKey: "all_user_skins")
     }
+    func getAllUserMapsByID() -> [String] {
+        return defaults.object(forKey: "all_user_maps") as? [String] ?? ["1","2"]
+    }
+    func setAllUserMapsByID(_ value: [String]) {
+        defaults.set(value, forKey: "all_user_maps")
+    }
+
 }

@@ -41,11 +41,15 @@ class Player {
     private(set) var allUserSkins: [String] {
         didSet { PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins) }
     }
+    private(set) var allUserMaps: [String] {
+        didSet { PlayerDefaults.shared.setAllUserMapsByID(allUserMaps) }
+    }
     
     private var beginnerPuzzlesByID = [Int]()
     let mapThemes: [MapTheme]
     private(set) var randomMapTheme: MapTheme!
-
+    private(set) var randomMapThemeNew: MapThemeNew!
+    
     init() {
         let mapPath = Bundle.main.path(forResource: "LocallyStoredMapThemes", ofType: "json")
         let data = try! Data(contentsOf: URL(fileURLWithPath: mapPath!))
@@ -62,6 +66,7 @@ class Player {
         self.completedPuzzlesByID = playerDefaults.getCompletedPuzzlesByID()
         self.selectedSkinID = playerDefaults.getSelectedSkinID()
         self.allUserSkins = playerDefaults.getAllUserSkinsByID()
+        self.allUserMaps = playerDefaults.getAllUserMapsByID()
         if playerDefaults.getPoolOfPuzzlesByID().isEmpty {
             var puzzleIDs = [Int]()
             _ = poolOfPuzzles.possiblePuzzles.map { puzzleIDs.append($0.puzzleID) }
@@ -79,8 +84,9 @@ class Player {
     }
     
     func setNewMapTheme() {
-        let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
-        self.randomMapTheme = self.mapThemes[Int(randomNumber)]
+//        let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
+//        self.randomMapTheme = self.mapThemes[Int(randomNumber)]
+        self.randomMapThemeNew = PoolOfPossibleMapThemes.shared.getRandomUserOwnedMap()
     }
     
     func getNextLevelByID() -> Int {
@@ -198,6 +204,7 @@ class Player {
         PlayerDefaults.shared.setIsUserBeginner(isUserBeginner)
         PlayerDefaults.shared.setSelectedSkinID(selectedSkinID)
         PlayerDefaults.shared.setAllUserSkinsByID(allUserSkins)
+        PlayerDefaults.shared.setAllUserMapsByID(allUserMaps)
     }
     
 }
