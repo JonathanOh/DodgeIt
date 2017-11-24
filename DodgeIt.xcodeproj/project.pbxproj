@@ -43,9 +43,8 @@
 		8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDC81F992B0B00E791FA /* SquareData.swift */; };
 		8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */; };
 		8B6B06361FBBC0E900C98851 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B06351FBBC0E900C98851 /* StoreKit.framework */; };
-		8B6B06381FBCC7E300C98851 /* MapTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B06371FBCC7E300C98851 /* MapTheme.swift */; };
 		8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */; };
-		8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */; };
+		8BB3F3781FBCD1700051F779 /* XLocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* XLocallyStoredMapThemes.json */; };
 		8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3F3791FBD10550051F779 /* IAPHelper.swift */; };
 		8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */; };
 		8BB3F37E1FC3700F0051F779 /* PlayerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3F37D1FC3700F0051F779 /* PlayerDefaults.swift */; };
@@ -112,9 +111,8 @@
 		8B61DDC81F992B0B00E791FA /* SquareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareData.swift; sourceTree = "<group>"; };
 		8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		8B6B06351FBBC0E900C98851 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		8B6B06371FBCC7E300C98851 /* MapTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTheme.swift; sourceTree = "<group>"; };
 		8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
-		8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredMapThemes.json; sourceTree = "<group>"; };
+		8BB3F3771FBCD1700051F779 /* XLocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = XLocallyStoredMapThemes.json; sourceTree = "<group>"; };
 		8BB3F3791FBD10550051F779 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocallyStoredBeginnersPuzzles.json; sourceTree = "<group>"; };
 		8BB3F37D1FC3700F0051F779 /* PlayerDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDefaults.swift; sourceTree = "<group>"; };
@@ -243,7 +241,7 @@
 				8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */,
 				847B1CBB1FC2B87000BC6882 /* Characters.json */,
 				8BB3F37B1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json */,
-				8BB3F3771FBCD1700051F779 /* LocallyStoredMapThemes.json */,
+				8BB3F3771FBCD1700051F779 /* XLocallyStoredMapThemes.json */,
 				84BA58641FC7E03A009F5BFB /* MapThemes.json */,
 				8B1DA6B11FA3D76100C10ABE /* TestingConstants.swift */,
 				8B61DD9F1F97F6FD00E791FA /* Assets.xcassets */,
@@ -274,7 +272,6 @@
 				8B61DDB01F98017800E791FA /* Puzzle.swift */,
 				8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */,
 				8BF18F8B1FA3FB6B00FC1FF4 /* Player.swift */,
-				8B6B06371FBCC7E300C98851 /* MapTheme.swift */,
 				84BA58661FC7E113009F5BFB /* MapThemeNew.swift */,
 				847B1CBD1FC2B99500BC6882 /* Character.swift */,
 				847B1CBF1FC2BAA300BC6882 /* PoolOfPossibleCharacters.swift */,
@@ -410,7 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */,
-				8BB3F3781FBCD1700051F779 /* LocallyStoredMapThemes.json in Resources */,
+				8BB3F3781FBCD1700051F779 /* XLocallyStoredMapThemes.json in Resources */,
 				84BA58651FC7E03A009F5BFB /* MapThemes.json in Resources */,
 				8B61DDA31F97F6FD00E791FA /* LaunchScreen.storyboard in Resources */,
 				847B1CBC1FC2B87000BC6882 /* Characters.json in Resources */,
@@ -541,7 +538,6 @@
 				8BF18F8C1FA3FB6B00FC1FF4 /* Player.swift in Sources */,
 				8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */,
 				8B61DDB71F98089C00E791FA /* Extensions.swift in Sources */,
-				8B6B06381FBCC7E300C98851 /* MapTheme.swift in Sources */,
 				847B1CB81FC2741D00BC6882 /* CoinView.swift in Sources */,
 				8B1C82AD1FB62E6300A0D100 /* Constants.swift in Sources */,
 				847B1CBE1FC2B99500BC6882 /* Character.swift in Sources */,

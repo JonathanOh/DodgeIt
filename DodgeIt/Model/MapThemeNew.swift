@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapThemeNew: Codable {
+class MapTheme: Codable {
     let description: String
     let id: String
     let courseTiles: [String]

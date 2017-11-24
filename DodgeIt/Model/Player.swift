@@ -46,15 +46,9 @@ class Player {
     }
     
     private var beginnerPuzzlesByID = [Int]()
-    let mapThemes: [MapTheme]
     private(set) var randomMapTheme: MapTheme!
-    private(set) var randomMapThemeNew: MapThemeNew!
     
     init() {
-        let mapPath = Bundle.main.path(forResource: "LocallyStoredMapThemes", ofType: "json")
-        let data = try! Data(contentsOf: URL(fileURLWithPath: mapPath!))
-        self.mapThemes = try! JSONDecoder().decode([MapTheme].self, from: data)
-        
         let playerDefaults = PlayerDefaults.shared
         self.isUserBeginner = playerDefaults.getIsUserBeginner()
         playerDefaults.setIsUserBeginner(self.isUserBeginner)
@@ -84,9 +78,7 @@ class Player {
     }
     
     func setNewMapTheme() {
-//        let randomNumber = arc4random_uniform(UInt32(self.mapThemes.count))
-//        self.randomMapTheme = self.mapThemes[Int(randomNumber)]
-        self.randomMapThemeNew = PoolOfPossibleMapThemes.shared.getRandomUserOwnedMap()
+        self.randomMapTheme = PoolOfPossibleMapThemes.shared.getRandomUserOwnedMap()
     }
     
     func getNextLevelByID() -> Int {

@@ -26,31 +26,15 @@ class SquareView: UIView {
         self.location = location
         self.locationStringValue = "\(location.0),\(location.1)"
         super.init(frame: .zero)
-//        layer.borderWidth = 1
- //       layer.cornerRadius = CGFloat(currentPuzzle.squareWidth) / 6
-//        layer.borderColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.backgroundColor)?.cgColor//CONSTANTS.COLORS.BACKGROUND_VIEW.cgColor//UIColor.black.cgColor
-        //backgroundColor = isObstacle() ? UIColor.getRGBFromArray(currentPlayer.randomMapTheme.obstacleColor)! : UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)!//CONSTANTS.COLORS.OBSTACLE : CONSTANTS.COLORS.PUZZLE_SQUARE
         backgroundColor = .clear
-        if isSafe() {
-            backgroundColor = .clear//UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)//CONSTANTS.COLORS.PUZZLE_CONTAINER_VIEW
-            layer.borderWidth = 0
-        }
+        if isSafe() {}
         
         if isObstacle() {
-//            let woodObstacle = UIImage(imageLiteralResourceName: "crateWood")
-//            let metalObstacle = UIImage(imageLiteralResourceName: "crateMetal")
-//            let array = [woodObstacle, metalObstacle]
-//            let obstacleImage = array[Int.randomUpTo(2)]
-//            let obstacleImageView = UIImageView(image: obstacleImage)
-            let obstacleImageView = currentPlayer.randomMapThemeNew.getObstacleTileImageView()
+            let obstacleImageView = currentPlayer.randomMapTheme.getObstacleTileImageView()
             addSubview(obstacleImageView)
             obstacleImageView.constrainFullyToSuperView()
         } else {
-//            let grassTileOne = UIImage(imageLiteralResourceName: "tileSand1")
-//            let grassTileTwo = UIImage(imageLiteralResourceName: "tileSand2")
-//            let grassCollection = [grassTileOne, grassTileTwo]
-//            let grassImageView = UIImageView(image: grassCollection[Int.randomUpTo(2)])
-            let grassImageView = currentPlayer.randomMapThemeNew.getCourseTileImageView()
+            let grassImageView = currentPlayer.randomMapTheme.getCourseTileImageView()
             addSubview(grassImageView)
             grassImageView.constrainFullyToSuperView()
         }
@@ -83,23 +67,10 @@ class SquareView: UIView {
     
     func explode() {
         if isSafe() || isObstacle() { return }
-//        backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.explosionColor)//CONSTANTS.COLORS.PUZZLE_SQUARE_EXPLOSION
-//        UIView.animate(withDuration: 0.3, delay: 0.1, options: [UIViewAnimationOptions.allowUserInteraction], animations: { [weak self] in
-//            self?.backgroundColor = UIColor.getRGBFromArray(self!.currentPlayer.randomMapTheme.courseColor)//CONSTANTS.COLORS.PUZZLE_SQUARE
-//        }, completion: nil)
-//        let explosion1 = UIImage(imageLiteralResourceName: "explosion1")
-//        let explosion2 = UIImage(imageLiteralResourceName: "explosion2")
-//        let explosion3 = UIImage(imageLiteralResourceName: "explosion3")
-//        let explosion4 = UIImage(imageLiteralResourceName: "explosion4")
-//        let explosionAnimationImageView = UIImageView()//UIImageView(image: UIImage(imageLiteralResourceName: "explosion3"))
-//        explosionAnimationImageView.animationImages = [explosion1, explosion2, explosion3, explosion4]
-//        explosionAnimationImageView.animationRepeatCount = 1
-//        explosionAnimationImageView.animationDuration = 0.4
-        let explosionAnimationImageView = currentPlayer.randomMapThemeNew.getExplosionAnimatedImageView()
+        let explosionAnimationImageView = currentPlayer.randomMapTheme.getExplosionAnimatedImageView()
         addSubview(explosionAnimationImageView)
         explosionAnimationImageView.startAnimating()
         explosionAnimationImageView.constrainFullyToSuperView()
-        //layoutIfNeeded()
     }
     
 }

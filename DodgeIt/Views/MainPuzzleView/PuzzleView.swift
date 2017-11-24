@@ -20,11 +20,9 @@ class PuzzleView: UIView {
         self.currentPuzzle = currentPuzzle
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
         super.init(frame: .zero)
-        backgroundColor = .clear//UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
+        backgroundColor = .clear
         
-//        let backgroundImage = UIImage(imageLiteralResourceName: "sandBackground")
-//        let backgroundImageView = UIImageView(image: backgroundImage)
-        let backgroundImageView = player.randomMapThemeNew.getBackgroundImageView()
+        let backgroundImageView = player.randomMapTheme.getBackgroundImageView()
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundImageView)
         backgroundImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
