@@ -27,7 +27,8 @@ class GridContainerView: UIView {
         self.squareData = SquareData(matrix: GridContainerView.generateSquareViews(currentPuzzle: currentPuzzle, currentPlayer: currentPlayer))
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)
+        //backgroundColor = UIColor.getRGBFromArray(currentPlayer.randomMapTheme.courseColor)
+        backgroundColor = .clear
         addAllSquareViews(self.squareData.matrix)
         applyExplosions()
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)

@@ -197,9 +197,11 @@ class MenuViewController: UIViewController {
     }
     @objc func didTapRemoveAds() {
         print("remove ads tapped!")
+        let loadingView = FullPageLoadingIndicator(viewController: self)
+        loadingView.startLoading()
         IAPHandler.shared.purchaseMyProduct(productIdentifier: "adRemovalPurchase")
         IAPHandler.shared.purchaseStatusBlock = { purchaseType in
-
+            loadingView.stopLoading()
         }
         
     }

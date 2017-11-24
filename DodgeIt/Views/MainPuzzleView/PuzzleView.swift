@@ -21,6 +21,17 @@ class PuzzleView: UIView {
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
         super.init(frame: .zero)
         backgroundColor = UIColor.getRGBFromArray(player.randomMapTheme.backgroundColor)//CONSTANTS.COLORS.BACKGROUND_VIEW
+        
+        let backgroundImage = UIImage(imageLiteralResourceName: "sandBackground")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(backgroundImageView)
+        backgroundImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+
+        
         setupContainerViewWith(puzzle: currentPuzzle)
         setupLabels(player)
         //setupArrowPad()

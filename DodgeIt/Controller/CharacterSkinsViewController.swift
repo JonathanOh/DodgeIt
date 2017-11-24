@@ -84,26 +84,30 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
     }
     func didTapRealMoneyPurchaseButton(character: Character) {
         print("money")
+        let loadingView = FullPageLoadingIndicator(viewController: self)
+        loadingView.startLoading()
         print(character.character_name)
         IAPHandler.shared.purchaseMyProduct(productIdentifier: character.product_id)
         IAPHandler.shared.purchaseStatusBlock = { [weak self] alertType in
+            loadingView.stopLoading()
             switch alertType {
             case .purchased:
                 self?.currentPlayer?.playerDidPurchaseSkin(character, wasRealMoneyPurchase: true)
                 DispatchQueue.main.async { [weak self] in
                     self?.characterSkinTableView.reloadData()
+                    self?.fadeInCongratsView(character)
                 }
             case .restored:
                 self?.currentPlayer?.playerDidPurchaseSkin(character, wasRealMoneyPurchase: true)
                 DispatchQueue.main.async { [weak self] in
                     self?.characterSkinTableView.reloadData()
+                    self?.fadeInCongratsView(character)
                 }
             case .failed:
                 print("failed!!!!!")
             case .disabled:
                 print("disabled!!!")
             }
-            self?.fadeInCongratsView(character)
         }
     }
     func didTapCoinPurchaseButton(character: Character) {
