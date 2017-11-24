@@ -38,6 +38,9 @@ extension Int {
             return String(self)
         }
     }
+    static func randomUpTo(_ int: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(int)))
+    }
 }
 
 extension Array {
@@ -86,6 +89,15 @@ extension UIView {
             viewsDictionary["v\(index)"] = view
         }
         NSLayoutConstraint.constraints(withVisualFormat: vfl, metrics: nil, views: viewsDictionary)
+    }
+    func constrainFullyToSuperView() {
+        if let superExists = superview {
+            translatesAutoresizingMaskIntoConstraints = false
+            topAnchor.constraint(equalTo: superExists.topAnchor).isActive = true
+            rightAnchor.constraint(equalTo: superExists.rightAnchor).isActive = true
+            bottomAnchor.constraint(equalTo: superExists.bottomAnchor).isActive = true
+            leftAnchor.constraint(equalTo: superExists.leftAnchor).isActive = true
+        }
     }
 }
 
