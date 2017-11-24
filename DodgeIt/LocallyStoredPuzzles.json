@@ -31,7 +31,7 @@
 },
 {
 "puzzleID": 101,
-"difficulty": 5,
+"difficulty": 4,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -184,7 +184,7 @@
 },
 {
 "puzzleID": 105,
-"difficulty": 7,
+"difficulty": 6,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -216,7 +216,7 @@
 },
 {
 "puzzleID": 106,
-"difficulty": 5,
+"difficulty": 4,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -260,7 +260,7 @@
 },
 {
 "puzzleID": 107,
-"difficulty": 7,
+"difficulty": 6,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -292,7 +292,7 @@
 },
 {
 "puzzleID": 108,
-"difficulty": 6,
+"difficulty": 5,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -330,7 +330,7 @@
 },
 {
 "puzzleID": 109,
-"difficulty": 8,
+"difficulty": 7,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,
@@ -369,7 +369,7 @@
 },
 {
 "puzzleID": 110,
-"difficulty": 5,
+"difficulty": 4,
 "totalWidth": 1,
 "numberOfCellsInWidth": 10,
 "numberOfCellsInHeight": 10,

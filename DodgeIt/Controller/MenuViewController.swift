@@ -121,7 +121,7 @@ class MenuViewController: UIViewController {
     func setupTitleLabel() {
         //let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Splodey Blocks"
+        titleLabel.text = "Splodey Bound"
         titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
