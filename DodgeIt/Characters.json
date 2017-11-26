@@ -47,5 +47,65 @@
  "coinCost": 5000,
  "moneyCost": "$0.99"
  },
+ {
+ "character_id": "4",
+ "product_id": "RedEyeNinja3",
+ "character_name": "Red Eye Ninja",
+ "right_facing_asset_name_literal": "Red_Eye_Ninja_000",
+ "number_of_images": 12,
+ "yOffsetConstant": -5,
+ "widthMultiplier": 1.8,
+ "heightMultiplier": 1.8,
+ "coinCost": 20000,
+ "moneyCost": "$4.99"
+ },
+ {
+ "character_id": "5",
+ "product_id": "BowlHairNinja3",
+ "character_name": "Bowl Hair Ninja",
+ "right_facing_asset_name_literal": "Bowl_Hair_Ninja_000",
+ "number_of_images": 12,
+ "yOffsetConstant": -5,
+ "widthMultiplier": 1.8,
+ "heightMultiplier": 1.8,
+ "coinCost": 20000,
+ "moneyCost": "$4.99"
+ },
+ {
+ "character_id": "6",
+ "product_id": "HammaTime6",
+ "character_name": "Hamma Time",
+ "right_facing_asset_name_literal": "Hamma_Time_000",
+ "number_of_images": 16,
+ "yOffsetConstant": -5,
+ "widthMultiplier": 1.4,
+ "heightMultiplier": 1.4,
+ "coinCost": 5000,
+ "moneyCost": "$0.99"
+ },
+ {
+ "character_id": "7",
+ "product_id": "Samurai7",
+ "character_name": "Samurai",
+ "right_facing_asset_name_literal": "Samurai_000",
+ "number_of_images": 12,
+ "yOffsetConstant": -5,
+ "widthMultiplier": 1.8,
+ "heightMultiplier": 1.8,
+ "coinCost": 2500,
+ "moneyCost": "$0.99"
+ },
+ {
+ "character_id": "8",
+ "product_id": "Brainsss8",
+ "character_name": "Brainsss",
+ "right_facing_asset_name_literal": "Brainsss_000",
+ "number_of_images": 18,
+ "yOffsetConstant": -5,
+ "widthMultiplier": 1.8,
+ "heightMultiplier": 1.8,
+ "coinCost": 10000,
+ "moneyCost": "$1.99"
+ },
 
 ]

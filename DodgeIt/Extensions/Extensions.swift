@@ -99,6 +99,63 @@ extension UIView {
             leftAnchor.constraint(equalTo: superExists.leftAnchor).isActive = true
         }
     }
+    
+    @discardableResult
+    func constrainTopTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = topAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainRightTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = rightAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainBottomTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = bottomAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainLeftTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = leftAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainWidthTo(dimension: NSLayoutDimension, multiplier: CGFloat = 1) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = widthAnchor.constraint(equalTo: dimension, multiplier: multiplier)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainHeightTo(dimension: NSLayoutDimension, multiplier: CGFloat = 1) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = heightAnchor.constraint(equalTo: dimension , multiplier: multiplier)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainCenterXTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = centerXAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
+    @discardableResult
+    func constrainCenterYTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        let anchor = centerYAnchor.constraint(equalTo: anchor, constant: constant)
+        anchor.isActive = true
+        return anchor
+    }
 }
 
 extension MutableCollection {

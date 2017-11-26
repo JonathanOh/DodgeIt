@@ -71,7 +71,7 @@ class IAPHandler: NSObject {
     func fetchAvailableProducts(){
         
         // Put here your IAP Products ID's
-        let productIdentifiers = NSSet(objects: "adRemovalPurchase", "GrimReaper3", "Nubis1", "Pat2")//NSSet(objects: CONSUMABLE_PURCHASE_PRODUCT_ID,NON_CONSUMABLE_PURCHASE_PRODUCT_ID)
+        let productIdentifiers = NSSet(objects: "adRemovalPurchase", "GrimReaper3", "Nubis1", "Pat2","RedEyeNinja3","BowlHairNinja3","HammaTime6","Samurai7","Brainsss8")//NSSet(objects: CONSUMABLE_PURCHASE_PRODUCT_ID,NON_CONSUMABLE_PURCHASE_PRODUCT_ID)
         
         productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         productsRequest.delegate = self

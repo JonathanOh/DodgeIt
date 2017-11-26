@@ -37,7 +37,7 @@ class MenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupPlayer()
         setupViews()
-        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         IAPHandler.shared.fetchAvailableProducts()
         IAPHandler.shared.purchaseStatusBlock = {[weak self] (type) in
             guard let strongSelf = self else { return }
@@ -193,7 +193,8 @@ class MenuViewController: UIViewController {
         puzzleVC = PuzzleViewController()
         puzzleVC?.player = currentPlayer
         puzzleVC?.newGameSetup()
-        present(puzzleVC!, animated: true, completion: nil)
+        navigationController?.pushViewController(puzzleVC!, animated: true)
+        //present(puzzleVC!, animated: true, completion: nil)
     }
     @objc func didTapRemoveAds() {
         print("remove ads tapped!")

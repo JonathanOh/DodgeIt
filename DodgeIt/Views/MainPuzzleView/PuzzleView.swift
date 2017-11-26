@@ -15,9 +15,12 @@ class PuzzleView: UIView {
     let highScoreLabel = UILabel()
     let livesRemainingLabel = UILabel()
     let arrowPadView = ArrowPadView()
+    let currentPlayer: Player
+    private(set) var scoreBoardView: PuzzleScoreBoardView?
     
     init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
+        self.currentPlayer = player
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
         super.init(frame: .zero)
         backgroundColor = .clear
@@ -32,8 +35,25 @@ class PuzzleView: UIView {
 
         
         setupContainerViewWith(puzzle: currentPuzzle)
-        setupLabels(player)
-        //setupArrowPad()
+        //setupLabels(player)
+        setupScoreBoardView()
+    }
+    
+    func setupScoreBoardView() {
+        scoreBoardView = PuzzleScoreBoardView(currentPlayer: currentPlayer)
+        guard let scoreBoardView = scoreBoardView else { return }
+        addSubview(scoreBoardView)
+        scoreBoardView.layer.cornerRadius = 15
+        scoreBoardView.layer.shadowColor = UIColor.black.cgColor
+        scoreBoardView.layer.shadowOpacity = 1
+        scoreBoardView.layer.shadowOffset = CGSize.zero
+        scoreBoardView.layer.shadowRadius = 5
+        scoreBoardView.backgroundColor = .clear
+        
+        scoreBoardView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        scoreBoardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        scoreBoardView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        scoreBoardView.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     func setupLabels(_ player: Player) {

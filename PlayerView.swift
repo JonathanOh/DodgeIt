@@ -22,7 +22,7 @@ class PlayerView: UIView {
     let squareData: SquareData
     let startingLocation: CGPoint
     let swipeDirections: [UISwipeGestureRecognizerDirection] = [.up, .right, .down, .left]
-    private var characterImageView = CharacterImageView(characterID: "0")
+    private(set) var characterImageView = CharacterImageView(characterID: "0")
     let characterID: String
     weak private var boundingView: UIView?
     
@@ -37,18 +37,26 @@ class PlayerView: UIView {
         
         super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: height)))
         center = startingLocation
-
-        characterImageView = CharacterImageView(characterID: characterID)
-        let character = PoolOfPossibleCharacters.shared.getCharacterByID(characterID)!
+        
+        setupCharacterImageView(id: characterID, center: nil)
+        }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCharacterImageView(id: String, center: CGPoint?) {
+        characterImageView.removeFromSuperview()
+        characterImageView = CharacterImageView(characterID: id)
+        let character = PoolOfPossibleCharacters.shared.getCharacterByID(id)!
         addSubview(characterImageView)
         characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
         characterImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: CGFloat(character.yOffsetConstant)).isActive = true
         characterImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(character.widthMultiplier)).isActive = true
         characterImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: CGFloat(character.heightMultiplier)).isActive = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        if let center = center {
+            characterImageView.center = center
+        }
     }
     
     func move(_ direction: UISwipeGestureRecognizerDirection) {

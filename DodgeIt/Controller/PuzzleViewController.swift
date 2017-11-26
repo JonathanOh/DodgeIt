@@ -35,6 +35,7 @@ class PuzzleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         setupPlayerView(squareData: dataOfSquares, puzzle: puzzleLevel)
     }
     
@@ -59,12 +60,15 @@ class PuzzleViewController: UIViewController {
             currentPuzzleView.gridContainerView.player = playerView
             currentPuzzleView.gridContainerView.mainView = currentPuzzleView
             view.addSubview(playerView ?? UIView())
+        } else {
+            playerView?.setupCharacterImageView(id: player!.selectedSkinID, center: playerView!.center)
         }
     }
     
     func setupPuzzleProperties(_ nextPuzzle: NextPuzzle) {
         puzzleLevel = nextPuzzle.puzzle
         currentPuzzleView = nextPuzzle.puzzleView
+        currentPuzzleView.scoreBoardView?.buttonDelegate = self
         currentPuzzleView.arrowPadView.arrowDelegate = self
         currentPuzzleView.gridContainerView.playerEventDelegate = self
         dataOfSquares = nextPuzzle.squareData
@@ -94,7 +98,8 @@ class PuzzleViewController: UIViewController {
         replacePlayerViewWithBloodSplat()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] (timer) in
             self!.player!.resetPlayer()
-            self!.dismiss(animated: true, completion: nil)
+            self!.navigationController?.popViewController(animated: true)
+            //self!.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -125,6 +130,7 @@ extension PuzzleViewController: VictoryDelegate {
             nextLevel.puzzleView.frame = CGRect(x: 0, y: 0, width: weakSelf.view.frame.width, height: weakSelf.view.frame.height)
         }) { [weak self] completed in
             self!.currentPuzzleView.removeFromSuperview()
+            self!.currentPuzzleView = nil
             print("player won from VC.")
             self!.setupPuzzleProperties(nextLevel)
             self!.playerView?.removeFromSuperview()
@@ -186,5 +192,16 @@ extension PuzzleViewController: ArrowDirectionEventDelegate {
         case .left:
             playerView?.move(.left)
         }
+    }
+}
+
+extension PuzzleViewController: ScoreBoardButtonDelegate {
+    func tappedMenu() {
+        navigationController?.popViewController(animated: true)
+    }
+    func tappedStore() {
+        let store = CharacterSkinsViewController()
+        store.currentPlayer = player
+        navigationController?.pushViewController(store, animated: true)
     }
 }
