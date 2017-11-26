@@ -98,6 +98,8 @@ class PuzzleViewController: UIViewController {
         replacePlayerViewWithBloodSplat()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] (timer) in
             self!.player!.resetPlayer()
+            self!.currentPuzzleView.removeFromSuperview()
+            self!.currentPuzzleView = nil
             self!.navigationController?.popViewController(animated: true)
             //self!.dismiss(animated: true, completion: nil)
         }
@@ -200,6 +202,7 @@ extension PuzzleViewController: ScoreBoardButtonDelegate {
         navigationController?.popViewController(animated: true)
     }
     func tappedStore() {
+        playerView?.center = playerView!.startingLocation
         let store = CharacterSkinsViewController()
         store.currentPlayer = player
         navigationController?.pushViewController(store, animated: true)
