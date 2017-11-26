@@ -17,13 +17,19 @@ class MenuButton: UIButton {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         addTarget(target, action: action, for: .touchUpInside)
-        layer.cornerRadius = 5
+        layer.cornerRadius = 2
         setTitle(buttonTitle ?? "", for: .normal)
         setTitleColor(.black, for: .normal)
         backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         widthAnchor.constraint(equalToConstant: 200).isActive = true
         heightAnchor.constraint(equalToConstant: 50).isActive = true
         setupButtonImage()
+        
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 2
     }
     
     func setupButtonImage() {

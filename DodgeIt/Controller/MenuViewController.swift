@@ -32,7 +32,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //135-206-250
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         print("im game over bros!")
         // Do any additional setup after loading the view.
         setupPlayer()
@@ -123,7 +123,7 @@ class MenuViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Splodey Bound"
         titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
-        titleLabel.textColor = .white
+        titleLabel.textColor = .black
         titleLabel.textAlignment = .center
         
         view.addSubview(titleLabel)
@@ -141,9 +141,9 @@ class MenuViewController: UIViewController {
     
     func setupMenuButtons() {
         updatePlayButton()
-        let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads", buttonImage: nil)
+        //let removeAdsButton = MenuButton(target: self, action: #selector(didTapRemoveAds), buttonTitle: "Remove Ads", buttonImage: nil)
         
-        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, removeAdsButton, characterSkinButton])
+        let menuButtonStackView = UIStackView(arrangedSubviews: [playButton, /*removeAdsButton,*/ characterSkinButton])
         menuButtonStackView.axis = .vertical
         menuButtonStackView.alignment = .center
         menuButtonStackView.distribution = .equalSpacing
@@ -152,31 +152,63 @@ class MenuViewController: UIViewController {
         view.addSubview(menuButtonStackView)
         
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        menuButtonStackView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        menuButtonStackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150).isActive = true
         
         setupScoreLabels()
+        
+        setupBottomMenuButton()
+    }
+    
+    func setupBottomMenuButton() {
+        let underlineAttribute = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        
+        let removeAdsAttributedTitle = NSAttributedString(string: "Remove Ads", attributes: underlineAttribute)
+        let removeAdsButton = UIButton()
+        removeAdsButton.addTarget(self, action: #selector(didTapRemoveAds), for: .touchUpInside)
+        removeAdsButton.backgroundColor = .white
+        removeAdsButton.setTitleColor(.black, for: .normal)
+        removeAdsButton.setAttributedTitle(removeAdsAttributedTitle, for: .normal)
+        view.addSubview(removeAdsButton)
+        removeAdsButton.constrainRightTo(anchor: view.rightAnchor, constant: -8)
+        removeAdsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        removeAdsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
+        removeAdsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
+        
+        let rateUsAttributedTitle = NSAttributedString(string: "Rate us!", attributes: underlineAttribute)
+        let rateUsButton = UIButton()
+        rateUsButton.addTarget(self, action: #selector(didTapRateOnAppStore), for: .touchUpInside)
+        rateUsButton.backgroundColor = .white
+        rateUsButton.setTitleColor(.black, for: .normal)
+        rateUsButton.setAttributedTitle(rateUsAttributedTitle, for: .normal)
+        view.addSubview(rateUsButton)
+        rateUsButton.constrainLeftTo(anchor: view.leftAnchor, constant: 8)
+        rateUsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        rateUsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
+        rateUsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
     }
     
     func setupScoreLabels() {
         currentScoreLabel.textAlignment = .center
+        currentScoreLabel.backgroundColor = .black
         currentScoreLabel.textColor = .white
         currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         view.addSubview(currentScoreLabel)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        currentScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width * 0.9).isActive = true
-        currentScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        currentScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        currentScoreLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         currentScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         currentScoreLabel.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -35).isActive = true
         
         highScoreLabel.textAlignment = .center
+        highScoreLabel.backgroundColor = .black
         highScoreLabel.textColor = .white
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
         view.addSubview(highScoreLabel)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        highScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width * 0.9).isActive = true
-        highScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        highScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        highScoreLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         highScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         highScoreLabel.bottomAnchor.constraint(equalTo: currentScoreLabel.topAnchor, constant: -10).isActive = true
         
@@ -204,7 +236,9 @@ class MenuViewController: UIViewController {
         IAPHandler.shared.purchaseStatusBlock = { purchaseType in
             loadingView.stopLoading()
         }
-        
+    }
+    @objc func didTapRateOnAppStore() {
+        print("rate on app store tapped!")
     }
     
     

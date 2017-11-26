@@ -14,7 +14,7 @@ class CoinView: UIView {
     let numberOfCoins: Int
     let numberOfCoinsLabel = UILabel()
     private var font = UIFont(name: "HelveticaNeue-Thin", size: 50)
-    private var textColor: UIColor = .white
+    private var textColor: UIColor = .black
     
     init(numberOfCoins: Int, textFont: UIFont?, fontColor: UIColor?) {
         self.numberOfCoins = numberOfCoins
