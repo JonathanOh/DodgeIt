@@ -98,9 +98,11 @@ class PuzzleViewController: UIViewController {
         replacePlayerViewWithBloodSplat()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] (timer) in
             self!.player!.resetPlayer()
-            self!.currentPuzzleView.removeFromSuperview()
-            self!.currentPuzzleView = nil
             self!.navigationController?.popViewController(animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] (timer) in
+                self!.currentPuzzleView.removeFromSuperview()
+                self!.currentPuzzleView = nil
+            }
             //self!.dismiss(animated: true, completion: nil)
         }
     }
