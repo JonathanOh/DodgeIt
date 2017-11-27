@@ -71,6 +71,9 @@ class SquareView: UIView {
         addSubview(explosionAnimationImageView)
         explosionAnimationImageView.startAnimating()
         explosionAnimationImageView.constrainFullyToSuperView()
+        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { (timer) in
+            explosionAnimationImageView.removeFromSuperview()
+        }
     }
     
 }

@@ -10,6 +10,8 @@ import UIKit
 
 struct CONSTANTS {
     private init() {}
+    static let APP_APPLE_ID: String = "id1313086332"
+    
     struct GOOGLE_SERVICES {
         struct ADS {
             static let AD_MOB_APP_ID = "ca-app-pub-2890175151799850~5941100437"

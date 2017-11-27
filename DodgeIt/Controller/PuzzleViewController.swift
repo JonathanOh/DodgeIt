@@ -48,6 +48,7 @@ class PuzzleViewController: UIViewController {
             player = Player()
         }
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
+        nextLevel.puzzleView.puzzleVC = self
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
         setupPuzzleProperties(nextLevel)
     }
@@ -127,6 +128,7 @@ extension PuzzleViewController: VictoryDelegate {
         setupGoogleAdAfterLevelDone()
         player?.playerCompletedCurrent(puzzle: puzzleLevel)
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
+        nextLevel.puzzleView.puzzleVC = self
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: false)
         UIView.animate(withDuration: 1.5, animations: { [weak self] in
             guard let weakSelf = self else { return }
@@ -143,9 +145,13 @@ extension PuzzleViewController: VictoryDelegate {
         }
     }
     func setupGoogleAdAfterLevelDone() {
-        googleAd.getInterstitialIfReady()?.present(fromRootViewController: self)
-        googleAd = GoogleAdService()
-        googleAd.startTimer()
+//        if let interstitial = googleAd.getInterstitialIfReady() {
+//            interstitial.delegate = self
+//            interstitial.present(fromRootViewController: self)
+//        }
+//        googleAd = nil
+//        googleAd = GoogleAdService()
+//        googleAd.startTimer()
     }
 }
 

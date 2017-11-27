@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class PuzzleView: UIView {
     let currentPuzzle: Puzzle
@@ -16,12 +17,22 @@ class PuzzleView: UIView {
     let livesRemainingLabel = UILabel()
     let arrowPadView = ArrowPadView()
     let currentPlayer: Player
+    let userPurchasedAdRemoval: Bool
+    
+    weak var puzzleVC: PuzzleViewController? {
+        didSet {
+            setupGoogleBannerView()
+        }
+    }
+    private(set) var bannerView: GADBannerView!
+    
     private(set) var scoreBoardView: PuzzleScoreBoardView?
     
     init(currentPuzzle: Puzzle, player: Player) {
         self.currentPuzzle = currentPuzzle
         self.currentPlayer = player
         self.gridContainerView = GridContainerView(currentPuzzle: currentPuzzle, currentPlayer: player)
+        self.userPurchasedAdRemoval = UserDefaults.standard.object(forKey: "adRemovalPurchase") as? Bool ?? false
         super.init(frame: .zero)
         backgroundColor = .clear
         
@@ -35,8 +46,24 @@ class PuzzleView: UIView {
 
         
         setupContainerViewWith(puzzle: currentPuzzle)
-        //setupLabels(player)
+        //setupGoogleBannerView()
         setupScoreBoardView()
+    }
+    
+
+    
+    func setupGoogleBannerView() {
+        if userPurchasedAdRemoval { return }
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.rootViewController = puzzleVC
+        bannerView.adUnitID = "ca-app-pub-2890175151799850/7481905050"
+        addSubview(bannerView)
+//        bannerView.constrainLeftTo(anchor: leftAnchor)
+//        bannerView.constrainRightTo(anchor: rightAnchor)
+        bannerView.constrainCenterXTo(anchor: centerXAnchor)
+        bannerView.constrainBottomTo(anchor: bottomAnchor)
+ //       bannerView.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        bannerView.load(GADRequest())
     }
     
     func setupScoreBoardView() {
@@ -51,7 +78,7 @@ class PuzzleView: UIView {
         scoreBoardView.backgroundColor = .clear
         
         scoreBoardView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
-        scoreBoardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        scoreBoardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: userPurchasedAdRemoval ? -8 : -58).isActive = true
         scoreBoardView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         scoreBoardView.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }

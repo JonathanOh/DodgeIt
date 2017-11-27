@@ -176,7 +176,7 @@ class MenuViewController: UIViewController {
         removeAdsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
         removeAdsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
-        let rateUsAttributedTitle = NSAttributedString(string: "Rate us!", attributes: underlineAttribute)
+        let rateUsAttributedTitle = NSAttributedString(string: "Rate Us!", attributes: underlineAttribute)
         let rateUsButton = UIButton()
         rateUsButton.addTarget(self, action: #selector(didTapRateOnAppStore), for: .touchUpInside)
         rateUsButton.backgroundColor = .white
@@ -239,6 +239,9 @@ class MenuViewController: UIViewController {
     }
     @objc func didTapRateOnAppStore() {
         print("rate on app store tapped!")
+        AppDelegate.rateApp(appId: CONSTANTS.APP_APPLE_ID) { (completed) in
+            print("success!! on tapping rate app!")
+        }
     }
     
     

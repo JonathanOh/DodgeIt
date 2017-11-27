@@ -25,6 +25,10 @@ class GoogleAdService: NSObject, GADInterstitialDelegate {
         interstitial.load(request)
     }
     
+    deinit {
+        print("interstitial deinit!")
+    }
+    
     func startTimer() {
         elapsedTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
