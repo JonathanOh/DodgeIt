@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol UserSkillDelegate {
+    func userIsNoLongerBeginner()
+}
 // current score, high score, lives remaining, [pool of puzzlesbyid], [completedpuzzlesbyid], current puzzle
 
 class Player {
     //let playerID: String
     let poolOfPuzzles = PoolOfPossiblePuzzles(viewsWidth: Double(UIScreen.main.bounds.width))
     static let playerLostNotification: String = "playerLostNotification"
+    var userSkillDelegate: UserSkillDelegate?
     private(set) var currentScore: Int {
         didSet { PlayerDefaults.shared.setCurrentScoreTo(currentScore) }
     }
@@ -33,7 +37,12 @@ class Player {
         didSet { PlayerDefaults.shared.setPlayerCoins(playerCoins) }
     }
     private(set) var isUserBeginner: Bool {
-        didSet { PlayerDefaults.shared.setIsUserBeginner(isUserBeginner) }
+        didSet {
+            if isUserBeginner == false {
+                userSkillDelegate?.userIsNoLongerBeginner()
+            }
+            PlayerDefaults.shared.setIsUserBeginner(isUserBeginner)
+        }
     }
     private(set) var selectedSkinID: String {
         didSet { PlayerDefaults.shared.setSelectedSkinID(selectedSkinID) }

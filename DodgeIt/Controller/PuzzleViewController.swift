@@ -47,6 +47,9 @@ class PuzzleViewController: UIViewController {
         if player == nil {
             player = Player()
         }
+        if player?.userSkillDelegate == nil {
+            player?.userSkillDelegate = self
+        }
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
         nextLevel.puzzleView.puzzleVC = self
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
@@ -214,5 +217,18 @@ extension PuzzleViewController: ScoreBoardButtonDelegate {
         let store = CharacterSkinsViewController()
         store.currentPlayer = player
         navigationController?.pushViewController(store, animated: true)
+    }
+}
+
+extension PuzzleViewController: UserSkillDelegate {
+    func userIsNoLongerBeginner() {
+        print("woo hoo, a professional NOW!")
+        let notABeginnerView = UserIsNotBeginnerView()
+        let applicationWindow = UIApplication.shared.keyWindow
+        applicationWindow?.addSubview(notABeginnerView)
+        notABeginnerView.topAnchor.constraint(equalTo: applicationWindow!.topAnchor, constant: 0).isActive = true
+        notABeginnerView.rightAnchor.constraint(equalTo: applicationWindow!.rightAnchor, constant: 0).isActive = true
+        notABeginnerView.bottomAnchor.constraint(equalTo: applicationWindow!.bottomAnchor, constant: 0).isActive = true
+        notABeginnerView.leftAnchor.constraint(equalTo: applicationWindow!.leftAnchor, constant: 0).isActive = true
     }
 }

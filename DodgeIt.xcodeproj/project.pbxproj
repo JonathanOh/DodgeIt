@@ -17,6 +17,7 @@
 		847B1CD91FC50C4B00BC6882 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */; };
 		847B1CDB1FC50E5C00BC6882 /* ArrowPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */; };
 		8498A4B71FCA886500BE9B05 /* PuzzleScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498A4B61FCA886500BE9B05 /* PuzzleScoreBoardView.swift */; };
+		8498A4B91FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */; };
 		84B2AFC71FC54F2800EE0A3A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2AFC61FC54F2800EE0A3A /* AlertView.swift */; };
 		84B2AFC91FC558AF00EE0A3A /* CongratsPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2AFC81FC558AF00EE0A3A /* CongratsPurchaseView.swift */; };
 		84BA58631FC68C1C009F5BFB /* FullPageLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA58621FC68C1C009F5BFB /* FullPageLoadingIndicator.swift */; };
@@ -82,6 +83,7 @@
 		847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowPadView.swift; sourceTree = "<group>"; };
 		8498A4B61FCA886500BE9B05 /* PuzzleScoreBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleScoreBoardView.swift; sourceTree = "<group>"; };
+		8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIsNotBeginnerView.swift; sourceTree = "<group>"; };
 		84B2AFC61FC54F2800EE0A3A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		84B2AFC81FC558AF00EE0A3A /* CongratsPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsPurchaseView.swift; sourceTree = "<group>"; };
 		84BA58621FC68C1C009F5BFB /* FullPageLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPageLoadingIndicator.swift; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolOfPossiblePuzzles.swift; sourceTree = "<group>"; };
 		8B5C19EB1FC6023700990582 /* DodgeIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DodgeIt.entitlements; sourceTree = "<group>"; };
 		8B5C19EC1FC60E8200990582 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		8B61DD921F97F6FD00E791FA /* DodgeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DodgeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B61DD921F97F6FD00E791FA /* Splodey Bound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Splodey Bound.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B61DD951F97F6FD00E791FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
 		8B61DD9D1F97F6FD00E791FA /* DodgeIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DodgeIt.xcdatamodel; sourceTree = "<group>"; };
@@ -222,7 +224,7 @@
 		8B61DD931F97F6FD00E791FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B61DD921F97F6FD00E791FA /* DodgeIt.app */,
+				8B61DD921F97F6FD00E791FA /* Splodey Bound.app */,
 				8B61DDBC1F9814BA00E791FA /* DodgeItTests.xctest */,
 			);
 			name = Products;
@@ -264,6 +266,7 @@
 				847B1CDE1FC50EC900BC6882 /* Character */,
 				84B2AFC61FC54F2800EE0A3A /* AlertView.swift */,
 				84BA58621FC68C1C009F5BFB /* FullPageLoadingIndicator.swift */,
+				8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */,
 				84B2AFC81FC558AF00EE0A3A /* CongratsPurchaseView.swift */,
 			);
 			path = Views;
@@ -332,7 +335,7 @@
 			);
 			name = DodgeIt;
 			productName = DodgeIt;
-			productReference = 8B61DD921F97F6FD00E791FA /* DodgeIt.app */;
+			productReference = 8B61DD921F97F6FD00E791FA /* Splodey Bound.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8B61DDBB1F9814BA00E791FA /* DodgeItTests */ = {
@@ -530,6 +533,7 @@
 				847B1CD51FC4287900BC6882 /* CharacterSkinsViewController.swift in Sources */,
 				847B1CC01FC2BAA300BC6882 /* PoolOfPossibleCharacters.swift in Sources */,
 				847B1CD71FC42B7F00BC6882 /* CharacterSkinCell.swift in Sources */,
+				8498A4B91FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift in Sources */,
 				8B61DDB11F98017800E791FA /* Puzzle.swift in Sources */,
 				84BA58631FC68C1C009F5BFB /* FullPageLoadingIndicator.swift in Sources */,
 				84BA58691FC7E1D0009F5BFB /* PoolOfPossibleMapThemes.swift in Sources */,
@@ -712,7 +716,7 @@
 				INFOPLIST_FILE = DodgeIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.esohjay.DodgeIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Splodey Bound";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -729,7 +733,7 @@
 				INFOPLIST_FILE = DodgeIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.esohjay.DodgeIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Splodey Bound";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
