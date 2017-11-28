@@ -105,8 +105,12 @@ extension CharacterSkinsViewController: CharacterButtonDelegate {
                 }
             case .failed:
                 print("failed!!!!!")
+                let failedAlert = AlertView.getCustomAlert(title: "Oops", message: "Something went wrong.  Please check your internet or try again.")
+                self?.present(failedAlert, animated: true, completion: nil)
             case .disabled:
                 print("disabled!!!")
+                let disabledAlert = AlertView.getCustomAlert(title: "Oops", message: "Looks like in app purchasing is disabled.")
+                self?.present(disabledAlert, animated: true, completion: nil)
             }
         }
     }
