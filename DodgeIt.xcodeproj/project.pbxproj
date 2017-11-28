@@ -17,6 +17,8 @@
 		847B1CD91FC50C4B00BC6882 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */; };
 		847B1CDB1FC50E5C00BC6882 /* ArrowPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */; };
 		8487B4901FCDF56B007E3E02 /* KenneyPixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8487B48F1FCDF56B007E3E02 /* KenneyPixel.ttf */; };
+		8487B4921FCE053B007E3E02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8487B4911FCE053B007E3E02 /* GoogleService-Info.plist */; };
+		8487B4931FCE053B007E3E02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8487B4911FCE053B007E3E02 /* GoogleService-Info.plist */; };
 		8498A4B71FCA886500BE9B05 /* PuzzleScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498A4B61FCA886500BE9B05 /* PuzzleScoreBoardView.swift */; };
 		8498A4B91FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */; };
 		84B2AFC71FC54F2800EE0A3A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2AFC61FC54F2800EE0A3A /* AlertView.swift */; };
@@ -84,6 +86,7 @@
 		847B1CD81FC50C4B00BC6882 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		847B1CDA1FC50E5C00BC6882 /* ArrowPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowPadView.swift; sourceTree = "<group>"; };
 		8487B48F1FCDF56B007E3E02 /* KenneyPixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KenneyPixel.ttf; sourceTree = "<group>"; };
+		8487B4911FCE053B007E3E02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8498A4B61FCA886500BE9B05 /* PuzzleScoreBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleScoreBoardView.swift; sourceTree = "<group>"; };
 		8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIsNotBeginnerView.swift; sourceTree = "<group>"; };
 		84B2AFC61FC54F2800EE0A3A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -238,6 +241,7 @@
 			children = (
 				8B5C19EB1FC6023700990582 /* DodgeIt.entitlements */,
 				8B61DD951F97F6FD00E791FA /* AppDelegate.swift */,
+				8487B4911FCE053B007E3E02 /* GoogleService-Info.plist */,
 				8BD323C91FB6333C00BE9720 /* GoogleAdService.swift */,
 				8B1C82AC1FB62E6300A0D100 /* Constants.swift */,
 				8BB3F3791FBD10550051F779 /* IAPHelper.swift */,
@@ -417,6 +421,7 @@
 			files = (
 				8BB3F37C1FBE443D0051F779 /* LocallyStoredBeginnersPuzzles.json in Resources */,
 				8BB3F3781FBCD1700051F779 /* XLocallyStoredMapThemes.json in Resources */,
+				8487B4921FCE053B007E3E02 /* GoogleService-Info.plist in Resources */,
 				84BA58651FC7E03A009F5BFB /* MapThemes.json in Resources */,
 				8B61DDA31F97F6FD00E791FA /* LaunchScreen.storyboard in Resources */,
 				8487B4901FCDF56B007E3E02 /* KenneyPixel.ttf in Resources */,
@@ -430,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8487B4931FCE053B007E3E02 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,13 +448,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DodgeIt-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F6A76DBB1B2636DC3C86125 /* [CP] Check Pods Manifest.lock */ = {
@@ -457,13 +466,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DodgeItTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		284B1D897E4EDEB3737BFC97 /* [CP] Embed Pods Frameworks */ = {
@@ -487,9 +499,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DodgeIt/Pods-DodgeIt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

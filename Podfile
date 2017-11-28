@@ -7,6 +7,7 @@ target 'DodgeIt' do
 
   # Pods for DodgeIt
   pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Core'
 
   target 'DodgeItTests' do
     inherit! :search_paths
