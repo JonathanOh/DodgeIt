@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = navigationController
-        PlayerDefaults.shared.setPlayerCoins(50000)
         setupGoogleAds(adMobAppID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_APP_ID)
         FirebaseApp.configure()
         return true

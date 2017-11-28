@@ -67,13 +67,33 @@ class SquareView: UIView {
     
     func explode() {
         if isSafe() || isObstacle() { return }
-        let explosionAnimationImageView = currentPlayer.randomMapTheme.getExplosionAnimatedImageView()
-        addSubview(explosionAnimationImageView)
-        explosionAnimationImageView.startAnimating()
-        explosionAnimationImageView.constrainFullyToSuperView()
-        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { (timer) in
-            explosionAnimationImageView.removeFromSuperview()
+    //    let explosionAnimationImageView = currentPlayer.randomMapTheme.getExplosionAnimatedImageView()
+    //    addSubview(explosionAnimationImageView)
+        //explosionAnimationImageView.startAnimating()
+  //      explosionAnimationImageView.constrainFullyToSuperView()
+//        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { (timer) in
+//            explosionAnimationImageView.removeFromSuperview()
+//        }
+        
+        let explosionImage = UIImageView(image: UIImage(imageLiteralResourceName: "explosion1"))
+        addSubview(explosionImage)
+        explosionImage.constrainFullyToSuperView()
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            explosionImage.alpha = 0
+        }) { (completed) in
+            explosionImage.removeFromSuperview()
         }
+        
+//        let explosionView = UIView()
+//        explosionView.backgroundColor = .black
+//        addSubview(explosionView)
+//        explosionView.constrainFullyToSuperView()
+//        UIView.animate(withDuration: 0.4, animations: {
+//            explosionView.alpha = 0
+//        }) { (completed) in
+//            explosionView.removeFromSuperview()
+//        }
     }
     
 }
