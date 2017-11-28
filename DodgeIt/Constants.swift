@@ -42,6 +42,10 @@ struct CONSTANTS {
         static let LIVES: Int = 1
     }
     
+    struct FONT_NAMES {
+        static let DEFAULT: String = "Kenney-Pixel"
+    }
+    
     static func getRGB(R: Int, G: Int, B: Int) -> UIColor {
         return UIColor(red: CGFloat(R)/255, green: CGFloat(G)/255, blue: CGFloat(B)/255, alpha: 1)
     }

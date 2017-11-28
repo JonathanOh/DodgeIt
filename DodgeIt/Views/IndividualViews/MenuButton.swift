@@ -19,8 +19,9 @@ class MenuButton: UIButton {
         addTarget(target, action: action, for: .touchUpInside)
         layer.cornerRadius = 2
         setTitle(buttonTitle ?? "", for: .normal)
+        titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 45)
         setTitleColor(.black, for: .normal)
-        backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
+        backgroundColor = .white
         widthAnchor.constraint(equalToConstant: 200).isActive = true
         heightAnchor.constraint(equalToConstant: 50).isActive = true
         setupButtonImage()

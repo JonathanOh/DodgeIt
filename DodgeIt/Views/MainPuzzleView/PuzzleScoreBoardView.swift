@@ -62,13 +62,14 @@ class PuzzleScoreBoardView: UIView {
         storeButton.backgroundColor = .clear
         storeButton.addTarget(self, action: #selector(didTapStoreButton), for: .touchUpInside)
         storeButton.setTitle("Store", for: .normal)
+        storeButton.titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 35)
         storeButton.setTitleColor(.white, for: .normal)
     }
     
     func setupCurrentScoreLabel() {
         currentScoreLabel.textAlignment = .center
         currentScoreLabel.textColor = .white
-        currentScoreLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 26)
+        currentScoreLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 45)
         currentScoreLabel.text = "\(currentPlayer.currentScore)"
     }
     
@@ -76,6 +77,7 @@ class PuzzleScoreBoardView: UIView {
         menuButton.setTitle("Menu", for: .normal)
         menuButton.setTitleColor(.white, for: .normal)
         menuButton.addTarget(self, action: #selector(didTapMenuButton), for: .touchUpInside)
+        menuButton.titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 35)
     }
     
     @objc func didTapStoreButton() {

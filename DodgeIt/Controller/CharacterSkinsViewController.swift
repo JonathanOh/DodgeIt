@@ -32,7 +32,7 @@ class CharacterSkinsViewController: UIViewController {
     
     func setupNavigationBar() {
         title = "Character Skins"
-        let font = UIFont(name: "HelveticaNeue", size: 30)
+        let font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 45)
         coinImageView = CoinView(numberOfCoins: currentPlayer?.playerCoins ?? 0, textFont: font, fontColor: .black)
         coinImageView.frame = CGRect(x: coinImageView.frame.origin.x, y: coinImageView.frame.origin.y, width: coinImageView.frame.width * 0.75, height: coinImageView.frame.height * 0.75)
         navigationItem.titleView = coinImageView

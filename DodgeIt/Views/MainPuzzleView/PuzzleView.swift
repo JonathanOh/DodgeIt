@@ -87,7 +87,7 @@ class PuzzleView: UIView {
 
         currentScoreLabel.text = "Current Score: \(player.currentScore)"
         currentScoreLabel.textColor = .black//UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
-        currentScoreLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
+        currentScoreLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 30)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(currentScoreLabel)
         currentScoreLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -97,7 +97,7 @@ class PuzzleView: UIView {
         
         highScoreLabel.text = "High Score: \(player.highScore)"
         highScoreLabel.textColor = .black//UIColor.getRGBFromArray(player.randomMapTheme.labelColors)//CONSTANTS.COLORS.LABEL_COLOR
-        highScoreLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
+        highScoreLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 30)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(highScoreLabel)
         highScoreLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true

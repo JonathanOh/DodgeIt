@@ -32,7 +32,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //135-206-250
-        view.backgroundColor = .white
+        view.backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         print("im game over bros!")
         // Do any additional setup after loading the view.
         setupPlayer()
@@ -122,9 +122,17 @@ class MenuViewController: UIViewController {
         //let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Splodey Bound"
-        titleLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
+        titleLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 70)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
         
         view.addSubview(titleLabel)
         titleLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
@@ -167,7 +175,7 @@ class MenuViewController: UIViewController {
         let removeAdsAttributedTitle = NSAttributedString(string: "Remove Ads", attributes: underlineAttribute)
         let removeAdsButton = UIButton()
         removeAdsButton.addTarget(self, action: #selector(didTapRemoveAds), for: .touchUpInside)
-        removeAdsButton.backgroundColor = .white
+        removeAdsButton.backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         removeAdsButton.setTitleColor(.black, for: .normal)
         removeAdsButton.setAttributedTitle(removeAdsAttributedTitle, for: .normal)
         view.addSubview(removeAdsButton)
@@ -179,7 +187,7 @@ class MenuViewController: UIViewController {
         let rateUsAttributedTitle = NSAttributedString(string: "Rate Us!", attributes: underlineAttribute)
         let rateUsButton = UIButton()
         rateUsButton.addTarget(self, action: #selector(didTapRateOnAppStore), for: .touchUpInside)
-        rateUsButton.backgroundColor = .white
+        rateUsButton.backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         rateUsButton.setTitleColor(.black, for: .normal)
         rateUsButton.setAttributedTitle(rateUsAttributedTitle, for: .normal)
         view.addSubview(rateUsButton)
@@ -193,7 +201,7 @@ class MenuViewController: UIViewController {
         currentScoreLabel.textAlignment = .center
         currentScoreLabel.backgroundColor = .black
         currentScoreLabel.textColor = .white
-        currentScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        currentScoreLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 40.0)
         view.addSubview(currentScoreLabel)
         currentScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         currentScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
@@ -204,7 +212,7 @@ class MenuViewController: UIViewController {
         highScoreLabel.textAlignment = .center
         highScoreLabel.backgroundColor = .black
         highScoreLabel.textColor = .white
-        highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 30.0)
+        highScoreLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 40.0)
         view.addSubview(highScoreLabel)
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         highScoreLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
