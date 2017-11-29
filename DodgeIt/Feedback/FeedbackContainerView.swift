@@ -20,12 +20,14 @@ class FeedbackContainerView: UIView {
     let feedbackOptions: [FeedbackOption] = [.loveThisGame, .issues, .suggestions, .thisGameSucks]
     let titleLabel = UILabel()
     let feedbackTableView = UITableView()
+    private var feedbackCenterXAnchor: NSLayoutConstraint?
     
     init() {
         super.init(frame: .zero)
         backgroundColor = .red
         layer.cornerRadius = 5
         setupViews()
+        clipsToBounds = true
     }
     
     func setupViews() {
@@ -49,9 +51,27 @@ class FeedbackContainerView: UIView {
         feedbackTableView.bounces = false
         addSubview(feedbackTableView)
         feedbackTableView.constrainTopTo(anchor: titleLabel.bottomAnchor, constant: 10)
-        feedbackTableView.constrainRightTo(anchor: rightAnchor, constant: -10)
+        feedbackCenterXAnchor = feedbackTableView.constrainCenterXTo(anchor: centerXAnchor)
         feedbackTableView.constrainBottomTo(anchor: bottomAnchor, constant: -10)
-        feedbackTableView.constrainLeftTo(anchor: leftAnchor, constant: 10)
+        feedbackTableView.constrainWidthTo(dimension: widthAnchor, multiplier: 0.93)
+    }
+    
+    func animateViewWithOption(_ option: FeedbackOption) {
+        let optionsChosenView = OptionChosenView(chosenOption: option)
+        addSubview(optionsChosenView)
+        
+        optionsChosenView.constrainTopTo(anchor: titleLabel.bottomAnchor, constant: 50)
+        let centerX = optionsChosenView.constrainCenterXTo(anchor: centerXAnchor, constant: frame.width + 100)
+        optionsChosenView.constrainBottomTo(anchor: bottomAnchor, constant: -50)
+        optionsChosenView.constrainWidthTo(dimension: widthAnchor, multiplier: 0.7)
+        layoutIfNeeded()
+
+        feedbackCenterXAnchor?.constant = -(frame.width + 100)
+        centerX.constant = 0
+        UIView.animate(withDuration: 0.25) { [weak self] in
+            guard let weakSelf = self else { return }
+            weakSelf.layoutIfNeeded()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,6 +97,6 @@ extension FeedbackContainerView: UITableViewDelegate, UITableViewDataSource {
         return feedbackOptions.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        animateViewWithOption(feedbackOptions[indexPath.row])
     }
 }

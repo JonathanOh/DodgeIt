@@ -14,6 +14,7 @@ class MenuViewController: UIViewController {
 
     let localAuthentication = LAContext()
     
+    var feedbackView: FeedbackClearBackgroundView?
     private var puzzleVC: PuzzleViewController?
     var currentPlayer: Player?
     
@@ -257,11 +258,11 @@ class MenuViewController: UIViewController {
 //            print("success!! on tapping feedback app!")
 //        }
         print("feedback tapped")
-        let feedbackView = FeedbackClearBackgroundView()
+        feedbackView = FeedbackClearBackgroundView()
         let applicationWindow = UIApplication.shared.keyWindow
-        applicationWindow?.addSubview(feedbackView)
-        feedbackView.constrainFullyToSuperView()
-        feedbackView.fadeInFeedbackView()
+        applicationWindow?.addSubview(feedbackView!)
+        feedbackView!.constrainFullyToSuperView()
+        feedbackView!.fadeInFeedbackView()
     }
     @objc func didTapShareApp() {
         //Analytics.logEvent("player_tapped_share", parameters: [:])
