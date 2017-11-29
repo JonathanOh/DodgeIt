@@ -188,9 +188,9 @@ class MenuViewController: UIViewController {
         removeAdsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
         removeAdsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
-        let rateUsAttributedTitle = NSAttributedString(string: "Rate Us!", attributes: underlineAttribute)
+        let rateUsAttributedTitle = NSAttributedString(string: "Feedback", attributes: underlineAttribute)
         let rateUsButton = UIButton()
-        rateUsButton.addTarget(self, action: #selector(didTapRateOnAppStore), for: .touchUpInside)
+        rateUsButton.addTarget(self, action: #selector(didTapFeedback), for: .touchUpInside)
         rateUsButton.backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
         rateUsButton.setTitleColor(.black, for: .normal)
         rateUsButton.setAttributedTitle(rateUsAttributedTitle, for: .normal)
@@ -251,11 +251,17 @@ class MenuViewController: UIViewController {
             loadingView.stopLoading()
         }
     }
-    @objc func didTapRateOnAppStore() {
-        Analytics.logEvent("player_tapped_rate_us", parameters: [:])
-        AppDelegate.rateApp(appId: CONSTANTS.APP_APPLE_ID) { (completed) in
-            print("success!! on tapping rate app!")
-        }
+    @objc func didTapFeedback() {
+//        Analytics.logEvent("player_tapped_feedback", parameters: [:])
+//        AppDelegate.rateApp(appId: CONSTANTS.APP_APPLE_ID) { (completed) in
+//            print("success!! on tapping feedback app!")
+//        }
+        print("feedback tapped")
+        let feedbackView = FeedbackClearBackgroundView()
+        let applicationWindow = UIApplication.shared.keyWindow
+        applicationWindow?.addSubview(feedbackView)
+        feedbackView.constrainFullyToSuperView()
+        feedbackView.fadeInFeedbackView()
     }
     @objc func didTapShareApp() {
         //Analytics.logEvent("player_tapped_share", parameters: [:])

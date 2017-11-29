@@ -30,7 +30,7 @@ class UserIsNotBeginnerView: UIView {
     func setupViews() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.text = "Things are going to get much tougher now..."
-        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 25)
+        textView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 35)
         textView.textAlignment = .center
         textView.textColor = .white
         textView.backgroundColor = UIColor.clear
@@ -48,7 +48,7 @@ class UserIsNotBeginnerView: UIView {
         textLabel.textAlignment = .center
         textLabel.textColor = .white
         textLabel.text = "Tap anywhere to dismiss"
-        textLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        textLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 25)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textLabel)
         textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100).isActive = true

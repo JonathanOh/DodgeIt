@@ -32,7 +32,7 @@ class CongratsPurchaseView: UIView {
     func setupViews() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.text = "Congratulations!\nyou purchased:"
-        textView.font = UIFont(name: "HelveticaNeue-Thin", size: 40)
+        textView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 50)
         textView.textAlignment = .center
         textView.textColor = .white
         textView.backgroundColor = UIColor.clear
@@ -59,7 +59,7 @@ class CongratsPurchaseView: UIView {
         textLabel.textAlignment = .center
         textLabel.textColor = .white
         textLabel.text = "Tap anywhere to dismiss"
-        textLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        textLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 25)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textLabel)
         textLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 59).isActive = true
