@@ -24,7 +24,7 @@ class FeedbackContainerView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = .red
+        backgroundColor = CONSTANTS.COLORS.DARKER_DEFAULT
         layer.cornerRadius = 5
         setupViews()
         clipsToBounds = true

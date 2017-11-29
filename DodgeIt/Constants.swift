@@ -38,6 +38,7 @@ struct CONSTANTS {
         static let PLAYER: UIColor = CONSTANTS.getRGB(R: 252, G: 207, B: 77)
         static let LABEL_COLOR: UIColor = UIColor.white
         static let MENU_BUTTONS: UIColor = CONSTANTS.getRGB(R: 161, G: 234, B: 251)
+        static let DARKER_DEFAULT: UIColor = CONSTANTS.getRGB(R: 110, G: 160, B: 250)
     }
     struct GAME_DEFAULTS {
         static let LIVES: Int = 1

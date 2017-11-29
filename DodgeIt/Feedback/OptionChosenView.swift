@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class OptionChosenView: UIView {
     let chosenOption: FeedbackContainerView.FeedbackOption
@@ -14,36 +15,17 @@ class OptionChosenView: UIView {
         self.chosenOption = chosenOption
         super.init(frame: .zero)
         setupViews()
-        backgroundColor = .red
+        backgroundColor = CONSTANTS.COLORS.DARKER_DEFAULT
+        Analytics.logEvent("feedback_\(chosenOption.rawValue)", parameters: nil)
     }
     
     func setupViews() {
         switch chosenOption {
         case .loveThisGame:
-            let writeReviewButton = UIButton()
-            writeReviewButton.backgroundColor = .white
-            writeReviewButton.layer.cornerRadius = 5
-            writeReviewButton.layer.shadowColor = UIColor.black.cgColor
-            writeReviewButton.layer.shadowOpacity = 1
-            writeReviewButton.layer.shadowOffset = CGSize.zero
-            writeReviewButton.layer.shadowRadius = 5
-            writeReviewButton.setTitle("Write a review", for: .normal)
-            writeReviewButton.setTitleColor(.black, for: .normal)
-            writeReviewButton.titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 35)
-            writeReviewButton.addTarget(self, action: #selector(didTapWriteReviewButton), for: .touchUpInside)
+            let writeReviewButton = FeedbackChosenButton(target: self, selector: #selector(didTapWriteReviewButton), title: "Write a review", fontSize: 35)
             addSubview(writeReviewButton)
             
-            let contactUsButton = UIButton()
-            contactUsButton.backgroundColor = .white
-            contactUsButton.layer.cornerRadius = 5
-            contactUsButton.layer.shadowColor = UIColor.black.cgColor
-            contactUsButton.layer.shadowOpacity = 1
-            contactUsButton.layer.shadowOffset = CGSize.zero
-            contactUsButton.layer.shadowRadius = 3
-            contactUsButton.setTitle("Contact us", for: .normal)
-            contactUsButton.setTitleColor(.black, for: .normal)
-            contactUsButton.titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 35)
-            contactUsButton.addTarget(self, action: #selector(didTapContactUsButton), for: .touchUpInside)
+            let contactUsButton = FeedbackChosenButton(target: self, selector: #selector(didTapContactUsButton), title: "Contact Us", fontSize: 35)
             addSubview(contactUsButton)
             
             let buttonStack = UIStackView(arrangedSubviews: [writeReviewButton, contactUsButton])
@@ -53,10 +35,13 @@ class OptionChosenView: UIView {
             
             addSubview(buttonStack)
             buttonStack.constrainFullyToSuperView()
-            
-            break
         case .issues, .suggestions, .thisGameSucks:
-            break
+            let contactUsButton = FeedbackChosenButton(target: self, selector: #selector(didTapContactUsButton), title: "Contact Us", fontSize: 35)
+            addSubview(contactUsButton)
+            contactUsButton.constrainCenterXTo(anchor: centerXAnchor)
+            contactUsButton.constrainCenterYTo(anchor: centerYAnchor, constant: frame.height/9)
+            contactUsButton.constrainWidthTo(dimension: widthAnchor, multiplier: 0.85)
+            contactUsButton.constrainHeightTo(dimension: heightAnchor, multiplier: 0.4)
         }
     }
     
@@ -69,7 +54,7 @@ class OptionChosenView: UIView {
     @objc func didTapContactUsButton() {
         let subject = chosenOption.rawValue
         let body = "My Device ID is: \(UIDevice.current.identifierForVendor!.uuidString)"
-        let coded = "mailto:support@splodeybound.com?subject=\(subject)&footer=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let coded = "mailto:support@splodeybound.com?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         if let emailURL:NSURL = NSURL(string: coded!) {
             if UIApplication.shared.canOpenURL(emailURL as URL) {
@@ -81,5 +66,24 @@ class OptionChosenView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+class FeedbackChosenButton: UIButton {
+    init(target: Any, selector: Selector, title: String, fontSize: CGFloat) {
+        super.init(frame: .zero)
+        backgroundColor = .white
+        layer.cornerRadius = 5
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 3
+        setTitle(title, for: .normal)
+        setTitleColor(.black, for: .normal)
+        titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: fontSize)
+        addTarget(target, action: selector, for: .touchUpInside)
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

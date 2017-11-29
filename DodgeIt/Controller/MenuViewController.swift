@@ -187,7 +187,7 @@ class MenuViewController: UIViewController {
         //removeAdsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
         removeAdsButton.constrainCenterYTo(anchor: shareButton.centerYAnchor, constant: 2)
         removeAdsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
-        removeAdsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
+        removeAdsButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         let rateUsAttributedTitle = NSAttributedString(string: "Feedback", attributes: underlineAttribute)
         let rateUsButton = UIButton()
@@ -200,7 +200,7 @@ class MenuViewController: UIViewController {
         //rateUsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
         rateUsButton.constrainCenterYTo(anchor: shareButton.centerYAnchor, constant: 2)
         rateUsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
-        rateUsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
+        rateUsButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupScoreLabels() {
