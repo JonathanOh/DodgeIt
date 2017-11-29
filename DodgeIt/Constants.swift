@@ -11,6 +11,7 @@ import UIKit
 struct CONSTANTS {
     private init() {}
     static let APP_APPLE_ID: String = "id1313086332"
+    static let APP_STORE_LINK: String = "https://itunes.apple.com/us/app/splodey-bound/\(CONSTANTS.APP_APPLE_ID)?ls=1&mt=8"
     
     struct GOOGLE_SERVICES {
         struct ADS {

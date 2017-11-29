@@ -75,11 +75,17 @@ class SquareView: UIView {
 //            explosionAnimationImageView.removeFromSuperview()
 //        }
         
-        let explosionImage = UIImageView(image: UIImage(imageLiteralResourceName: "explosion1"))
+        let explosionImage = UIImageView(image: UIImage(imageLiteralResourceName: "explosion0"))
         addSubview(explosionImage)
         explosionImage.constrainFullyToSuperView()
         
-        UIView.animate(withDuration: 0.4, animations: {
+//        UIView.animate(withDuration: 0.4, animations: {
+//            explosionImage.alpha = 0
+//        }) { (completed) in
+//            explosionImage.removeFromSuperview()
+//        }
+
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
             explosionImage.alpha = 0
         }) { (completed) in
             explosionImage.removeFromSuperview()

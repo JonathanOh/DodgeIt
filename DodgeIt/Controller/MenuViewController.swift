@@ -163,6 +163,16 @@ class MenuViewController: UIViewController {
     }
     
     func setupBottomMenuButton() {
+        let shareButton = UIButton()
+        shareButton.setImage(UIImage(imageLiteralResourceName: "share"), for: .normal)
+        //shareButton.backgroundColor = .black
+        shareButton.addTarget(self, action: #selector(didTapShareApp), for: .touchUpInside)
+        view.addSubview(shareButton)
+        shareButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/10)
+        shareButton.constrainHeightTo(dimension: view.widthAnchor, multiplier: 1/10)
+        shareButton.constrainCenterXTo(anchor: view.centerXAnchor)
+        shareButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        
         let underlineAttribute = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
         
         let removeAdsAttributedTitle = NSAttributedString(string: "Remove Ads", attributes: underlineAttribute)
@@ -173,7 +183,8 @@ class MenuViewController: UIViewController {
         removeAdsButton.setAttributedTitle(removeAdsAttributedTitle, for: .normal)
         view.addSubview(removeAdsButton)
         removeAdsButton.constrainRightTo(anchor: view.rightAnchor, constant: -8)
-        removeAdsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        //removeAdsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        removeAdsButton.constrainCenterYTo(anchor: shareButton.centerYAnchor, constant: 2)
         removeAdsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
         removeAdsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
@@ -185,7 +196,8 @@ class MenuViewController: UIViewController {
         rateUsButton.setAttributedTitle(rateUsAttributedTitle, for: .normal)
         view.addSubview(rateUsButton)
         rateUsButton.constrainLeftTo(anchor: view.leftAnchor, constant: 8)
-        rateUsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        //rateUsButton.constrainBottomTo(anchor: view.bottomAnchor, constant: -15)
+        rateUsButton.constrainCenterYTo(anchor: shareButton.centerYAnchor, constant: 2)
         rateUsButton.constrainWidthTo(dimension: view.widthAnchor, multiplier: 1/3)
         rateUsButton.heightAnchor.constraint(equalToConstant: 21).isActive = true
     }
@@ -244,6 +256,13 @@ class MenuViewController: UIViewController {
         AppDelegate.rateApp(appId: CONSTANTS.APP_APPLE_ID) { (completed) in
             print("success!! on tapping rate app!")
         }
+    }
+    @objc func didTapShareApp() {
+        //Analytics.logEvent("player_tapped_share", parameters: [:])
+        print("tapped share")
+        let activityViewController = UIActivityViewController(activityItems: ["Hey! checkout \(CONSTANTS.APP_STORE_LINK)"], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = view
+        present(activityViewController, animated: true, completion: nil)
     }
     
     
