@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ScoreBoardButtonDelegate {
     func tappedStore()
@@ -81,7 +82,7 @@ class PuzzleScoreBoardView: UIView {
     }
     
     @objc func didTapStoreButton() {
-        print("store tapped")
+        Analytics.logEvent("player_tapped_store_from_puzzle", parameters: [:])
         buttonDelegate?.tappedStore()
     }
     @objc func didTapMenuButton() {

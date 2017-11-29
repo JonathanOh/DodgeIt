@@ -8,6 +8,7 @@
 
 import UIKit
 import LocalAuthentication
+import Firebase
 
 class MenuViewController: UIViewController {
 
@@ -125,14 +126,6 @@ class MenuViewController: UIViewController {
         titleLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 70)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
         
         view.addSubview(titleLabel)
         titleLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
@@ -230,6 +223,7 @@ class MenuViewController: UIViewController {
     
     @objc func didTapPlay() {
         print("play tapped!")
+        Analytics.logEvent("player_tapped_store_from_menu", parameters: [:])
         puzzleVC = PuzzleViewController()
         puzzleVC?.player = currentPlayer
         puzzleVC?.newGameSetup()
@@ -246,7 +240,7 @@ class MenuViewController: UIViewController {
         }
     }
     @objc func didTapRateOnAppStore() {
-        print("rate on app store tapped!")
+        Analytics.logEvent("player_tapped_rate_us", parameters: [:])
         AppDelegate.rateApp(appId: CONSTANTS.APP_APPLE_ID) { (completed) in
             print("success!! on tapping rate app!")
         }

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         setupGoogleAds(adMobAppID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_APP_ID)
         FirebaseApp.configure()
+        Analytics.logEvent("player_opened_app", parameters: [:])
         return true
     }
 

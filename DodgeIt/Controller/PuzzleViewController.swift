@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import Firebase
 
 class PuzzleViewController: UIViewController {
 
@@ -54,6 +55,8 @@ class PuzzleViewController: UIViewController {
         nextLevel.puzzleView.puzzleVC = self
         setupPuzzleViewFrame(nextLevel.puzzleView, isFirstLevel: true)
         setupPuzzleProperties(nextLevel)
+        
+        Analytics.logEvent("player_started_level", parameters: ["level_id":puzzleLevel.puzzleID as NSObject])
     }
 
     func setupPlayerView(squareData: SquareData, puzzle: Puzzle) {
@@ -128,6 +131,7 @@ class PuzzleViewController: UIViewController {
 
 extension PuzzleViewController: VictoryDelegate {
     func playerWonLevel() {
+        Analytics.logEvent("player_completed_level", parameters: ["level_id":puzzleLevel.puzzleID as NSObject])
         setupGoogleAdAfterLevelDone()
         player?.playerCompletedCurrent(puzzle: puzzleLevel)
         let nextLevel = NextPuzzle(puzzle: getNextPuzzleLevelWithDifficulty(1), player: player!)
@@ -168,6 +172,8 @@ extension PuzzleViewController: GemDelegate {
 extension PuzzleViewController: PlayerEventDelegate {
 
     func playerDied() {
+        Analytics.logEvent("player_died", parameters: ["level_id":puzzleLevel.puzzleID as NSObject])
+        
         guard let playerExists = player else { return }
         view.isUserInteractionEnabled = false
         playerExists.playerDied()

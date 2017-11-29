@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CharacterSkinsViewController: UIViewController {
     var currentPlayer: Player?
@@ -26,6 +27,7 @@ class CharacterSkinsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Analytics.logEvent("user_opened_store", parameters: [:])
         navigationController?.navigationBar.isHidden = false
         setupNavigationBar()
     }
