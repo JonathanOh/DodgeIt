@@ -122,16 +122,17 @@ class MenuViewController: UIViewController {
     
     func setupTitleLabel() {
         //let titleLabel = UILabel()
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Splodey Bound"
-        titleLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 70)
+        titleLabel.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 65)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
         
         view.addSubview(titleLabel)
         titleLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height/13/*50*/).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
     }
     
@@ -156,7 +157,7 @@ class MenuViewController: UIViewController {
         menuButtonStackView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         menuButtonStackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         menuButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150).isActive = true
+        menuButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.height/5)).isActive = true
         
         setupScoreLabels()
         

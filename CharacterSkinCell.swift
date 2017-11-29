@@ -54,7 +54,7 @@ class CharacterSkinCell: UITableViewCell {
         skinImageView.translatesAutoresizingMaskIntoConstraints = false
         skinImageView.contentMode = .scaleAspectFit
         addSubview(skinImageView)
-        skinImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 35).isActive = true
+        skinImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         skinImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
         skinImageView.heightAnchor.constraint(equalToConstant: 125).isActive = true
         skinImageView.widthAnchor.constraint(equalToConstant: 140).isActive = true
