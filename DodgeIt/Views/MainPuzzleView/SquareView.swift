@@ -27,7 +27,6 @@ class SquareView: UIView {
         self.locationStringValue = "\(location.0),\(location.1)"
         super.init(frame: .zero)
         backgroundColor = .clear
-        if isSafe() {}
         
         if isObstacle() {
             let obstacleImageView = currentPlayer.randomMapTheme.getObstacleTileImageView()
@@ -37,6 +36,13 @@ class SquareView: UIView {
             let grassImageView = currentPlayer.randomMapTheme.getCourseTileImageView()
             addSubview(grassImageView)
             grassImageView.constrainFullyToSuperView()
+        }
+        
+        if isSafe() {
+            let safeImage = UIImage(imageLiteralResourceName: "safeTileNoBorder")
+            let safeImageView = UIImageView(image: safeImage)
+            addSubview(safeImageView)
+            safeImageView.constrainFullyToSuperView()
         }
         
         if isGemLocation() {

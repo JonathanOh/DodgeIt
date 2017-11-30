@@ -139,11 +139,13 @@ class Player {
         if difficulty < 3 {
             return 1
         } else if difficulty < 6 {
-            return 2
-        } else if difficulty < 9 {
             return 3
+        } else if difficulty < 9 {
+            return 6
+        } else if difficulty < 14 {
+            return 12
         } else {
-            return 5
+            return 20
         }
     }
     

@@ -116,7 +116,7 @@
  "numberOfCellsInHeight": 10,
  "lengthOfPuzzleCycle": 2.2,
  "safeHavens": {
- "0,1":1, "1,1":1, "7,3":1
+ "0,1":1, "1,1":1, "7,3":1, "5,4":1, "9,4":1, "9,5":1, "9,6":1, "9,7":1, "9,8":8, 
  },
  "gemPositions" : {
  "4,4":1
