@@ -9,8 +9,8 @@
 import Foundation
 
 class TEST {
-    static let IS_TEST_MODE: Bool = false
-    static let PUZZLE_ID: Int = 113
+    static let IS_TEST_MODE: Bool = true
+    static let PUZZLE_ID: Int = 118
     static let USER_IS_BEGINNER: Bool = false
     static let BEGGINNER_PUZZLE_ID: Int = 1
     static let SERVE_TEST_ADS: Bool = true

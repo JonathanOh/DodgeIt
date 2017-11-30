@@ -50,8 +50,6 @@ class PuzzleView: UIView {
         setupScoreBoardView()
     }
     
-
-    
     func setupGoogleBannerView() {
         if userPurchasedAdRemoval { return }
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
@@ -64,6 +62,7 @@ class PuzzleView: UIView {
         bannerView.constrainBottomTo(anchor: bottomAnchor)
  //       bannerView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         bannerView.load(GADRequest())
+        
     }
     
     func setupScoreBoardView() {
