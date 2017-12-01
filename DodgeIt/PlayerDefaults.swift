@@ -81,5 +81,4 @@ class PlayerDefaults {
     func setAllUserMapsByID(_ value: [String]) {
         defaults.set(value, forKey: "all_user_maps")
     }
-
 }

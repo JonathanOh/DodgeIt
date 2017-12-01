@@ -138,7 +138,7 @@ class Player {
     func numberOfCoinsToAwardBasedOnDifficulty(_ difficulty: Int) -> Int {
         if difficulty < 3 {
             return 1
-        } else if difficulty < 6 {
+        } else if difficulty < 5 {
             return 3
         } else if difficulty < 9 {
             return 6
