@@ -81,4 +81,10 @@ class PlayerDefaults {
     func setAllUserMapsByID(_ value: [String]) {
         defaults.set(value, forKey: "all_user_maps")
     }
+    func userViewedGameInstructions() -> Bool {
+        return defaults.object(forKey: "userViewedGameInstructions") as? Bool ?? false
+    }
+    func setUserDidViewGameInstructions() {
+        defaults.set(true, forKey: "userViewedGameInstructions")
+    }
 }

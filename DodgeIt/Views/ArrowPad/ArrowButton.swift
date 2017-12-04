@@ -20,10 +20,10 @@ class ArrowButton: UIButton {
     init(target: Any?, action: Selector, direction: Direction) {
         super.init(frame: .zero)
         setupImage(direction: direction)
-        backgroundColor = CONSTANTS.COLORS.MENU_BUTTONS
+        backgroundColor = .white//CONSTANTS.COLORS.MENU_BUTTONS
         layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 2
-        layer.cornerRadius = 30
+        //layer.borderWidth = 2
+        layer.cornerRadius = 5
         translatesAutoresizingMaskIntoConstraints = false
         addTarget(target, action: action, for: .touchUpInside)
     }

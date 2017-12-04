@@ -32,6 +32,13 @@ class PuzzleViewController: UIViewController {
         googleAd = GoogleAdService()
         googleAd.interstitial.delegate = self
         addSwipeGestures(directions: swipeDirections)
+        
+        if !PlayerDefaults.shared.userViewedGameInstructions() {
+            let howToPlayView = HowToPlayView()
+            let applicationView = UIApplication.shared.keyWindow
+            applicationView?.addSubview(howToPlayView)
+            howToPlayView.constrainFullyToSuperView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

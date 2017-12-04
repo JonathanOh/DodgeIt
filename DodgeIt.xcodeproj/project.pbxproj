@@ -36,6 +36,7 @@
 		8B35EBE81FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B35EBE71FA2A7CD000F8FD4 /* LocallyStoredPuzzles.json */; };
 		8B35EBEA1FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */; };
 		8B5C19ED1FC60E8200990582 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C19EC1FC60E8200990582 /* LocalAuthentication.framework */; };
+		8B5C19EF1FD5C52500990582 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C19EE1FD5C52500990582 /* HowToPlayView.swift */; };
 		8B61DD961F97F6FD00E791FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD951F97F6FD00E791FA /* AppDelegate.swift */; };
 		8B61DD981F97F6FD00E791FA /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */; };
 		8B61DD9E1F97F6FD00E791FA /* DodgeIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DD9C1F97F6FD00E791FA /* DodgeIt.xcdatamodeld */; };
@@ -108,6 +109,7 @@
 		8B35EBE91FA2A9A2000F8FD4 /* PoolOfPossiblePuzzles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolOfPossiblePuzzles.swift; sourceTree = "<group>"; };
 		8B5C19EB1FC6023700990582 /* DodgeIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DodgeIt.entitlements; sourceTree = "<group>"; };
 		8B5C19EC1FC60E8200990582 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		8B5C19EE1FD5C52500990582 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		8B61DD921F97F6FD00E791FA /* Splodey Bound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Splodey Bound.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B61DD951F97F6FD00E791FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				847B1CDE1FC50EC900BC6882 /* Character */,
 				84B2AFC61FC54F2800EE0A3A /* AlertView.swift */,
 				84BA58621FC68C1C009F5BFB /* FullPageLoadingIndicator.swift */,
+				8B5C19EE1FD5C52500990582 /* HowToPlayView.swift */,
 				8498A4B81FCBBF5D00BE9B05 /* UserIsNotBeginnerView.swift */,
 				84B2AFC81FC558AF00EE0A3A /* CongratsPurchaseView.swift */,
 			);
@@ -591,6 +594,7 @@
 				8487B4961FCE7137007E3E02 /* FeedbackContainerView.swift in Sources */,
 				8B35EBE61FA29E87000F8FD4 /* NextPuzzle.swift in Sources */,
 				847B1CDB1FC50E5C00BC6882 /* ArrowPadView.swift in Sources */,
+				8B5C19EF1FD5C52500990582 /* HowToPlayView.swift in Sources */,
 				8B61DDAF1F97FE6400E791FA /* SquareView.swift in Sources */,
 				847B1CBA1FC2B36300BC6882 /* CharacterImageView.swift in Sources */,
 				8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */,
