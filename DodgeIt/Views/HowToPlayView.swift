@@ -37,6 +37,8 @@ class HowToPlayView: UIView {
     }
     
     func setupViews() {
+        let deviceSmallerThan6 = UIScreen.main.bounds.width < 370
+        
         titleLabel.text = "How to Play"
         titleLabel.textColor = .white
         //titleLabel.backgroundColor = .purple
@@ -94,20 +96,20 @@ class HowToPlayView: UIView {
         gameObjectiveTextView.isSelectable = false
         gameObjectiveTextView.backgroundColor = .clear
         gameObjectiveTextView.textColor = .white
-        gameObjectiveTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 30)
+        gameObjectiveTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: deviceSmallerThan6 ? 25 : 30)
         
         let gameObjectiveView = UIView()
         gameObjectiveView.addSubview(gameObjectiveTextView)
         gameObjectiveTextView.constrainTopTo(anchor: gameObjectiveView.topAnchor)
         gameObjectiveTextView.constrainCenterXTo(anchor: gameObjectiveView.centerXAnchor)
         gameObjectiveTextView.constrainWidthTo(dimension: gameObjectiveView.widthAnchor, multiplier: 1)
-        gameObjectiveTextView.constrainHeightTo(dimension: gameObjectiveView.heightAnchor, multiplier: 3/4)
+        gameObjectiveTextView.constrainHeightTo(dimension: gameObjectiveView.heightAnchor, multiplier: 55/100)
         let splodeyImageView = UIImageView(image: UIImage(imageLiteralResourceName: "explosion0"))
         gameObjectiveView.addSubview(splodeyImageView)
-        splodeyImageView.constrainBottomTo(anchor: gameObjectiveView.bottomAnchor, constant: -8)
+        splodeyImageView.constrainTopTo(anchor: gameObjectiveTextView.bottomAnchor, constant: 5)
         splodeyImageView.constrainCenterXTo(anchor: gameObjectiveView.centerXAnchor)
-        splodeyImageView.constrainWidthTo(dimension: gameObjectiveView.widthAnchor, multiplier: 1/7)
-        splodeyImageView.constrainHeightTo(dimension: gameObjectiveView.widthAnchor, multiplier: 1/7)
+        splodeyImageView.constrainWidthTo(dimension: gameObjectiveView.heightAnchor, multiplier: 35/100)
+        splodeyImageView.constrainHeightTo(dimension: gameObjectiveView.heightAnchor, multiplier: 35/100)
         addSubview(gameObjectiveView)
         gameObjectiveView.constrainTopTo(anchor: borderTwo.bottomAnchor)
         gameObjectiveView.constrainWidthTo(dimension: widthAnchor, multiplier: 0.85)
@@ -122,25 +124,25 @@ class HowToPlayView: UIView {
         borderThree.constrainWidthTo(dimension: widthAnchor, multiplier: 0.9)
         borderThree.constrainCenterXTo(anchor: centerXAnchor)
         
-        coinInfoTextView.text = "Gain coins for completing levels. Feeling brave? Pick coins along the way to buy cool stuff!"
+        coinInfoTextView.text = "Gain coins by completing levels or picking them up! Check out the store to redeem!"
         coinInfoTextView.textAlignment = .center
         coinInfoTextView.isEditable = false
         coinInfoTextView.isSelectable = false
         coinInfoTextView.backgroundColor = .clear
         coinInfoTextView.textColor = .white
-        coinInfoTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 30)
+        coinInfoTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: deviceSmallerThan6 ? 25 : 30)
         let coinInfoView = UIView()
         coinInfoView.addSubview(coinInfoTextView)
         coinInfoTextView.constrainTopTo(anchor: coinInfoView.topAnchor)
         coinInfoTextView.constrainCenterXTo(anchor: coinInfoView.centerXAnchor)
         coinInfoTextView.constrainWidthTo(dimension: coinInfoView.widthAnchor, multiplier: 1)
-        coinInfoTextView.constrainHeightTo(dimension: coinInfoView.heightAnchor, multiplier: 3/4)
+        coinInfoTextView.constrainHeightTo(dimension: coinInfoView.heightAnchor, multiplier: 55/100)
         let coinImageView = UIImageView(image: UIImage(imageLiteralResourceName: "yellow_gem"))
         coinInfoView.addSubview(coinImageView)
-        coinImageView.constrainBottomTo(anchor: coinInfoView.bottomAnchor, constant: -8)
+        coinImageView.constrainTopTo(anchor: coinInfoTextView.bottomAnchor, constant: 5)
         coinImageView.constrainCenterXTo(anchor: coinInfoView.centerXAnchor)
-        coinImageView.constrainWidthTo(dimension: coinInfoView.widthAnchor, multiplier: 1/7)
-        coinImageView.constrainHeightTo(dimension: coinInfoView.widthAnchor, multiplier: 1/7)
+        coinImageView.constrainWidthTo(dimension: coinInfoView.heightAnchor, multiplier: 35/100)
+        coinImageView.constrainHeightTo(dimension: coinInfoView.heightAnchor, multiplier: 35/100)
         addSubview(coinInfoView)
         coinInfoView.constrainTopTo(anchor: borderThree.bottomAnchor)
         coinInfoView.constrainWidthTo(dimension: widthAnchor, multiplier: 0.85)

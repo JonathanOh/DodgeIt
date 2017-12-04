@@ -43,6 +43,7 @@ class PuzzleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(UIScreen.main.bounds.width)
         navigationController?.navigationBar.isHidden = true
         setupPlayerView(squareData: dataOfSquares, puzzle: puzzleLevel)
     }
