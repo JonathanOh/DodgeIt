@@ -8,6 +8,7 @@
 
 import UIKit
 
+// This class sets up an invisible background to our feedback modal.  It will intercept tap gestures and dismiss feedback.
 class FeedbackClearBackgroundView: UIView {
     
     let feedbackContainer: FeedbackContainerView = FeedbackContainerView()
