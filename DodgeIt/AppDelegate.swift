@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupGoogleAds(adMobAppID: CONSTANTS.GOOGLE_SERVICES.ADS.AD_MOB_APP_ID)
         FirebaseApp.configure()
         Analytics.logEvent("player_opened_app", parameters: [:])
+        
+//        PlayerDefaults.shared.setPlayerCoins(100000)
+//        PlayerDefaults.shared.setIsUserBeginner(false)
+//        UserDefaults.standard.set(true, forKey: "adRemovalPurchase")
         return true
     }
 

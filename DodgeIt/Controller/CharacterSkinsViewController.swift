@@ -38,10 +38,28 @@ class CharacterSkinsViewController: UIViewController {
         coinImageView = CoinView(numberOfCoins: currentPlayer?.playerCoins ?? 0, textFont: font, fontColor: .black)
         coinImageView.frame = CGRect(x: coinImageView.frame.origin.x, y: coinImageView.frame.origin.y, width: coinImageView.frame.width * 0.75, height: coinImageView.frame.height * 0.75)
         navigationItem.titleView = coinImageView
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .plain, target: self, action: #selector(restorePurchasesTapped))
         guard let navBar = navigationController?.navigationBar else { return }
         navBar.tintColor = .black
         navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         navBar.barTintColor = CONSTANTS.COLORS.MENU_BUTTONS
+    }
+    
+    @objc func restorePurchasesTapped() {
+        IAPHandler.shared.restorePurchase()
+        let loadingView = FullPageLoadingIndicator(viewController: self)
+        loadingView.startLoading()
+        IAPHandler.shared.purchaseStatusBlock = { [weak self] alertType in
+            loadingView.stopLoading()
+            switch alertType {
+            case .restored:
+                let restoredAlert = AlertView.getCustomAlert(title: "", message: "Your purchases have been restored!")
+                self?.present(restoredAlert, animated: true, completion: nil)
+            default:
+                let failedAlert = AlertView.getCustomAlert(title: "Oops", message: "Something went wrong.")
+                self?.present(failedAlert, animated: true, completion: nil)
+            }
+        }
     }
     
     func setupCharacterSkinTableView() {
