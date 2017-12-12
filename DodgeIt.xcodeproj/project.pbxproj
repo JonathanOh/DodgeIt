@@ -51,6 +51,7 @@
 		8B61DDC71F98155C00E791FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDB61F98089C00E791FA /* Extensions.swift */; };
 		8B61DDC91F992B0B00E791FA /* SquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDC81F992B0B00E791FA /* SquareData.swift */; };
 		8B61DDCD1F9FC10B00E791FA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */; };
+		8B6391E81FE06AF50071CB06 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6391E71FE06AF50071CB06 /* PrivacyPolicyViewController.swift */; };
 		8B6B06361FBBC0E900C98851 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B06351FBBC0E900C98851 /* StoreKit.framework */; };
 		8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */; };
 		8BB3F3781FBCD1700051F779 /* XLocallyStoredMapThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BB3F3771FBCD1700051F779 /* XLocallyStoredMapThemes.json */; };
@@ -127,6 +128,7 @@
 		8B61DDC01F9814BA00E791FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B61DDC81F992B0B00E791FA /* SquareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareData.swift; sourceTree = "<group>"; };
 		8B61DDCC1F9FC10A00E791FA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		8B6391E71FE06AF50071CB06 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		8B6B06351FBBC0E900C98851 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8B853C9E1FBA5D1C003F92F7 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		8BB3F3771FBCD1700051F779 /* XLocallyStoredMapThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = XLocallyStoredMapThemes.json; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				8B61DD971F97F6FD00E791FA /* PuzzleViewController.swift */,
 				8BF18F8D1FA7D1E600FC1FF4 /* MenuViewController.swift */,
 				847B1CD41FC4287900BC6882 /* CharacterSkinsViewController.swift */,
+				8B6391E71FE06AF50071CB06 /* PrivacyPolicyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				8B5C19EF1FD5C52500990582 /* HowToPlayView.swift in Sources */,
 				8B61DDAF1F97FE6400E791FA /* SquareView.swift in Sources */,
 				847B1CBA1FC2B36300BC6882 /* CharacterImageView.swift in Sources */,
+				8B6391E81FE06AF50071CB06 /* PrivacyPolicyViewController.swift in Sources */,
 				8B1DA6B21FA3D76100C10ABE /* TestingConstants.swift in Sources */,
 				8B853C9F1FBA5D1C003F92F7 /* MenuButton.swift in Sources */,
 				8BB3F37A1FBD10550051F779 /* IAPHelper.swift in Sources */,

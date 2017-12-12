@@ -70,6 +70,32 @@ class CharacterSkinsViewController: UIViewController {
         characterSkinTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         characterSkinTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         characterSkinTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        
+        setupTableFooterView()
+    }
+    
+    func setupTableFooterView() {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: characterSkinTableView.frame.width, height: 50))
+        footerView.backgroundColor = .white
+        
+        let privacyPolicyButton = UIButton()//UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
+        //privacyPolicyButton.backgroundColor = .red
+        privacyPolicyButton.setTitle("Privacy Policy", for: .normal)
+        privacyPolicyButton.titleLabel?.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: 25)
+        privacyPolicyButton.setTitleColor(.black, for: .normal)
+        privacyPolicyButton.addTarget(self, action: #selector(didTapPrivacyPolicy), for: .touchUpInside)
+        footerView.addSubview(privacyPolicyButton)
+        privacyPolicyButton.constrainCenterXTo(anchor: footerView.centerXAnchor)
+        privacyPolicyButton.constrainCenterYTo(anchor: footerView.centerYAnchor)
+        privacyPolicyButton.constrainHeightTo(dimension: footerView.heightAnchor, multiplier: 0.5)
+        privacyPolicyButton.constrainWidthTo(dimension: footerView.widthAnchor, multiplier: 0.4)
+        
+        characterSkinTableView.tableFooterView = footerView
+    }
+    
+    @objc func didTapPrivacyPolicy() {
+        print("did tap privacy")
+        navigationController?.pushViewController(PrivacyPolicyViewController(), animated: true)
     }
 }
 
@@ -95,6 +121,14 @@ extension CharacterSkinsViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Owned" : "Unowned"
     }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if characterCollection.count == (section + 1) {
+//            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 25))
+//            footerView.backgroundColor = .red
+//            return footerView
+//        }
+//        return nil
+//    }
 }
 
 extension CharacterSkinsViewController: CharacterButtonDelegate {
