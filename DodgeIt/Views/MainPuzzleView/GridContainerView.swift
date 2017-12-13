@@ -91,10 +91,10 @@ class GridContainerView: UIView {
             let squaresToExplode: [SquareView]? = self?.squareData.getSquaresAt(positionsOfExplosions.map { $0.getTupleFromArray()! }) as? [SquareView]
             _ = squaresToExplode?.map { [weak self] square in
                 if square.isSafe() || square.isObstacle() { return }
-//                if let playerFrame = self?.player {
-//                    let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
-//                    if isPlayerInsideExplosiveSquare { self?.playerEventDelegate?.playerDied() }
-//                }
+                if let playerFrame = self?.player {
+                    let isPlayerInsideExplosiveSquare = square.bounds.intersects(square.convert(playerFrame.bounds, from: playerFrame))
+                    if isPlayerInsideExplosiveSquare { self?.playerEventDelegate?.playerDied() }
+                }
                 square.explode()
             }
         }
