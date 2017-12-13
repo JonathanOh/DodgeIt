@@ -13,6 +13,10 @@ struct CONSTANTS {
     static let APP_APPLE_ID: String = "id1313086332"
     static let APP_STORE_LINK: String = "https://itunes.apple.com/us/app/splodey-bound/\(CONSTANTS.APP_APPLE_ID)?ls=1&mt=8"
     
+    struct DEVICE_SIZE {
+        static let IS_SHORT_HEIGHT: Bool = UIScreen.main.bounds.height <= 480
+    }
+    
     struct GOOGLE_SERVICES {
         struct ADS {
             static let AD_MOB_APP_ID = "ca-app-pub-2890175151799850~5941100437"

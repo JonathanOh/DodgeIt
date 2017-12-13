@@ -37,8 +37,6 @@ class HowToPlayView: UIView {
     }
     
     func setupViews() {
-        let deviceSmallerThan6 = UIScreen.main.bounds.width < 370
-        
         titleLabel.text = "How to Play"
         titleLabel.textColor = .white
         //titleLabel.backgroundColor = .purple
@@ -79,7 +77,7 @@ class HowToPlayView: UIView {
         addSubview(swipeToMoveView)
         swipeToMoveView.constrainTopTo(anchor: borderOne.bottomAnchor)
         swipeToMoveView.constrainCenterXTo(anchor: centerXAnchor)
-        swipeToMoveView.constrainWidthTo(dimension: widthAnchor, multiplier: 0.75)
+        swipeToMoveView.constrainWidthTo(dimension: widthAnchor, multiplier: CONSTANTS.DEVICE_SIZE.IS_SHORT_HEIGHT ? 0.63 : 0.75)
         swipeToMoveView.constrainHeightTo(dimension: heightAnchor, multiplier: 1/3)
         
         let borderTwo = UIView()
@@ -96,7 +94,7 @@ class HowToPlayView: UIView {
         gameObjectiveTextView.isSelectable = false
         gameObjectiveTextView.backgroundColor = .clear
         gameObjectiveTextView.textColor = .white
-        gameObjectiveTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: deviceSmallerThan6 ? 25 : 30)
+        gameObjectiveTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: CONSTANTS.DEVICE_SIZE.IS_SHORT_HEIGHT ? 20 : 30)
         
         let gameObjectiveView = UIView()
         gameObjectiveView.addSubview(gameObjectiveTextView)
@@ -130,7 +128,7 @@ class HowToPlayView: UIView {
         coinInfoTextView.isSelectable = false
         coinInfoTextView.backgroundColor = .clear
         coinInfoTextView.textColor = .white
-        coinInfoTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: deviceSmallerThan6 ? 25 : 30)
+        coinInfoTextView.font = UIFont(name: CONSTANTS.FONT_NAMES.DEFAULT, size: CONSTANTS.DEVICE_SIZE.IS_SHORT_HEIGHT ? 20 : 30)
         let coinInfoView = UIView()
         coinInfoView.addSubview(coinInfoTextView)
         coinInfoTextView.constrainTopTo(anchor: coinInfoView.topAnchor)

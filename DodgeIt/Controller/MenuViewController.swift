@@ -77,9 +77,9 @@ class MenuViewController: UIViewController {
     }
     
     func updateCurrentGemCount() {
+        if CONSTANTS.DEVICE_SIZE.IS_SHORT_HEIGHT { return }
         let coinCount = PlayerDefaults.shared.getPlayerCoins()
         coinView.updateCoinCount(coinCount)
-        
         if let playerExists = currentPlayer {
             view.addSubview(coinView)
             var xOffset = CGFloat()

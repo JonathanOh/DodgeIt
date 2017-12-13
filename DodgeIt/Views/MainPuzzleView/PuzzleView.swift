@@ -115,7 +115,7 @@ class PuzzleView: UIView {
         gridContainerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         //gridContainerView.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height / 10).isActive = true
         //gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -(CGFloat(currentPuzzle.squareWidth) * 3)).isActive = true
+        gridContainerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: CONSTANTS.DEVICE_SIZE.IS_SHORT_HEIGHT ? -(CGFloat(currentPuzzle.squareWidth)) : -(CGFloat(currentPuzzle.squareWidth) * 3)).isActive = true
         gridContainerView.widthAnchor.constraint(equalToConstant: CGFloat(puzzle.totalWidth)).isActive = true
         gridContainerView.heightAnchor.constraint(equalToConstant: CGFloat(puzzle.totalHeight)).isActive = true
     }
